@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:metaballs/metaballs.dart';
 
 void main() {
   runApp(const MyApp());
@@ -110,6 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 SafeArea(
                   child: NavigationRail(
+                    backgroundColor: Colors.lightBlueAccent,
                     extended: false,
                     destinations: const [
                       NavigationRailDestination(
@@ -181,167 +183,218 @@ class LoginPage extends StatelessWidget {
     var appState = context.watch<MyAppState>();
     var colorScheme = Theme.of(context).colorScheme;
 
-
     return Scaffold(
-      body: LayoutBuilder(
-        builder: (context,constrains) {
-          if (constrains.maxWidth >= 600) {
-            return Container(
-              alignment: Alignment.center,
-              child: SingleChildScrollView(
-                child: Column(
-                      children: <Widget>[
-                        Container(
-                          height: 80,
-                          width: 350,
-                          margin: const EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                            color: colorScheme.primaryContainer,
-                            border: Border.all(
-                                width: 3.0,
-                                color: colorScheme.onPrimaryContainer),
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16,
-                                vertical: 16),
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                  icon: Icon(Icons.person),
-                                  border: OutlineInputBorder(),
-                                  labelText: "Enter your Username"),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 80,
-                          width: 350,
-                          margin: const EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                            color: colorScheme.primaryContainer,
-                            border: Border.all(
-                                width: 3.0,
-                                color: colorScheme.onPrimaryContainer),
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16,
-                                vertical: 16),
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                  icon: Icon(Icons.password),
-                                  border: OutlineInputBorder(),
-                                  labelText: "Enter your Password"),
-                            ),
-                          ),
-                        ),
-                    const Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Spacer(),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          LoginButton(),
-                          Spacer(),
-                          CreateButton(),
-                          Spacer(),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+      body: LayoutBuilder(builder: (context, constrains) {
+        if (constrains.maxWidth >= 600) {
+          return Stack(
+            children: <Widget>[
+              Metaballs(
+                  effect: MetaballsEffect.follow(
+                    growthFactor: 1,
+                    smoothing: 1,
+                    radius: 0.5,
+                  ),
+                  color: const Color.fromARGB(0, 29, 54, 215),
+                  gradient: const LinearGradient(colors: [
+                    Colors.purpleAccent,
+                    Colors.cyanAccent,
+                  ], begin: Alignment.bottomRight, end: Alignment.topLeft),
+                  metaballs: 100,
+                  animationDuration: const Duration(milliseconds: 200),
+                  speedMultiplier: 1,
+                  bounceStiffness: 3,
+                  minBallRadius: 15,
+                  maxBallRadius: 40,
+                  glowRadius: 0.7,
+                  glowIntensity: 0.6,
+                  child: Text('METABALLS')),
+              Image.asset(
+                "assets/images/MyNanceSide-noBG.png",
+                width: 400,
+                height: 400,
+                fit: BoxFit.cover,
               ),
-            );
-          }else {
-            return Column(
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      "assets/images/MyNanceDark.png",
-                      width: 600,
-                      height: 200,
-                      fit: BoxFit.cover,
-                    ),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      height: 80,
-                      width: 350,
-                      margin: const EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                        color: colorScheme.primaryContainer,
-                        border: Border.all(
-                            width: 3.0,
-                            color: colorScheme.onPrimaryContainer),
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16,
-                            vertical: 16),
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                              icon: Icon(Icons.person),
-                              border: OutlineInputBorder(),
-                              labelText: "Enter your Username"),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 80,
-                      width: 350,
-                      margin: const EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                        color: colorScheme.primaryContainer,
-                        border: Border.all(
-                            width: 3.0,
-                            color: colorScheme.onPrimaryContainer),
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16,
-                            vertical: 16),
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                              icon: Icon(Icons.password),
-                              border: OutlineInputBorder(),
-                              labelText: "Enter your Password"),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+              Container(
+                alignment: Alignment.center,
+                child: SingleChildScrollView(
+                  child: Column(
                     children: <Widget>[
-                      Spacer(),
-                      SizedBox(
-                        height: 20,
+                      Container(
+                        height: 80,
+                        width: 350,
+                        margin: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          color: colorScheme.primaryContainer,
+                          border: Border.all(
+                              width: 3.0,
+                              color: colorScheme.onPrimaryContainer),
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 16),
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                                icon: Icon(Icons.person),
+                                border: OutlineInputBorder(),
+                                labelText: "Enter your Username"),
+                          ),
+                        ),
                       ),
-                      LoginButton(),
-                      Spacer(),
-                      CreateButton(),
-                      Spacer(),
+                      Container(
+                        height: 80,
+                        width: 350,
+                        margin: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          color: colorScheme.primaryContainer,
+                          border: Border.all(
+                              width: 3.0,
+                              color: colorScheme.onPrimaryContainer),
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 16),
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                                icon: Icon(Icons.password),
+                                border: OutlineInputBorder(),
+                                labelText: "Enter your Password"),
+                          ),
+                        ),
+                      ),
+                      const Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Spacer(),
+                            Spacer(),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            LoginButton(),
+                            Spacer(),
+                            CreateButton(),
+                            Spacer(),
+                            Spacer(),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
-              ],
-            );
-
-          }
+              ),
+            ],
+          );
+        } else {
+          return Stack(
+            children: <Widget>[
+              Metaballs(
+                  color: const Color.fromARGB(255, 66, 133, 244),
+                  effect: MetaballsEffect.follow(
+                    growthFactor: 1,
+                    smoothing: 1,
+                    radius: 0.5,
+                  ),
+                  gradient: LinearGradient(colors: [
+                    const Color.fromARGB(255, 90, 60, 255),
+                    const Color.fromARGB(255, 120, 255, 255),
+                  ], begin: Alignment.bottomRight, end: Alignment.topLeft),
+                  metaballs: 100,
+                  animationDuration: const Duration(milliseconds: 200),
+                  speedMultiplier: 1,
+                  bounceStiffness: 3,
+                  minBallRadius: 15,
+                  maxBallRadius: 40,
+                  glowRadius: 0.7,
+                  glowIntensity: 0.6,
+                  child: Text('METABALLS')),
+              Column(
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        "assets/images/LogoRender.png",
+                        width: 600,
+                        height: 200,
+                        fit: BoxFit.cover,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        height: 80,
+                        width: 350,
+                        margin: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          color: colorScheme.primaryContainer,
+                          border: Border.all(
+                              width: 3.0,
+                              color: colorScheme.onPrimaryContainer),
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 16),
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                                icon: Icon(Icons.person),
+                                border: OutlineInputBorder(),
+                                labelText: "Enter your Username"),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 80,
+                        width: 350,
+                        margin: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          color: colorScheme.primaryContainer,
+                          border: Border.all(
+                              width: 3.0,
+                              color: colorScheme.onPrimaryContainer),
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 16),
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                                icon: Icon(Icons.password),
+                                border: OutlineInputBorder(),
+                                labelText: "Enter your Password"),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Spacer(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        LoginButton(),
+                        Spacer(),
+                        CreateButton(),
+                        Spacer(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          );
         }
-      ),
+      }),
     );
   }
 }
-
 
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key});
@@ -360,16 +413,14 @@ class LoginButton extends StatelessWidget {
 
     return ElevatedButton(
       style: ButtonStyle(
-       // animationDuration: Duration(seconds: 2),
+        // animationDuration: Duration(seconds: 2),
         foregroundColor: MaterialStateProperty.resolveWith(getColor),
       ),
       onPressed: () {},
-      child:const Text('LOGIN'),
-
+      child: const Text('LOGIN'),
     );
   }
 }
-
 
 class CreateButton extends StatelessWidget {
   const CreateButton({super.key});
@@ -379,7 +430,6 @@ class CreateButton extends StatelessWidget {
     Color getColor(Set<MaterialState> states) {
       const Set<MaterialState> interactiveStates = <MaterialState>{
         MaterialState.pressed,
-
       };
       if (states.any(interactiveStates.contains)) {
         return Colors.blue;
@@ -391,7 +441,9 @@ class CreateButton extends StatelessWidget {
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.resolveWith(getColor),
       ),
-      onPressed: () {print(const Text("test"));},
+      onPressed: () {
+        print(const Text("test"));
+      },
       child: const Text('CREATE'),
     );
   }
