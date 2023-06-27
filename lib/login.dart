@@ -188,26 +188,7 @@ class LoginPage extends StatelessWidget {
         if (constrains.maxWidth >= 600) {
           return Stack(
             children: <Widget>[
-              Metaballs(
-                  effect: MetaballsEffect.follow(
-                    growthFactor: 1,
-                    smoothing: 1,
-                    radius: 0.5,
-                  ),
-                  color: const Color.fromARGB(0, 29, 54, 215),
-                  gradient: const LinearGradient(colors: [
-                    Colors.purpleAccent,
-                    Colors.cyanAccent,
-                  ], begin: Alignment.bottomRight, end: Alignment.topLeft),
-                  metaballs: 100,
-                  animationDuration: const Duration(milliseconds: 200),
-                  speedMultiplier: 1,
-                  bounceStiffness: 3,
-                  minBallRadius: 15,
-                  maxBallRadius: 40,
-                  glowRadius: 0.7,
-                  glowIntensity: 0.6,
-                  child: Text('METABALLS')),
+              Animatedbackground(),
               Image.asset(
                 "assets/images/MyNanceSide-noBG.png",
                 width: 400,
@@ -224,19 +205,24 @@ class LoginPage extends StatelessWidget {
                         width: 350,
                         margin: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
-                          color: colorScheme.primaryContainer,
+                          color: const Color.fromRGBO(
+                              60, 147, 183, 0.5),
                           border: Border.all(
                               width: 3.0,
                               color: colorScheme.onPrimaryContainer),
-                          borderRadius: BorderRadius.circular(25.0),
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 16),
                           child: TextFormField(
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
+                              iconColor: Colors.black,
                                 icon: Icon(Icons.person),
-                                border: OutlineInputBorder(),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(color: Colors.black, width: 2.0),
+                                ),
                                 labelText: "Enter your Username"),
                           ),
                         ),
@@ -246,7 +232,8 @@ class LoginPage extends StatelessWidget {
                         width: 350,
                         margin: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
-                          color: colorScheme.primaryContainer,
+                          color: const Color.fromRGBO(
+                              53, 20, 201, 0.5),
                           border: Border.all(
                               width: 3.0,
                               color: colorScheme.onPrimaryContainer),
@@ -256,9 +243,13 @@ class LoginPage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 16),
                           child: TextFormField(
-                            decoration: const InputDecoration(
-                                icon: Icon(Icons.password),
-                                border: OutlineInputBorder(),
+                            decoration: InputDecoration(
+                                iconColor: Colors.black,
+                                icon: Icon(Icons.person),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(color: Colors.black, width: 2.0),
+                                ),
                                 labelText: "Enter your Password"),
                           ),
                         ),
@@ -289,26 +280,7 @@ class LoginPage extends StatelessWidget {
         } else {
           return Stack(
             children: <Widget>[
-              Metaballs(
-                  color: const Color.fromARGB(255, 66, 133, 244),
-                  effect: MetaballsEffect.follow(
-                    growthFactor: 1,
-                    smoothing: 1,
-                    radius: 0.5,
-                  ),
-                  gradient: LinearGradient(colors: [
-                    const Color.fromARGB(255, 90, 60, 255),
-                    const Color.fromARGB(255, 120, 255, 255),
-                  ], begin: Alignment.bottomRight, end: Alignment.topLeft),
-                  metaballs: 100,
-                  animationDuration: const Duration(milliseconds: 200),
-                  speedMultiplier: 1,
-                  bounceStiffness: 3,
-                  minBallRadius: 15,
-                  maxBallRadius: 40,
-                  glowRadius: 0.7,
-                  glowIntensity: 0.6,
-                  child: Text('METABALLS')),
+              Animatedbackground(),
               Column(
                 children: [
                   Column(
@@ -330,7 +302,8 @@ class LoginPage extends StatelessWidget {
                         width: 350,
                         margin: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
-                          color: colorScheme.primaryContainer,
+                          color: const Color.fromRGBO(
+                              134, 137, 204, 0.5),
                           border: Border.all(
                               width: 3.0,
                               color: colorScheme.onPrimaryContainer),
@@ -340,9 +313,13 @@ class LoginPage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 16),
                           child: TextFormField(
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
+                                iconColor: Colors.black,
                                 icon: Icon(Icons.person),
-                                border: OutlineInputBorder(),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(color: Colors.black, width: 2.0),
+                                ),
                                 labelText: "Enter your Username"),
                           ),
                         ),
@@ -352,7 +329,8 @@ class LoginPage extends StatelessWidget {
                         width: 350,
                         margin: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
-                          color: colorScheme.primaryContainer,
+                          color: const Color.fromRGBO(
+                              25, 54, 203, 0.5),
                           border: Border.all(
                               width: 3.0,
                               color: colorScheme.onPrimaryContainer),
@@ -362,9 +340,13 @@ class LoginPage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 16),
                           child: TextFormField(
-                            decoration: const InputDecoration(
-                                icon: Icon(Icons.password),
-                                border: OutlineInputBorder(),
+                            decoration: InputDecoration(
+                                iconColor: Colors.black,
+                                icon: Icon(Icons.person),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(color: Colors.black, width: 2.0),
+                                ),
                                 labelText: "Enter your Password"),
                           ),
                         ),
@@ -393,6 +375,36 @@ class LoginPage extends StatelessWidget {
         }
       }),
     );
+  }
+}
+
+class Animatedbackground extends StatelessWidget {
+  const Animatedbackground({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Metaballs(
+        effect: MetaballsEffect.follow(
+          growthFactor: 1,
+          smoothing: 1,
+          radius: 0.5,
+        ),
+        color: const Color.fromARGB(255, 9, 67, 155),
+        gradient: const LinearGradient(colors: [
+          Color.fromARGB(255, 85, 36, 182),
+          Color.fromARGB(255, 20, 180, 201),
+        ], begin: Alignment.bottomRight, end: Alignment.topLeft),
+        metaballs: 50,
+        animationDuration: const Duration(milliseconds: 1000),
+        speedMultiplier: 1,
+        bounceStiffness: 3,
+        minBallRadius: 15,
+        maxBallRadius: 40,
+        glowRadius: 0.7,
+        glowIntensity: 0.6,
+        child: Text('METABALLS'));
   }
 }
 
