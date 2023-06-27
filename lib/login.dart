@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -28,6 +28,8 @@ class MyApp extends StatelessWidget {
 class MyAppState extends ChangeNotifier {}
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -48,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = HomePage();
         break;
       case 2:
-        page = Placeholder();
+        page = const Placeholder();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -59,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var mainArea = ColoredBox(
       color: colorScheme.surfaceVariant,
       child: AnimatedSwitcher(
-        duration: Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 200),
         child: page,
       ),
     );
@@ -76,7 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 SafeArea(
                   child: BottomNavigationBar(
                     items: const [
-
                       BottomNavigationBarItem(
                         icon: Icon(Icons.logout),
                         label: 'Logout',
@@ -109,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 SafeArea(
                   child: NavigationRail(
-                    extended: constraints.maxWidth >= 600,
+                    extended: false,
                     destinations: const [
                       NavigationRailDestination(
                         icon: Icon(Icons.logout),
@@ -143,21 +144,23 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
-  Widget build (BuildContext context){
+  Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Text("Test feld für text"),
-          Text("second Textfield"),
-          Text("Test feld für text"),
-          Text("second Textfield"),
-          Text("Test feld für text"),
-          Text("second Textfield"),
-          Text("Test feld für text"),
-          Text("second Textfield"),
+          const Text("Test feld für text"),
+          const Text("second Textfield"),
+          const Text("Test feld für text"),
+          const Text("second Textfield"),
+          const Text("Test feld für text"),
+          const Text("second Textfield"),
+          const Text("Test feld für text"),
+          const Text("second Textfield"),
           Image.asset(
             "assets/images/MyNanceDark.png",
             width: 600,
@@ -170,57 +173,226 @@ class HomePage extends StatelessWidget {
   }
 }
 
-
-
 class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     var colorScheme = Theme.of(context).colorScheme;
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Image.asset(
-                "assets/images/MyNanceDark.png",
-                width: 600,
-                height: 200,
-                fit: BoxFit.cover,
-              ),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                decoration: BoxDecoration(color: colorScheme.primaryContainer),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: "Enter your Username"),
-                  ),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(color: colorScheme.primaryContainer),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: "Enter your Password"),
-                  ),
-                ),
-              ),
-            ],
-          ),
 
-        ],
+
+    return Scaffold(
+      body: LayoutBuilder(
+        builder: (context,constrains) {
+          if (constrains.maxWidth >= 600) {
+            return Container(
+              alignment: Alignment.center,
+              child: SingleChildScrollView(
+                child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 80,
+                          width: 350,
+                          margin: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            color: colorScheme.primaryContainer,
+                            border: Border.all(
+                                width: 3.0,
+                                color: colorScheme.onPrimaryContainer),
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16,
+                                vertical: 16),
+                            child: TextFormField(
+                              decoration: const InputDecoration(
+                                  icon: Icon(Icons.person),
+                                  border: OutlineInputBorder(),
+                                  labelText: "Enter your Username"),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          height: 80,
+                          width: 350,
+                          margin: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            color: colorScheme.primaryContainer,
+                            border: Border.all(
+                                width: 3.0,
+                                color: colorScheme.onPrimaryContainer),
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16,
+                                vertical: 16),
+                            child: TextFormField(
+                              decoration: const InputDecoration(
+                                  icon: Icon(Icons.password),
+                                  border: OutlineInputBorder(),
+                                  labelText: "Enter your Password"),
+                            ),
+                          ),
+                        ),
+                    const Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Spacer(),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          LoginButton(),
+                          Spacer(),
+                          CreateButton(),
+                          Spacer(),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }else {
+            return Column(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      "assets/images/MyNanceDark.png",
+                      width: 600,
+                      height: 200,
+                      fit: BoxFit.cover,
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      height: 80,
+                      width: 350,
+                      margin: const EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        color: colorScheme.primaryContainer,
+                        border: Border.all(
+                            width: 3.0,
+                            color: colorScheme.onPrimaryContainer),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16,
+                            vertical: 16),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                              icon: Icon(Icons.person),
+                              border: OutlineInputBorder(),
+                              labelText: "Enter your Username"),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 80,
+                      width: 350,
+                      margin: const EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        color: colorScheme.primaryContainer,
+                        border: Border.all(
+                            width: 3.0,
+                            color: colorScheme.onPrimaryContainer),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16,
+                            vertical: 16),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                              icon: Icon(Icons.password),
+                              border: OutlineInputBorder(),
+                              labelText: "Enter your Password"),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Spacer(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      LoginButton(),
+                      Spacer(),
+                      CreateButton(),
+                      Spacer(),
+                    ],
+                  ),
+                ),
+              ],
+            );
+
+          }
+        }
       ),
+    );
+  }
+}
+
+
+class LoginButton extends StatelessWidget {
+  const LoginButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+      };
+      if (states.contains(MaterialState.pressed)) {
+        return Colors.blue;
+      }
+      return Colors.black;
+    }
+
+    return ElevatedButton(
+      style: ButtonStyle(
+       // animationDuration: Duration(seconds: 2),
+        foregroundColor: MaterialStateProperty.resolveWith(getColor),
+      ),
+      onPressed: () {},
+      child:const Text('LOGIN'),
+
+    );
+  }
+}
+
+
+class CreateButton extends StatelessWidget {
+  const CreateButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.blueGrey;
+    }
+
+    return ElevatedButton(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.resolveWith(getColor),
+      ),
+      onPressed: () {print(const Text("test"));},
+      child: const Text('CREATE'),
     );
   }
 }
