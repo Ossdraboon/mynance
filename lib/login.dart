@@ -50,9 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
       case 2:
         page = Placeholder();
         break;
-      case 3:
-        page = Placeholder();
-        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -126,8 +123,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         icon: Icon(Icons.account_balance),
                         label: Text('Account Balance'),
                       ),
-                      NavigationRailDestination(
-                          icon: Icon(Icons.add_chart), label: Text("Add List")),
                     ],
                     selectedIndex: selectedIndex,
                     onDestinationSelected: (value) {
