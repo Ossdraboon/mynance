@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:metaballs/metaballs.dart';
 import 'loginPage.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -80,9 +81,39 @@ class HomePage extends StatelessWidget {
               ),
               height: 400,
               alignment: Alignment.center,
-              child: const SingleChildScrollView(
+              child:  SingleChildScrollView(
                 child: Column(
                   children: [
+                    TextFormField(
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          // for below version 2 use this
+                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+// for version 2 and greater youcan also use this
+                          FilteringTextInputFormatter.digitsOnly
+
+                        ],
+                        decoration: const InputDecoration(
+                            labelText: "add new payment",
+                            hintText: "add new payment",
+                            icon: Icon(Icons.payment)
+                        )
+                    ),
+                    TextFormField(
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          // for below version 2 use this
+                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+// for version 2 and greater youcan also use this
+                          FilteringTextInputFormatter.digitsOnly
+
+                        ],
+                        decoration: const InputDecoration(
+                            labelText: "add new income",
+                            hintText: "add new income",
+                            icon: Icon(Icons.money)
+                        )
+                    ),
                     Text("MAIN PAGE FUNCTION"),
                     Text("second Textfield"),
                     Text("Test feld für text"),
@@ -146,6 +177,7 @@ class HomePage extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Expanded(
+                    flex: 2,
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.blue,
@@ -163,7 +195,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    flex: 3,
+                    flex: 5,
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.red,
