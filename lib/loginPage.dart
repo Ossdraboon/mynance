@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'Widgets/animatedBackground.dart';
+import 'main.dart';
+
+//import 'Widgets/animatedBackground.dart';
 
 //import 'package:metaballs/metaballs.dart';
-//import 'main.dart';
+
 
 
 class LoginPage extends StatelessWidget {
@@ -17,7 +19,7 @@ class LoginPage extends StatelessWidget {
         if (constrains.maxWidth >= 600) {
           return Stack(
             children: <Widget>[
-              //Animatedbackground(),
+              const Animatedbackground(),
               Image.asset(
                 "assets/images/MyNanceSide-noBG.png",
                 width: 400,
@@ -87,81 +89,74 @@ class LoginPage extends StatelessWidget {
             ],
           );
         } else {
-          return SingleChildScrollView(
-            child: Stack(
+          return Stack(
               children: <Widget>[
-                //Animatedbackground(),
+                const Animatedbackground(),
+                Image.asset(
+                  "assets/images/LogoRender.png",
+                  width: 600,
+                  height: 200,
+                  fit: BoxFit.cover,
+                ),
                 Column(
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Image.asset(
-                          "assets/images/LogoRender.png",
-                          width: 600,
-                          height: 200,
-                          fit: BoxFit.cover,
-                        ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          height: 80,
-                          width: 350,
-                          margin: const EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(134, 137, 204, 0.5),
-                            border: Border.all(
-                                width: 3.0,
-                                color: colorScheme.onPrimaryContainer),
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 16),
-                            child: TextfieldUsername(),
-                          ),
-                        ),
-                        Container(
-                          height: 80,
-                          width: 350,
-                          margin: const EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(25, 54, 203, 0.5),
-                            border: Border.all(
-                                width: 3.0,
-                                color: colorScheme.onPrimaryContainer),
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 16),
-                            child: TextfieldPassword(),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
                         children: <Widget>[
-                          Spacer(),
-                          SizedBox(
-                            height: 20,
+                          Container(
+                            height: 80,
+                            width: 350,
+                            margin: const EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                              color: const Color.fromRGBO(134, 137, 204, 0.5),
+                              border: Border.all(
+                                  width: 3.0,
+                                  color: colorScheme.onPrimaryContainer),
+                              borderRadius: BorderRadius.circular(25.0),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 16),
+                              child: TextfieldUsername(),
+                            ),
                           ),
-                          LoginButton(),
-                          Spacer(),
-                          CreateButton(),
-                          Spacer(),
+                          Container(
+                            height: 80,
+                            width: 350,
+                            margin: const EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                              color: const Color.fromRGBO(25, 54, 203, 0.5),
+                              border: Border.all(
+                                  width: 3.0,
+                                  color: colorScheme.onPrimaryContainer),
+                              borderRadius: BorderRadius.circular(25.0),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 16),
+                              child: TextfieldPassword(),
+                            ),
+                          ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
+                      const Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Spacer(),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            LoginButton(),
+                            Spacer(),
+                            CreateButton(),
+                            Spacer(),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
               ],
-            ),
           );
         }
       }),
@@ -259,7 +254,7 @@ class CreateButton extends StatelessWidget {
         foregroundColor: MaterialStateProperty.resolveWith(getColor),
       ),
       onPressed: () {
-        print(const Text("test"));
+        Navigator.of(context).pushNamed('/create');
       },
       child: const Text('CREATE'),
     );

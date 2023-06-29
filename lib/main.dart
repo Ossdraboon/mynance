@@ -1,7 +1,14 @@
+import 'package:MyNance/createAccountPage.dart';
+import 'package:MyNance/infoChartPage.dart';
+import 'package:MyNance/manageAccountPage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:metaballs/metaballs.dart';
 import 'loginPage.dart';
+import 'homePage.dart';
+import 'createAccountPage.dart';
+import 'manageAccountPage.dart';
+import 'menuSettingsPage.dart';
 import 'package:flutter/services.dart';
 
 void main() {
@@ -25,6 +32,11 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const LoginPage(),
           '/home': (context) => const StartUpPage(),
+          '/create': (context) => const CreateAccount(),
+          '/manage': (context) => const ManageAccount(),
+          '/menu': (context) => const MenuSettings(),
+          '/info': (context) => const InfoChart(),
+          //'/week': (context =>
         },
         // home: const StartUpPage(),
       ),
@@ -34,12 +46,6 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {}
 
-class StartUpPage extends StatefulWidget {
-  const StartUpPage({super.key});
-
-  @override
-  State<StartUpPage> createState() => _StartUpPageState();
-}
 
 class MenuItem {
   IconData? icon;
@@ -51,182 +57,19 @@ class MenuItem {
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class StartUpPage extends StatefulWidget {
+  const StartUpPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    var colorScheme = Theme.of(context).colorScheme;
-    // var appState = context.watch<MyAppState>();
-    return Stack(
-      children: <Widget>[
-        //Animatedbackground(),
-        Column(
-          children: <Widget>[
-            Container(
-              alignment: Alignment.topCenter,
-              child: Image.asset(
-                "assets/images/LogoRender.png",
-                width: 600,
-                height: 200,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: const Color.fromRGBO(13, 80, 201, 0.5),
-                border: Border.all(
-                    width: 3.0, color: colorScheme.onPrimaryContainer),
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-              height: 400,
-              alignment: Alignment.center,
-              child:  SingleChildScrollView(
-                child: Column(
-                  children: [
-                    TextFormField(
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          // for below version 2 use this
-                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-// for version 2 and greater youcan also use this
-                          FilteringTextInputFormatter.digitsOnly
-
-                        ],
-                        decoration: const InputDecoration(
-                            labelText: "add new payment",
-                            hintText: "add new payment",
-                            icon: Icon(Icons.payment)
-                        )
-                    ),
-                    TextFormField(
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          // for below version 2 use this
-                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-// for version 2 and greater youcan also use this
-                          FilteringTextInputFormatter.digitsOnly
-
-                        ],
-                        decoration: const InputDecoration(
-                            labelText: "add new income",
-                            hintText: "add new income",
-                            icon: Icon(Icons.money)
-                        )
-                    ),
-                    Text("MAIN PAGE FUNCTION"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                    Text("Test feld für text"),
-                    Text("second Textfield"),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: const Color.fromRGBO(53, 20, 201, 0.5),
-                border: Border.all(
-                    width: 3.0, color: colorScheme.onPrimaryContainer),
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-              height: 180,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        border: Border.all(
-                            width: 3.0, color: colorScheme.onPrimaryContainer),
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      height: 150,
-                      child: const Center(
-                        child: Icon(
-                          Icons.add_chart,
-                          size: 80,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        border: Border.all(
-                            width: 3.0, color: colorScheme.onPrimaryContainer),
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      height: 150,
-                      child: const Column(
-                        children: [
-                          Text("Test text for show of asdfasdfasdfsaddfasdfasdf")
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
+  State<StartUpPage> createState() => _StartUpPageState();
 }
 
 class _StartUpPageState extends State<StartUpPage> {
-  var selectedIndex = 0;
+  var selectedIndex = -1;
   List<MenuItem> _menuItems = [
     MenuItem(Icons.home, "Home"),
     MenuItem(Icons.account_balance, "Account Balance"),
-    MenuItem(Icons.logout, "Logout"),
+    MenuItem(Icons.settings, "Settings"),
   ];
 
   List<BottomNavigationBarItem> getBottomTabs(List<MenuItem> tabs) {
@@ -252,8 +95,23 @@ class _StartUpPageState extends State<StartUpPage> {
         .toList();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
+    if(selectedIndex == -1) {
+      selectedIndex = 0;
+      final args = ModalRoute.of(context)!.settings.arguments as String?;
+      if (args != null && args == "StartUpManage") {
+          selectedIndex = 1;
+      }
+      if (args != null && args == "StartUpHome") {
+        selectedIndex = 0;
+      }
+      if (args != null && args == "StartUpSettings") {
+        selectedIndex = 2;
+      }
+    }
     var colorScheme = Theme.of(context).colorScheme;
 
     Widget page;
@@ -262,10 +120,10 @@ class _StartUpPageState extends State<StartUpPage> {
         page = const HomePage();
         break;
       case 1:
-        page = const Placeholder();
+        page = const ManageAccount();
         break;
       case 2:
-        page = const Placeholder();
+        page = const MenuSettings();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -291,13 +149,12 @@ class _StartUpPageState extends State<StartUpPage> {
                     items: getBottomTabs(_menuItems),
                     currentIndex: selectedIndex,
                     onTap: (value) {
-                      if (value == 2) {
-                        Navigator.of(context).pushNamed('/');
-                      } else {
+                      // if (value == 2) {
+                      //   Navigator.of(context).pushNamed('/');
+                      // } else {
                         setState(() {
                           selectedIndex = value;
                         });
-                      }
                     },
                   ),
                 )
@@ -313,13 +170,12 @@ class _StartUpPageState extends State<StartUpPage> {
                     destinations: getNavigationRailDestination(_menuItems),
                     selectedIndex: selectedIndex,
                     onDestinationSelected: (value) {
-                      if (value == 2) {
-                        Navigator.of(context).pushNamed('/');
-                      } else {
+                      // if (value == 2) {
+                      //   Navigator.of(context).pushNamed('/');
+                      // } else {
                         setState(() {
                           selectedIndex = value;
                         });
-                      }
                     },
                   ),
                 ),
