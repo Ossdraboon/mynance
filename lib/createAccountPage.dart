@@ -32,116 +32,12 @@ class CreateAccount extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
-                      Container(
-                        height: 80,
-                        width: 350,
-                        margin: const EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          color: const Color.fromRGBO(134, 137, 204, 0.5),
-                          border: Border.all(
-                              width: 3.0,
-                              color: colorScheme.onPrimaryContainer),
-                          borderRadius: BorderRadius.circular(25.0),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 16),
-                          child: Text("EMAIL"),
-                        ),
-                      ),
-                      Container(
-                        height: 80,
-                        width: 350,
-                        margin: const EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          color: const Color.fromRGBO(134, 137, 204, 0.5),
-                          border: Border.all(
-                              width: 3.0,
-                              color: colorScheme.onPrimaryContainer),
-                          borderRadius: BorderRadius.circular(25.0),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 16),
-                          child: Text("NAME"),
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: 80,
-                              width: 350,
-                              margin: const EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(
-                                color: const Color.fromRGBO(134, 137, 204, 0.5),
-                                border: Border.all(
-                                    width: 3.0,
-                                    color: colorScheme.onPrimaryContainer),
-                                borderRadius: BorderRadius.circular(25.0),
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 16),
-                                child: Text("AGE*"),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              height: 80,
-                              width: 350,
-                              margin: const EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(
-                                color: const Color.fromRGBO(134, 137, 204, 0.5),
-                                border: Border.all(
-                                    width: 3.0,
-                                    color: colorScheme.onPrimaryContainer),
-                                borderRadius: BorderRadius.circular(25.0),
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 16),
-                                child: Text("GENDER*"),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        height: 80,
-                        width: 350,
-                        margin: const EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          color: const Color.fromRGBO(25, 54, 203, 0.5),
-                          border: Border.all(
-                              width: 3.0,
-                              color: colorScheme.onPrimaryContainer),
-                          borderRadius: BorderRadius.circular(25.0),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 16),
-                          child: Text("PASSWORT"),
-                        ),
-                      ),
-                      Container(
-                        height: 80,
-                        width: 350,
-                        margin: const EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          color: const Color.fromRGBO(25, 54, 203, 0.5),
-                          border: Border.all(
-                              width: 3.0,
-                              color: colorScheme.onPrimaryContainer),
-                          borderRadius: BorderRadius.circular(25.0),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 16),
-                          child: Text("PHONE *"),
-                        ),
-                      ),
+                      Textfield(hint: "Name", icon: Icons.person),
+                      Textfield(hint: "Password", icon: Icons.password),
+                      Textfield(hint: "Repeat Password", icon: Icons.password),
+                      Textfield(hint: "Email", icon: Icons.alternate_email),
+                      Numberfield(hint: "Phone Number", icon: Icons.phone_android),
+                      BirthDate(),
                       const Row(
                         children: [
                           Spacer(),
@@ -171,121 +67,18 @@ class CreateAccount extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment.center,
+                margin: EdgeInsetsDirectional.all(10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Column(
                       children: <Widget>[
-                        Container(
-                          height: 80,
-                          width: 350,
-                          margin: const EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(134, 137, 204, 0.5),
-                            border: Border.all(
-                                width: 3.0,
-                                color: colorScheme.onPrimaryContainer),
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 16),
-                            child: Text("EMAIL"),
-                          ),
-                        ),
-                        Container(
-                          height: 80,
-                          width: 350,
-                          margin: const EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(134, 137, 204, 0.5),
-                            border: Border.all(
-                                width: 3.0,
-                                color: colorScheme.onPrimaryContainer),
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 16),
-                            child: Text("NAME"),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                height: 80,
-                                width: 350,
-                                margin: const EdgeInsets.all(10.0),
-                                decoration: BoxDecoration(
-                                  color: const Color.fromRGBO(134, 137, 204, 0.5),
-                                  border: Border.all(
-                                      width: 3.0,
-                                      color: colorScheme.onPrimaryContainer),
-                                  borderRadius: BorderRadius.circular(25.0),
-                                ),
-                                child: const Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 16),
-                                  child: Text("AGE*"),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                height: 80,
-                                width: 350,
-                                margin: const EdgeInsets.all(10.0),
-                                decoration: BoxDecoration(
-                                  color: const Color.fromRGBO(134, 137, 204, 0.5),
-                                  border: Border.all(
-                                     width: 3.0,
-                                      color: colorScheme.onPrimaryContainer),
-                                  borderRadius: BorderRadius.circular(25.0),
-                                ),
-                                child: const Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 16),
-                                  child: Text("GENDER*"),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          height: 80,
-                          width: 350,
-                          margin: const EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(25, 54, 203, 0.5),
-                            border: Border.all(
-                                width: 3.0,
-                                color: colorScheme.onPrimaryContainer),
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 16),
-                            child: Text("PASSWORT"),
-                          ),
-                        ),
-                        Container(
-                          height: 80,
-                          width: 350,
-                          margin: const EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(25, 54, 203, 0.5),
-                            border: Border.all(
-                                width: 3.0,
-                                color: colorScheme.onPrimaryContainer),
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 16),
-                            child: Text("PHONE *"),
-                          ),
-                        ),
+                        Textfield(hint: "Name", icon: Icons.person),
+                        Textfield(hint: "Password", icon: Icons.password),
+                        Textfield(hint: "Repeat Password", icon: Icons.password),
+                        Textfield(hint: "Email", icon: Icons.alternate_email),
+                        Numberfield(hint: "Phone Number", icon: Icons.phone_android),
+                        BirthDate(),
                         const Row(
                           children: [
                             Spacer(),
@@ -358,6 +151,165 @@ class BackButton extends StatelessWidget {
         Navigator.of(context).pushNamed('/');
       },
       child: const Text('Back'),
+    );
+  }
+}
+
+class Textfield extends StatefulWidget {
+  late String _hint;
+  late IconData _icon;
+
+  Textfield({required String hint, required IconData icon, super.key}) {
+    _hint = hint;
+    _icon = icon;
+  }
+
+  @override
+  State<Textfield> createState() => _TextfieldState();
+}
+
+class _TextfieldState extends State<Textfield> {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 70,
+      width: 600,
+      child: TextFormField(
+        decoration: InputDecoration(
+            labelText: widget._hint,
+            iconColor: Colors.black,
+            icon: Icon(widget._icon),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(10.0),
+              borderSide: const BorderSide(color: Colors.black, width: 2.0),
+            ),
+            hintText: widget._hint),
+      ),
+    );
+  }
+}
+
+class Numberfield extends StatefulWidget {
+  late String _hint2;
+  late IconData _icon2;
+
+  Numberfield({required String hint, required IconData icon, super.key}) {
+    _hint2 = hint;
+    _icon2 = icon;
+  }
+
+  @override
+  State<Numberfield> createState() => _NumberFieldState();
+}
+
+class _NumberFieldState extends State<Numberfield> {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 70,
+      width: 600,
+      child: TextFormField(
+          keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            // for below version 2 use this
+            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+// for version 2 and greater youcan also use this
+            FilteringTextInputFormatter.digitsOnly
+
+          ],
+          decoration: InputDecoration(
+              labelText: widget._hint2,
+              hintText: widget._hint2,
+              icon: Icon(widget._icon2),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: const BorderSide(color: Colors.black, width: 2.0),
+            ),
+          )
+      ),
+    );
+  }
+}
+
+class BirthDate extends StatefulWidget {
+  const BirthDate({super.key, this.restorationId});
+
+  final String? restorationId;
+
+  @override
+  State<BirthDate> createState() => _BirthDateState();
+}
+
+/// RestorationProperty objects can be used because of RestorationMixin.
+class _BirthDateState extends State<BirthDate>
+    with RestorationMixin {
+  // In this example, the restoration ID for the mixin is passed in through
+  // the [StatefulWidget]'s constructor.
+  @override
+  String? get restorationId => widget.restorationId;
+
+  final RestorableDateTime _selectedDate =
+  RestorableDateTime(DateTime(2023, 6, 29));  // TODO Now or actual Day???
+  late final RestorableRouteFuture<DateTime?> _restorableDatePickerRouteFuture =
+  RestorableRouteFuture<DateTime?>(
+    onComplete: _selectDate,
+    onPresent: (NavigatorState navigator, Object? arguments) {
+      return navigator.restorablePush(
+        _datePickerRoute,
+        arguments: _selectedDate.value.millisecondsSinceEpoch,
+      );
+    },
+  );
+
+  @pragma('vm:entry-point')
+  static Route<DateTime> _datePickerRoute(
+      BuildContext context,
+      Object? arguments,
+      ) {
+    return DialogRoute<DateTime>(
+      context: context,
+      builder: (BuildContext context) {
+        return DatePickerDialog(
+          restorationId: 'date_picker_dialog',
+          initialEntryMode: DatePickerEntryMode.calendarOnly,
+          initialDate: DateTime.fromMillisecondsSinceEpoch(arguments! as int),
+          firstDate: DateTime(1900),
+          lastDate: DateTime(2100),
+        );
+      },
+    );
+  }
+
+  @override
+  void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
+    registerForRestoration(_selectedDate, 'selected_date');
+    registerForRestoration(
+        _restorableDatePickerRouteFuture, 'date_picker_route_future');
+  }
+
+  void _selectDate(DateTime? newSelectedDate) {
+    if (newSelectedDate != null) {
+      setState(() {
+        _selectedDate.value = newSelectedDate;
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+              'Selected: ${_selectedDate.value.day}/${_selectedDate.value.month}/${_selectedDate.value.year}'),
+        ));
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 50,
+      width: 800,
+      child: OutlinedButton(
+            onPressed: () {
+              _restorableDatePickerRouteFuture.present();
+            },
+            child: const Text('Open Date Picker'),
+      ),
     );
   }
 }
