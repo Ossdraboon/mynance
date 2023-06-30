@@ -6,10 +6,14 @@ import 'package:provider/provider.dart';
 import 'package:metaballs/metaballs.dart';
 import 'loginPage.dart';
 import 'homePage.dart';
-import 'createAccountPage.dart';
-import 'manageAccountPage.dart';
 import 'menuSettingsPage.dart';
 import 'package:flutter/services.dart';
+
+import 'createAccountPage.dart';
+import 'manageAccountPage.dart';
+
+import 'package:MyNance/Widgets/layoutElements.dart';
+import 'package:MyNance/Widgets/layoutButtons.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,7 +49,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAppState extends ChangeNotifier {}
-
 
 class MenuItem {
   IconData? icon;
@@ -165,7 +168,7 @@ class _StartUpPageState extends State<StartUpPage> {
               children: [
                 SafeArea(
                   child: NavigationRail(
-                    backgroundColor: Colors.lightBlueAccent,
+                    backgroundColor: Colors.transparent,
                     extended: false,
                     destinations: getNavigationRailDestination(_menuItems),
                     selectedIndex: selectedIndex,
