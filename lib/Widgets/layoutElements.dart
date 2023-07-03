@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-
-
-
+import 'package:dropdown_button2/dropdown_button2.dart';
 
 class Textfield extends StatefulWidget {
   late String _hint;
@@ -65,7 +62,6 @@ class _NumberFieldState extends State<Numberfield> {
             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
 // for version 2 and greater youcan also use this
             FilteringTextInputFormatter.digitsOnly
-
           ],
           decoration: InputDecoration(
             labelText: widget._hint2,
@@ -75,8 +71,7 @@ class _NumberFieldState extends State<Numberfield> {
               borderRadius: BorderRadius.circular(10.0),
               borderSide: const BorderSide(color: Colors.black, width: 2.0),
             ),
-          )
-      ),
+          )),
     );
   }
 }
@@ -172,3 +167,108 @@ class LoginContainer extends StatelessWidget {
     );
   }
 }
+
+const List<String> paymentList = <String>[
+  'Other', 'Food', 'Clothing', 'Children','Health', 'Travel', 'Car', 'Sport','Gifts'
+];
+
+class DropDownPayment extends StatefulWidget {
+  const DropDownPayment({super.key});
+
+  @override
+  State<DropDownPayment> createState() => _DropDownPaymentState();
+}
+
+class _DropDownPaymentState extends State<DropDownPayment> {
+  String dropdownValue = paymentList.first;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      style: const TextStyle(color: Colors.black),
+      alignment: Alignment.center,
+      onChanged: (String? value) {
+        // This is called when the user selects an item.
+        setState(() {
+          dropdownValue = value!;
+        });
+      },
+      items: paymentList.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  }
+}
+
+const List<String> incomeList = <String>['Other', 'Borrow', 'Gifts',];
+
+class DropDownIncome extends StatefulWidget {
+  const DropDownIncome({super.key});
+
+  @override
+  State<DropDownIncome> createState() => _DropDownIncomeState();
+}
+
+class _DropDownIncomeState extends State<DropDownIncome> {
+  String dropdownValue = incomeList.first;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      style: const TextStyle(color: Colors.black),
+      alignment: Alignment.center,
+      onChanged: (String? value) {
+        // This is called when the user selects an item.
+        setState(() {
+          dropdownValue = value!;
+        });
+      },
+      items: incomeList.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  }
+}
+
+const List<String> goalList = <String>['Other', 'Car', 'Multimedia', 'Investment', 'Luxury',];
+
+class DropDownGoals extends StatefulWidget {
+  const DropDownGoals({super.key});
+
+  @override
+  State<DropDownGoals> createState() => _DropDownGoalsState();
+}
+
+class _DropDownGoalsState extends State<DropDownGoals> {
+  String dropdownValue = goalList.first;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      style: const TextStyle(color: Colors.black),
+      alignment: Alignment.center,
+      onChanged: (String? value) {
+        // This is called when the user selects an item.
+        setState(() {
+          dropdownValue = value!;
+        });
+      },
+      items: goalList.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  }
+}
+

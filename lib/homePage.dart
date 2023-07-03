@@ -26,14 +26,133 @@ class HomePage extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment.center,
+                margin: const EdgeInsetsDirectional.all(10),
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-                      const SizedBox(height: 30),
-                      Numberfield(hint: "add new Payment", icon: Icons.payment),
-                      Numberfield(hint: "add new Income", icon: Icons.money),
-                      Numberfield(hint: "add new Goal", icon: Icons.pie_chart),
-                    ],
+                  child: Container(
+                    width: 600,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            const SizedBox(height: 30),
+                            Row(
+                              children:<Widget> [
+                                const Expanded(
+                                    flex: 1,
+                                    child: DropDownPayment()
+                                ),
+                                const SizedBox(width: 10,),
+                                Expanded(
+                                  flex: 5,
+                                  child: Numberfield(
+                                      hint: "add new Payment", icon: Icons.payment),
+                                ),
+                              ],
+                            ),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: values
+                                    .map((element) => QuickMoney(
+                                  text: (-1 * element).toString(),
+                                ))
+                                    .toList()),
+                            const SizedBox(height: 30),
+                            Row(
+                              children:<Widget> [
+                                const Expanded(
+                                    flex: 1,
+                                    child: DropDownIncome()
+                                ),
+                                const SizedBox(width: 10,),
+                                Expanded(
+                                  flex: 5,
+                                  child: Numberfield(
+                                      hint: "add new Income", icon: Icons.money),
+                                ),
+                              ],
+                            ),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: values
+                                    .map((element) => QuickMoney(
+                                  text: element.toString(),
+                                ))
+                                    .toList()),
+                            const SizedBox(height: 30),
+                            Row(
+                              children:<Widget> [
+                                const Expanded(
+                                    flex: 1,
+                                    child: DropDownGoals()
+                                ),
+                                const SizedBox(width: 10,),
+                                Expanded(
+                                  flex: 5,
+                                  child: Numberfield(
+                                      hint: "add new Goal", icon: Icons.pie_chart),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 30),
+                          ],
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 3.0,
+                                color: colorScheme.onPrimaryContainer),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          height: 180,
+                          width: 600,
+                          child: Row(
+                            children: <Widget>[
+                              SizedBox(width: 10),
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 3.0,
+                                        color: colorScheme.onPrimaryContainer),
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  height: 150,
+                                  child: const Center(
+                                    child: ChartButton(),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Expanded(
+                                flex: 5,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 3.0,
+                                        color: colorScheme.onPrimaryContainer),
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                  height: 150,
+                                  child: const Column(
+                                    children: [
+                                      Text(
+                                          "Test text for show of asdfasdfasdfsaddfasdfasdf"),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -57,10 +176,23 @@ class HomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           const SizedBox(height: 150),
-                          Numberfield(
-                              hint: "add new Payment", icon: Icons.payment),
+                          Row(
+                            children:<Widget> [
+                              const Expanded(
+                                  flex: 1,
+                                  child: DropDownPayment()
+                              ),
+                              const SizedBox(width: 10,),
+                              Expanded(
+                                flex: 5,
+                                child: Numberfield(
+                                    hint: "add new Payment", icon: Icons.payment),
+                              ),
+                            ],
+                          ),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: values
@@ -68,9 +200,21 @@ class HomePage extends StatelessWidget {
                                         text: (-1 * element).toString(),
                                       ))
                                   .toList()),
-                          SizedBox(height: 30),
-                          Numberfield(
-                              hint: "add new Income", icon: Icons.money),
+                          const SizedBox(height: 30),
+                          Row(
+                            children:<Widget> [
+                              const Expanded(
+                                  flex: 1,
+                                  child: DropDownIncome()
+                              ),
+                              const SizedBox(width: 10,),
+                              Expanded(
+                                flex: 5,
+                                child: Numberfield(
+                                    hint: "add new Income", icon: Icons.money),
+                              ),
+                            ],
+                          ),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: values
@@ -78,27 +222,39 @@ class HomePage extends StatelessWidget {
                                         text: element.toString(),
                                       ))
                                   .toList()),
-                          SizedBox(height: 30),
-                          Numberfield(
-                              hint: "add new Goal", icon: Icons.pie_chart),
+                          const SizedBox(height: 30),
+                          Row(
+                            children:<Widget> [
+                              const Expanded(
+                                  flex: 1,
+                                  child: DropDownIncome()
+                              ),
+                              const SizedBox(width: 10,),
+                              Expanded(
+                                flex: 5,
+                                child: Numberfield(
+                                    hint: "add new Goal", icon: Icons.pie_chart),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 30),
                         ],
                       ),
-
                       Container(
                         decoration: BoxDecoration(
-                          color: const Color.fromRGBO(53, 20, 201, 0.5),
                           border: Border.all(
-                              width: 3.0, color: colorScheme.onPrimaryContainer),
+                              width: 3.0,
+                              color: colorScheme.onPrimaryContainer),
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                         height: 180,
                         child: Row(
                           children: <Widget>[
+                            const SizedBox(width: 10),
                             Expanded(
-                              flex: 2,
+                              flex: 3,
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.blue,
                                   border: Border.all(
                                       width: 3.0,
                                       color: colorScheme.onPrimaryContainer),
@@ -110,11 +266,11 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            const SizedBox(width: 10),
                             Expanded(
                               flex: 5,
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.red,
                                   border: Border.all(
                                       width: 3.0,
                                       color: colorScheme.onPrimaryContainer),
@@ -124,11 +280,18 @@ class HomePage extends StatelessWidget {
                                 child: const Column(
                                   children: [
                                     Text(
-                                        "Test text for show of asdfasdfasdfsaddfasdfasdf")
+                                        "Test text for show of Weekly Information and Analytics"),
+                                    SizedBox(height: 5,),
+                                    Text(
+                                        "Test text for show of Monthly Information and Analytics"),
+                                    SizedBox(height: 5,),
+                                    Text(
+                                        "Test text for show of Yearly Information and Analytics"),
                                   ],
                                 ),
                               ),
                             ),
+                            const SizedBox(width: 10),
                           ],
                         ),
                       ),
