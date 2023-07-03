@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'main.dart';
 
-//import 'Widgets/animatedBackground.dart';
-
-//import 'package:metaballs/metaballs.dart';
-
+import 'package:MyNance/Widgets/layoutElements.dart';
+import 'package:MyNance/Widgets/layoutButtons.dart';
 
 class ManageAccount extends StatelessWidget {
   const ManageAccount({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -29,61 +26,88 @@ class ManageAccount extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment.center,
+                margin: const EdgeInsetsDirectional.all(10),
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        height: 80,
-                        width: 350,
-                        margin: const EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          color: const Color.fromRGBO(60, 147, 183, 0.5),
-                          border: Border.all(
-                              width: 3.0,
-                              color: colorScheme.onPrimaryContainer),
-                          borderRadius: BorderRadius.circular(20.0),
+                  child: SizedBox(
+                    width: 600,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            SizedBox(height: 30),
+                            PaymentSectionManage(),
+                            SizedBox(height: 20),
+                          ],
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 16),
-                          child: Text("INPUT FIX"),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 3.0,
+                                color: colorScheme.onPrimaryContainer),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          height: 180,
+                          width: 600,
+                          child: const SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                ListItem(),
+                                ListItem(),
+                                ListItem(),
+                                ListItem(),
+                                ListItem(),
+                                ListItem(),
+                              ],
+                            ),
+                          ),
+
                         ),
-                      ),
-                      Container(
-                        height: 80,
-                        width: 350,
-                        margin: const EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          color: const Color.fromRGBO(25, 54, 203, 0.5),
-                          border: Border.all(
-                              width: 3.0,
-                              color: colorScheme.onPrimaryContainer),
-                          borderRadius: BorderRadius.circular(25.0),
+                        const Divider(
+                          height: 40,
+                          thickness: 2,
+                          indent: 0,
+                          endIndent: 0,
+                          color: Colors.black,
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 16),
-                          child: Text("INPUT MONEY"),
+                        const Column(
+                          children: [
+                            IncomeSectionManage(),
+                            SizedBox(height: 20),
+                          ],
                         ),
-                      ),
-                      const Row(
-                        children: [
-                          Spacer(),
-                          SaveButton(),
-                          Spacer(),
-                          DeleteButton(),
-                          Spacer(),
-                        ],
-                      ),
-                    ],
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 3.0,
+                                color: colorScheme.onPrimaryContainer),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          height: 180,
+                          width: 600,
+                          child: const SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                ListItem(),
+                                ListItem(),
+                                ListItem(),
+                                ListItem(),
+                                ListItem(),
+                                ListItem(),
+                              ],
+                            ),
+                          ),
+
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ],
           );
-
         } else {
-
           return Stack(
             children: <Widget>[
               //const Animatedbackground(),
@@ -95,58 +119,80 @@ class ManageAccount extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment.center,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          height: 80,
-                          width: 350,
-                          margin: const EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(134, 137, 204, 0.5),
-                            border: Border.all(
-                                width: 3.0,
-                                color: colorScheme.onPrimaryContainer),
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 16),
-                            child: Text("INPUT FIX"),
+                margin: const EdgeInsetsDirectional.all(10),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(height: 170),
+                          PaymentSectionManage(),
+                          SizedBox(height: 20),
+                        ],
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              width: 3.0,
+                              color: colorScheme.onPrimaryContainer),
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        height: 180,   
+                        width: 500,
+                        child: const SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              ListItem(),
+                              ListItem(),
+                              ListItem(),
+                              ListItem(),
+                              ListItem(),
+                              ListItem(),
+                            ],
                           ),
                         ),
 
-                        Container(
-                          height: 80,
-                          width: 350,
-                          margin: const EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(25, 54, 203, 0.5),
-                            border: Border.all(
-                                width: 3.0,
-                                color: colorScheme.onPrimaryContainer),
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 16),
-                            child: Text("INPUT MONEY"),
+                      ),
+                      const Divider(
+                        height: 40,
+                        thickness: 2,
+                        indent: 0,
+                        endIndent: 0,
+                        color: Colors.black,
+                      ),
+                      const Column(
+                        children: [
+                          IncomeSectionManage(),
+                          SizedBox(height: 20),
+                        ],
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              width: 3.0,
+                              color: colorScheme.onPrimaryContainer),
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        height: 180,
+                        width: 500,
+                        child: const SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              ListItem(),
+                              ListItem(),
+                              ListItem(),
+                              ListItem(),
+                              ListItem(),
+                              ListItem(),
+                            ],
                           ),
                         ),
-                        const Row(
-                          children: [
-                            Spacer(),
-                            SaveButton(),
-                            Spacer(),
-                            DeleteButton(),
-                            Spacer(),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -157,58 +203,4 @@ class ManageAccount extends StatelessWidget {
   }
 }
 
-class SaveButton extends StatelessWidget {
-  const SaveButton({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.blueGrey;
-    }
-
-    return ElevatedButton(
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.resolveWith(getColor),
-      ),
-      onPressed: () {
-        //Navigator.of(context).pushNamed('/create');
-        print("Saved Input");
-      },
-      child: const Text('Save'),
-    );
-  }
-}
-
-class DeleteButton extends StatelessWidget {
-  const DeleteButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.blueGrey;
-    }
-
-    return ElevatedButton(
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.resolveWith(getColor),
-      ),
-      onPressed: () {
-        //Navigator.of(context).pushNamed('/home');
-        print("Delete Input");
-      },
-      child: const Text('Delete'),
-    );
-  }
-}

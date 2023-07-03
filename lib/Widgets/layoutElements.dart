@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'layoutButtons.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 class Textfield extends StatefulWidget {
@@ -49,7 +50,10 @@ class Numberfield extends StatefulWidget {
   State<Numberfield> createState() => _NumberFieldState();
 }
 
+
 class _NumberFieldState extends State<Numberfield> {
+
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -58,10 +62,7 @@ class _NumberFieldState extends State<Numberfield> {
       child: TextFormField(
           keyboardType: TextInputType.number,
           inputFormatters: <TextInputFormatter>[
-            // for below version 2 use this
-            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-// for version 2 and greater youcan also use this
-            FilteringTextInputFormatter.digitsOnly
+            FilteringTextInputFormatter.allow(RegExp(r'^(?=\D*(?:\d\D*){1,12}$)\d+(?:\.\d{0,2})?$')),
           ],
           decoration: InputDecoration(
             labelText: widget._hint2,
@@ -268,6 +269,290 @@ class _DropDownGoalsState extends State<DropDownGoals> {
           child: Text(value),
         );
       }).toList(),
+    );
+  }
+}
+
+class InfoSection extends StatelessWidget {
+  const InfoSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        const SizedBox(width: 10),
+        Expanded(
+          flex: 3,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                  width: 3.0,
+                  color: Colors.black),
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            height: 150,
+            child: const Center(
+              child: ChartButton(),
+            ),
+          ),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          flex: 5,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                  width: 3.0,
+                  color: Colors.black),
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            height: 150,
+            child: const Column(
+              children: [
+                Text(
+                    "Test text for show of Weekly Information and Analytics"),
+                SizedBox(height: 5,),
+                Text(
+                    "Test text for show of Monthly Information and Analytics"),
+                SizedBox(height: 5,),
+                Text(
+                    "Test text for show of Yearly Information and Analytics"),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(width: 10),
+      ],
+    );
+  }
+}
+
+class GoalSection extends StatelessWidget {
+  const GoalSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children:<Widget> [
+        const Expanded(
+            flex: 3,
+            child: DropDownGoals()
+        ),
+        const SizedBox(width: 10,),
+        Expanded(
+          flex: 9,
+          child: Numberfield(
+              hint: "add new Goal", icon: Icons.pie_chart),
+        ),
+      ],
+    );
+  }
+}
+
+class IncomeSection extends StatelessWidget {
+  const IncomeSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children:<Widget> [
+        const Expanded(
+            flex: 3,
+            child: DropDownIncome()
+        ),
+        const SizedBox(width: 10,),
+        Expanded(
+          flex: 9,
+          child: Numberfield(
+              hint: "add new Income", icon: Icons.money),
+        ),
+      ],
+    );
+  }
+}
+
+class PaymentSection extends StatelessWidget {
+  const PaymentSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children:<Widget> [
+        const Expanded(
+            flex: 3,
+            child: DropDownPayment()
+        ),
+        const SizedBox(width: 10,),
+        Expanded(
+          flex: 9,
+          child: Numberfield(
+              hint: "add new Payment", icon: Icons.payment),
+        ),
+      ],
+    );
+  }
+}
+
+
+const List<String> paymentListManage = <String>[
+  'Other', 'Rent', 'Home', 'Insurance', 'Electricity', 'Phone', 'Car', 'Sport','TV'
+];
+
+class DropDownPaymentManage extends StatefulWidget {
+  const DropDownPaymentManage({super.key});
+
+  @override
+  State<DropDownPaymentManage> createState() => _DropDownPaymentManageState();
+}
+
+class _DropDownPaymentManageState extends State<DropDownPaymentManage> {
+  String dropdownValue = paymentListManage.first;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      style: const TextStyle(color: Colors.black),
+      alignment: Alignment.center,
+      onChanged: (String? value) {
+        // This is called when the user selects an item.
+        setState(() {
+          dropdownValue = value!;
+        });
+      },
+      items: paymentListManage.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  }
+}
+
+class PaymentSectionManage extends StatelessWidget {
+  const PaymentSectionManage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children:<Widget> [
+        const Expanded(
+            flex: 3,
+            child: DropDownPaymentManage()
+        ),
+        const SizedBox(width: 10,),
+        Expanded(
+          flex: 9,
+          child: Numberfield(
+              hint: "Set your Payments", icon: Icons.payment),
+        ),
+      ],
+    );
+  }
+}
+
+const List<String> incomeListManage = <String>[
+  'Other', 'Salary', 'Rental', 'Earnings', 'Revenue', 'Child Support', 'Parental Allowance'
+];
+
+class DropDownIncomeManage extends StatefulWidget {
+  const DropDownIncomeManage({super.key});
+
+  @override
+  State<DropDownIncomeManage> createState() => _DropDownIncomeManageState();
+}
+
+class _DropDownIncomeManageState extends State<DropDownIncomeManage> {
+  String dropdownValue = incomeListManage.first;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      isExpanded: true,
+      style: const TextStyle(color: Colors.black),
+      alignment: Alignment.center,
+      onChanged: (String? value) {
+        // This is called when the user selects an item.
+        setState(() {
+          dropdownValue = value!;
+        });
+      },
+      items: incomeListManage.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  }
+}
+
+class IncomeSectionManage extends StatelessWidget {
+  const IncomeSectionManage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children:<Widget> [
+        const Expanded(
+            flex: 3,
+            child: DropDownIncomeManage()
+        ),
+        const SizedBox(width: 10,),
+        Expanded(
+          flex: 9,
+          child: Numberfield(
+              hint: "Set your Incomes", icon: Icons.money),
+        ),
+      ],
+    );
+  }
+}
+
+
+
+
+class ListItem extends StatelessWidget {
+  const ListItem({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Row(
+            children: [
+              MyIconButton(icon: Icons.delete_forever, size: 20),
+              const SizedBox(width: 10,),
+              const Text("LIST of ITEMS"),
+            ],
+          ),
+        ),
+        const Divider(
+          height: 2,
+          thickness: 1,
+          indent: 5,
+          endIndent: 5,
+          color: Colors.black,
+        ),
+      ],
     );
   }
 }

@@ -1,125 +1,157 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'main.dart';
+
 import 'package:MyNance/Widgets/layoutElements.dart';
 import 'package:MyNance/Widgets/layoutButtons.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+
+class ManageAccount extends StatelessWidget {
+  const ManageAccount({super.key});
+
 
   @override
   Widget build(BuildContext context) {
-    var colorScheme = Theme.of(context).colorScheme;
-    // var appState = context.watch<MyAppState>();
-    return Stack(
-      children: <Widget>[
-        Animatedbackground(),
-        Image.asset(
-          "assets/images/LogoRender.png",
-          width: 600,
-          height: 200,
-          fit: BoxFit.cover,
-        ),
-        SizedBox(height: 30),
-        Container(
-          child: Column(
+    var colorScheme = Theme
+        .of(context)
+        .colorScheme;
+
+    return Scaffold(
+      body: LayoutBuilder(builder: (context, constrains) {
+        if (constrains.maxWidth >= 600) {
+          return Stack(
             children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  color: const Color.fromRGBO(13, 80, 201, 0.5),
-                  border: Border.all(
-                      width: 3.0, color: colorScheme.onPrimaryContainer),
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
+              //const Animatedbackground(),
+              Image.asset(
+                "assets/images/MyNanceSide-noBG.png",
+                width: 400,
                 height: 400,
+                fit: BoxFit.cover,
+              ),
+              Container(
                 alignment: Alignment.center,
                 child: SingleChildScrollView(
                   child: Column(
-                    children: [
-                      TextFormField(
-                        //todo implement Controller
-                          keyboardType: TextInputType.number,
-                          inputFormatters: <TextInputFormatter>[
-                            // for below version 2 use this
-                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-// for version 2 and greater youcan also use this
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                          decoration: const InputDecoration(
-                              labelText: "add new payment",
-                              hintText: "add new payment",
-                              icon: Icon(Icons.payment))),
-                      TextFormField(
-                          keyboardType: TextInputType.number,
-                          inputFormatters: <TextInputFormatter>[
-                            // for below version 2 use this
-                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-// for version 2 and greater youcan also use this
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                          decoration: const InputDecoration(
-                              labelText: "add new income",
-                              hintText: "add new income",
-                              icon: Icon(Icons.money))),
-
+                    children: <Widget>[
+                      Container(
+                        height: 80,
+                        width: 350,
+                        margin: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          color: const Color.fromRGBO(60, 147, 183, 0.5),
+                          border: Border.all(
+                              width: 3.0,
+                              color: colorScheme.onPrimaryContainer),
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 16),
+                          child: Text("INPUT FIX"),
+                        ),
+                      ),
+                      Container(
+                        height: 80,
+                        width: 350,
+                        margin: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          color: const Color.fromRGBO(25, 54, 203, 0.5),
+                          border: Border.all(
+                              width: 3.0,
+                              color: colorScheme.onPrimaryContainer),
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 16),
+                          child: Text("INPUT MONEY"),
+                        ),
+                      ),
+                      const Row(
+                        children: [
+                          Spacer(),
+                          SaveButton(),
+                          Spacer(),
+                          DeleteButton(),
+                          Spacer(),
+                        ],
+                      ),
                     ],
                   ),
                 ),
               ),
+            ],
+          );
+        } else {
+          return Stack(
+            children: <Widget>[
+              //const Animatedbackground(),
+              Image.asset(
+                "assets/images/LogoRender.png",
+                width: 600,
+                height: 200,
+                fit: BoxFit.cover,
+              ),
               Container(
-                decoration: BoxDecoration(
-                  color: const Color.fromRGBO(53, 20, 201, 0.5),
-                  border: Border.all(
-                      width: 3.0, color: colorScheme.onPrimaryContainer),
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                height: 180,
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 2,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          border: Border.all(
-                              width: 3.0,
-                              color: colorScheme.onPrimaryContainer),
-                          borderRadius: BorderRadius.circular(5.0),
+                alignment: Alignment.center,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: <Widget>[
+                        Container(
+                          height: 80,
+                          width: 350,
+                          margin: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(134, 137, 204, 0.5),
+                            border: Border.all(
+                                width: 3.0,
+                                color: colorScheme.onPrimaryContainer),
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 16),
+                            child: Text("INPUT FIX"),
+                          ),
                         ),
-                        height: 150,
-                        child: const Center(
-                          child: ChartButton(),
+
+                        Container(
+                          height: 80,
+                          width: 350,
+                          margin: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(25, 54, 203, 0.5),
+                            border: Border.all(
+                                width: 3.0,
+                                color: colorScheme.onPrimaryContainer),
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 16),
+                            child: Text("INPUT MONEY"),
+                          ),
                         ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 5,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          border: Border.all(
-                              width: 3.0,
-                              color: colorScheme.onPrimaryContainer),
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        height: 150,
-                        child: const Column(
+                        const Row(
                           children: [
-                            Text(
-                                "Test text for show of asdfasdfasdfsaddfasdfasdf")
+                            Spacer(),
+                            SaveButton(),
+                            Spacer(),
+                            DeleteButton(),
+                            Spacer(),
                           ],
                         ),
-                      ),
+                      ],
                     ),
                   ],
                 ),
               ),
             ],
-          ),
-        ),
-      ],
+          );
+        }
+      }),
     );
   }
 }
-
-

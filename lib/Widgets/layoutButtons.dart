@@ -227,3 +227,89 @@ class _QuickMoney extends State<QuickMoney> {
     );
   }
 }
+
+class SaveButton extends StatelessWidget {
+  const SaveButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.blueGrey;
+    }
+
+    return ElevatedButton(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.resolveWith(getColor),
+      ),
+      onPressed: () {
+        //Navigator.of(context).pushNamed('/create');
+        print("Saved Input");
+      },
+      child: const Text('Save'),
+    );
+  }
+}
+
+class DeleteButton extends StatelessWidget {
+  const DeleteButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.blueGrey;
+    }
+
+    return ElevatedButton(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.resolveWith(getColor),
+      ),
+      onPressed: () {
+        //Navigator.of(context).pushNamed('/home');
+        print("Delete Input");
+      },
+      child: const Text('Delete'),
+    );
+  }
+}
+
+
+
+
+
+class MyIconButton extends StatefulWidget {
+  late IconData _icon;
+  late double _size;
+
+
+  MyIconButton({required IconData icon,required double size, super.key}) {
+    _icon = icon;
+    _size = size;
+  }
+
+  @override
+  State<MyIconButton> createState() => _MyIconButton();
+}
+
+class _MyIconButton extends State<MyIconButton> {
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(widget._icon,size:widget._size,),
+      onPressed: () {
+        print("Delete Item from List");
+      },
+    );
+  }
+}

@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
         if (constrains.maxWidth >= 600) {
           return Stack(
             children: <Widget>[
-              const Animatedbackground(),
+              //const Animatedbackground(),
               Image.asset(
                 "assets/images/MyNanceSide-noBG.png",
                 width: 400,
@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
                 alignment: Alignment.center,
                 margin: const EdgeInsetsDirectional.all(10),
                 child: SingleChildScrollView(
-                  child: Container(
+                  child: SizedBox(
                     width: 600,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -37,65 +37,88 @@ class HomePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             const SizedBox(height: 30),
-                            Row(
-                              children:<Widget> [
-                                const Expanded(
-                                    flex: 1,
-                                    child: DropDownPayment()
-                                ),
-                                const SizedBox(width: 10,),
-                                Expanded(
-                                  flex: 5,
-                                  child: Numberfield(
-                                      hint: "add new Payment", icon: Icons.payment),
-                                ),
-                              ],
-                            ),
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: values
-                                    .map((element) => QuickMoney(
-                                  text: (-1 * element).toString(),
-                                ))
-                                    .toList()),
-                            const SizedBox(height: 30),
-                            Row(
-                              children:<Widget> [
-                                const Expanded(
-                                    flex: 1,
-                                    child: DropDownIncome()
-                                ),
-                                const SizedBox(width: 10,),
-                                Expanded(
-                                  flex: 5,
-                                  child: Numberfield(
-                                      hint: "add new Income", icon: Icons.money),
+                            Column(
+                              children: <Widget>[
+                                ExpansionTile(
+                                  title: Text('Add New Payment here...'),
+                                  //subtitle: Text('do i need that?'),
+                                  controlAffinity: ListTileControlAffinity.leading,
+                                  children: <Widget>[
+                                    const PaymentSection(),
+                                    Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: values
+                                            .map((element) => QuickMoney(
+                                          text: (-1 * element).toString(),
+                                        ))
+                                            .toList()),
+
+                                  ],
                                 ),
                               ],
                             ),
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: values
-                                    .map((element) => QuickMoney(
-                                  text: element.toString(),
-                                ))
-                                    .toList()),
-                            const SizedBox(height: 30),
-                            Row(
-                              children:<Widget> [
-                                const Expanded(
-                                    flex: 1,
-                                    child: DropDownGoals()
-                                ),
-                                const SizedBox(width: 10,),
-                                Expanded(
-                                  flex: 5,
-                                  child: Numberfield(
-                                      hint: "add new Goal", icon: Icons.pie_chart),
+                            const Divider(
+                              height: 20,
+                              thickness: 2,
+                              indent: 0,
+                              endIndent: 0,
+                              color: Colors.black,
+                            ),
+                            const SizedBox(height: 20),
+                            Column(
+                              children: <Widget>[
+                                ExpansionTile(
+                                  title: Text('Add New Income here...'),
+                                  //subtitle: Text('do i need that?'),
+                                  controlAffinity: ListTileControlAffinity.leading,
+                                  children: <Widget>[
+                                    const IncomeSection(),
+                                    Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: values
+                                            .map((element) => QuickMoney(
+                                          text: (-1 * element).toString(),
+                                        ))
+                                            .toList()),
+                                  ],
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 30),
+                            const Divider(
+                              height: 20,
+                              thickness: 2,
+                              indent: 0,
+                              endIndent: 0,
+                              color: Colors.black,
+                            ),
+                            const SizedBox(height: 20),
+                            Column(
+                              children: <Widget>[
+                                ExpansionTile(
+                                  title: Text('Add New Goal here...'),
+                                  //subtitle: Text('do i need that?'),
+                                  controlAffinity: ListTileControlAffinity.leading,
+                                  children: <Widget>[
+                                    const GoalSection(),
+                                    Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: values
+                                            .map((element) => QuickMoney(
+                                          text: (-1 * element).toString(),
+                                        ))
+                                            .toList()),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const Divider(
+                              height: 20,
+                              thickness: 2,
+                              indent: 0,
+                              endIndent: 0,
+                              color: Colors.black,
+                            ),
+                            const SizedBox(height: 20),
                           ],
                         ),
                         Container(
@@ -107,48 +130,9 @@ class HomePage extends StatelessWidget {
                           ),
                           height: 180,
                           width: 600,
-                          child: Row(
-                            children: <Widget>[
-                              SizedBox(width: 10),
-                              Expanded(
-                                flex: 3,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 3.0,
-                                        color: colorScheme.onPrimaryContainer),
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                  height: 150,
-                                  child: const Center(
-                                    child: ChartButton(),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Expanded(
-                                flex: 5,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 3.0,
-                                        color: colorScheme.onPrimaryContainer),
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                  height: 150,
-                                  child: const Column(
-                                    children: [
-                                      Text(
-                                          "Test text for show of asdfasdfasdfsaddfasdfasdf"),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                            ],
-                          ),
+                          child: const InfoSection(),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         )
                       ],
@@ -161,7 +145,7 @@ class HomePage extends StatelessWidget {
         } else {
           return Stack(
             children: <Widget>[
-              const Animatedbackground(),
+              //const Animatedbackground(),
               Image.asset(
                 "assets/images/LogoRender.png",
                 width: 600,
@@ -178,66 +162,90 @@ class HomePage extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          const SizedBox(height: 150),
-                          Row(
-                            children:<Widget> [
-                              const Expanded(
-                                  flex: 1,
-                                  child: DropDownPayment()
-                              ),
-                              const SizedBox(width: 10,),
-                              Expanded(
-                                flex: 5,
-                                child: Numberfield(
-                                    hint: "add new Payment", icon: Icons.payment),
-                              ),
-                            ],
+                          const SizedBox(height: 170),
+                     Column(
+                      children: <Widget>[
+                        ExpansionTile(
+                          title: Text('Add New Payment here...'),
+                          //subtitle: Text('do i need that?'),
+                          controlAffinity: ListTileControlAffinity.leading,
+                          children: <Widget>[
+                            const PaymentSection(),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: values
+                                    .map((element) => QuickMoney(
+                                  text: (-1 * element).toString(),
+                                ))
+                                    .toList()),
+                          ],
+                        ),
+                      ],
+                    ),
+
+
+                          const Divider(
+                            height: 20,
+                            thickness: 2,
+                            indent: 0,
+                            endIndent: 0,
+                            color: Colors.black,
                           ),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: values
-                                  .map((element) => QuickMoney(
+                          const SizedBox(height: 20),
+                          Column(
+                            children: <Widget>[
+                              ExpansionTile(
+                                title: Text('Add New Income here...'),
+                                //subtitle: Text('do i need that?'),
+                                controlAffinity: ListTileControlAffinity.leading,
+                                children: <Widget>[
+                                  const IncomeSection(),
+                                  Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: values
+                                          .map((element) => QuickMoney(
                                         text: (-1 * element).toString(),
                                       ))
-                                  .toList()),
-                          const SizedBox(height: 30),
-                          Row(
-                            children:<Widget> [
-                              const Expanded(
-                                  flex: 1,
-                                  child: DropDownIncome()
-                              ),
-                              const SizedBox(width: 10,),
-                              Expanded(
-                                flex: 5,
-                                child: Numberfield(
-                                    hint: "add new Income", icon: Icons.money),
+                                          .toList()),
+                                ],
                               ),
                             ],
                           ),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: values
-                                  .map((element) => QuickMoney(
-                                        text: element.toString(),
+                          const Divider(
+                            height: 20,
+                            thickness: 2,
+                            indent: 0,
+                            endIndent: 0,
+                            color: Colors.black,
+                          ),
+                          const SizedBox(height: 20),
+                          Column(
+                            children: <Widget>[
+                              ExpansionTile(
+                                title: Text('Add New Goal here...'),
+                                //subtitle: Text('do i need that?'),
+                                controlAffinity: ListTileControlAffinity.leading,
+                                children: <Widget>[
+                                  const GoalSection(),
+                                  Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: values
+                                          .map((element) => QuickMoney(
+                                        text: (-1 * element).toString(),
                                       ))
-                                  .toList()),
-                          const SizedBox(height: 30),
-                          Row(
-                            children:<Widget> [
-                              const Expanded(
-                                  flex: 1,
-                                  child: DropDownIncome()
-                              ),
-                              const SizedBox(width: 10,),
-                              Expanded(
-                                flex: 5,
-                                child: Numberfield(
-                                    hint: "add new Goal", icon: Icons.pie_chart),
+                                          .toList()),
+                                ],
                               ),
                             ],
                           ),
-                          const SizedBox(height: 30),
+                          const Divider(
+                            height: 20,
+                            thickness: 2,
+                            indent: 0,
+                            endIndent: 0,
+                            color: Colors.black,
+                          ),
+                          const SizedBox(height: 20),
                         ],
                       ),
                       Container(
@@ -248,52 +256,7 @@ class HomePage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                         height: 180,
-                        child: Row(
-                          children: <Widget>[
-                            const SizedBox(width: 10),
-                            Expanded(
-                              flex: 3,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      width: 3.0,
-                                      color: colorScheme.onPrimaryContainer),
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                height: 150,
-                                child: const Center(
-                                  child: ChartButton(),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              flex: 5,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      width: 3.0,
-                                      color: colorScheme.onPrimaryContainer),
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                height: 150,
-                                child: const Column(
-                                  children: [
-                                    Text(
-                                        "Test text for show of Weekly Information and Analytics"),
-                                    SizedBox(height: 5,),
-                                    Text(
-                                        "Test text for show of Monthly Information and Analytics"),
-                                    SizedBox(height: 5,),
-                                    Text(
-                                        "Test text for show of Yearly Information and Analytics"),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                          ],
-                        ),
+                        child: InfoSection(),
                       ),
                     ],
                   ),
@@ -306,3 +269,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
