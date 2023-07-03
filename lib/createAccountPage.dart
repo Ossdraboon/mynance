@@ -3,7 +3,6 @@ import 'package:MyNance/Widgets/layoutElements.dart';
 import 'package:MyNance/Widgets/layoutButtons.dart';
 import 'main.dart';
 
-
 class CreateAccount extends StatelessWidget {
   const CreateAccount({super.key});
 
@@ -16,7 +15,7 @@ class CreateAccount extends StatelessWidget {
         if (constrains.maxWidth >= 600) {
           return Stack(
             children: <Widget>[
-              //const Animatedbackground(),
+              const Animatedbackground(),
               Image.asset(
                 "assets/images/MyNanceSide-noBG.png",
                 width: 400,
@@ -60,9 +59,9 @@ class CreateAccount extends StatelessWidget {
                             child: Container(
                               decoration: BoxDecoration(
                                 border:
-                                Border.all(color: Colors.black, width: 2),
+                                    Border.all(color: Colors.black, width: 2),
                                 borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
+                                    const BorderRadius.all(Radius.circular(10)),
                               ),
                               child: const GenderPick(),
                             ),
@@ -89,7 +88,7 @@ class CreateAccount extends StatelessWidget {
         } else {
           return Stack(
             children: <Widget>[
-              //const Animatedbackground(),
+              const Animatedbackground(),
               Image.asset(
                 "assets/images/LogoRender.png",
                 width: 600,
@@ -114,33 +113,34 @@ class CreateAccount extends StatelessWidget {
                           Numberfield(
                               hint: "Phone Number",
                               icon: Icons.phone_android_outlined),
-                           const SizedBox(height: 20),
-                           Row(
+                          const SizedBox(height: 20),
+                          const Row(
                             children: [
-                              const Icon(Icons.calendar_month),
+                              Icon(Icons.calendar_month),
+                              SizedBox(
+                                height: 30,
+                                width: 18,
+                              ),
+                              BirthDate(),
+                            ],
+                          ),
+                          SizedBox(height: 10,),
+                          Row(
+                            children: [
+                              const Icon(Icons.transgender),
                               const SizedBox(
                                 height: 30,
                                 width: 18,
                               ),
-                              const BirthDate(),
-                              const SizedBox(
-                                height: 30,
-                                width: 9,
-                              ),
-                              const Icon(Icons.transgender),
-                              const SizedBox(
-                                height: 30,
-                                width: 9,
-                              ),
                               SizedBox(
                                 height: 70,
-                                width: 150,
+                                width: 160,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: Colors.black, width: 2),
-                                    borderRadius:
-                                        const BorderRadius.all(Radius.circular(10)),
+                                    border: Border.all(
+                                        color: Colors.black, width: 2),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10)),
                                   ),
                                   child: const GenderPick(),
                                 ),
@@ -205,7 +205,6 @@ class _GenderPickState extends State<GenderPick> {
     );
   }
 }
-
 
 class BirthDate extends StatefulWidget {
   const BirthDate({super.key, this.restorationId});

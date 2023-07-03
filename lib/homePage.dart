@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
         if (constrains.maxWidth >= 600) {
           return Stack(
             children: <Widget>[
-              //const Animatedbackground(),
+              const Animatedbackground(),
               Image.asset(
                 "assets/images/MyNanceSide-noBG.png",
                 width: 400,
@@ -145,7 +145,7 @@ class HomePage extends StatelessWidget {
         } else {
           return Stack(
             children: <Widget>[
-              //const Animatedbackground(),
+              const Animatedbackground(),
               Image.asset(
                 "assets/images/LogoRender.png",
                 width: 600,

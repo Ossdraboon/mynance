@@ -211,7 +211,7 @@ class Animatedbackground extends StatelessWidget {
           Color.fromARGB(255, 18, 57, 213),
         ], begin: Alignment.bottomRight, end: Alignment.topLeft),
         metaballs: 70,
-        animationDuration: const Duration(milliseconds: 1000),
+        animationDuration: const Duration(milliseconds: 50000),
         speedMultiplier: 1,
         bounceStiffness: 3,
         minBallRadius: 15,

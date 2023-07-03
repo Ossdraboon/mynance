@@ -187,6 +187,7 @@ class _DropDownPaymentState extends State<DropDownPayment> {
   Widget build(BuildContext context) {
     return DropdownButton<String>(
       value: dropdownValue,
+      isExpanded: true,
       style: const TextStyle(color: Colors.black),
       alignment: Alignment.center,
       onChanged: (String? value) {
@@ -221,6 +222,7 @@ class _DropDownIncomeState extends State<DropDownIncome> {
   Widget build(BuildContext context) {
     return DropdownButton<String>(
       value: dropdownValue,
+      isExpanded: true,
       style: const TextStyle(color: Colors.black),
       alignment: Alignment.center,
       onChanged: (String? value) {
@@ -255,6 +257,7 @@ class _DropDownGoalsState extends State<DropDownGoals> {
   Widget build(BuildContext context) {
     return DropdownButton<String>(
       value: dropdownValue,
+      isExpanded: true,
       style: const TextStyle(color: Colors.black),
       alignment: Alignment.center,
       onChanged: (String? value) {
@@ -309,17 +312,25 @@ class InfoSection extends StatelessWidget {
               borderRadius: BorderRadius.circular(5.0),
             ),
             height: 150,
-            child: const Column(
-              children: [
-                Text(
-                    "Test text for show of Weekly Information and Analytics"),
-                SizedBox(height: 5,),
-                Text(
-                    "Test text for show of Monthly Information and Analytics"),
-                SizedBox(height: 5,),
-                Text(
-                    "Test text for show of Yearly Information and Analytics"),
-              ],
+            child: const SingleChildScrollView(
+              child: Column(
+                children: [
+                  Text(
+                      "Test text for show of Day Information and Analytics"),
+                  SizedBox(height: 5,),
+                  Text(
+                      "Test text for show of Weekly Information and Analytics"),
+                  SizedBox(height: 5,),
+                  Text(
+                      "Test text for show of Monthly Information and Analytics"),
+                  SizedBox(height: 5,),
+                  Text(
+                      "Test text for show of Yearly Information and Analytics"),
+                  SizedBox(height: 5,),
+                  Text(
+                      "Test text for show of Overall Information and Analytics"),
+                ],
+              ),
             ),
           ),
         ),
@@ -420,6 +431,7 @@ class _DropDownPaymentManageState extends State<DropDownPaymentManage> {
   Widget build(BuildContext context) {
     return DropdownButton<String>(
       value: dropdownValue,
+      isExpanded: true,
       style: const TextStyle(color: Colors.black),
       alignment: Alignment.center,
       onChanged: (String? value) {
@@ -522,9 +534,6 @@ class IncomeSectionManage extends StatelessWidget {
     );
   }
 }
-
-
-
 
 class ListItem extends StatelessWidget {
   const ListItem({
