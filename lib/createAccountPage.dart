@@ -31,8 +31,8 @@ class CreateAccount extends StatelessWidget {
                       Textfield(hint: "Name", icon: Icons.person),
                       Textfield(hint: "Password", icon: Icons.password),
                       Textfield(hint: "Repeat Password", icon: Icons.password),
-                      Textfield(hint: "Email", icon: Icons.alternate_email),
-                      Numberfield(
+                      TextfieldEmail(hint: "Email", icon: Icons.alternate_email),
+                      NumberfieldPhone(
                           hint: "Phone Number", icon: Icons.phone_android),
                       const SizedBox(height: 20),
                       Row(
@@ -109,8 +109,8 @@ class CreateAccount extends StatelessWidget {
                           Textfield(hint: "Password", icon: Icons.password),
                           Textfield(
                               hint: "Repeat Password", icon: Icons.password),
-                          Textfield(hint: "Email", icon: Icons.alternate_email),
-                          Numberfield(
+                          TextfieldEmail(hint: "Email", icon: Icons.alternate_email),
+                          NumberfieldPhone(
                               hint: "Phone Number",
                               icon: Icons.phone_android_outlined),
                           const SizedBox(height: 20),
