@@ -34,7 +34,7 @@ class InfoChart extends StatelessWidget {
                     children: <Widget>[
                       Container(
                       ),
-                      Row(
+                      const Row(
                         children: [
                           Expanded(
                             child:
@@ -50,7 +50,7 @@ class InfoChart extends StatelessWidget {
                           ),
                         ],
                       ),
-                      BackButton(),
+                      const BackButton(),
                     ],
                   ),
                 ),
@@ -78,7 +78,7 @@ class InfoChart extends StatelessWidget {
                       children: <Widget>[
                         Container(
                         ),
-                        Row(
+                        const Row(
                           children: [
                             Expanded(
                                 child:
@@ -94,7 +94,7 @@ class InfoChart extends StatelessWidget {
                             ),
                           ],
                         ),
-                        BackButton(),
+                        const BackButton(),
                       ],
                     ),
                   ],

@@ -30,8 +30,8 @@ class CreateAccount extends StatelessWidget {
                       const SizedBox(height: 30),
                       Textfield(hint: "Name", icon: Icons.person),
                       TextfieldPassword(hint: "Password", icon: Icons.password),
-                      TextfieldPassword(hint: "Repeat Password", icon: Icons.password),
-                      TextfieldEmail(hint: "Email", icon: Icons.alternate_email),
+                      TextfieldPassword(hint: "Repeat Password", icon: Icons.password), // TODO: P3, 23.07.04, Show password (toggle)
+                      TextfieldEmail(hint: "Email", icon: Icons.alternate_email), // TODO: P3, 23.07.04, Regex for Emailvalidation
                       NumberfieldPhone(
                           hint: "Phone Number", icon: Icons.phone_android),
                       const SizedBox(height: 20),
@@ -222,7 +222,7 @@ class _BirthDateState extends State<BirthDate> with RestorationMixin {
   String? get restorationId => widget.restorationId;
 
   final RestorableDateTime _selectedDate =
-      RestorableDateTime(DateTime(2023, 6, 29)); // TODO Now or actual Day???
+      RestorableDateTime(DateTime.now());
   late final RestorableRouteFuture<DateTime?> _restorableDatePickerRouteFuture =
       RestorableRouteFuture<DateTime?>(
     onComplete: _selectDate,

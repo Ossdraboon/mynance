@@ -96,18 +96,19 @@ class _NumberFieldState extends State<Numberfield> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: const TextStyle(color: Colors.white, fontSize: 25),
           keyboardType: TextInputType.number,
           inputFormatters: <TextInputFormatter>[
             FilteringTextInputFormatter.allow(RegExp(r'^(?=\D*(?:\d\D*){1,12}$)\d+(?:\.\d{0,2})?$')),
           ],
           decoration: InputDecoration(
             labelText: widget._hint2,
+            labelStyle:
+            const TextStyle(color: Colors.white, fontSize: 18.0),
             hintText: widget._hint2,
+            hintStyle:
+            const TextStyle(color: Colors.white, fontSize: 18.0),
             icon: Icon(widget._icon2),
-            // enabledBorder: OutlineInputBorder(
-            //   borderRadius: BorderRadius.circular(10.0),
-            //   borderSide: const BorderSide(color: Colors.black, width: 2.0),
-            // ),
           ),
     );
   }
@@ -305,7 +306,10 @@ class _DropDownPaymentState extends State<DropDownPayment> {
       isExpanded: true,
       underline: Container(),
       dropdownColor: Colors.transparent,
-      style: const TextStyle(color: Colors.black),
+      style: const TextStyle(
+          color: Colors.white,
+        fontSize: 18,
+      ),
       alignment: Alignment.center,
       onChanged: (String? value) {
         // This is called when the user selects an item.
@@ -333,9 +337,10 @@ class _DropDownPaymentState extends State<DropDownPayment> {
         // color: const Color.fromRGBO(
         //     15, 165, 210, 0.9),
         border: Border.all(
+          color: const Color.fromRGBO(21, 80, 199, 0.3),
         width: 3.0,
         ),
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(15.0),
         ),
                 child: Text(value)),
           ),
@@ -548,7 +553,8 @@ class PaymentSection extends StatelessWidget {
         const SizedBox(width: 10,),
         Expanded(
           flex: 9,
-          child: Container(decoration: BoxDecoration(
+          child: Container(
+            decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
@@ -562,9 +568,10 @@ class PaymentSection extends StatelessWidget {
             // color: const Color.fromRGBO(
             //     15, 165, 210, 0.9),
             border: Border.all(
+              color: const Color.fromRGBO(21, 80, 199, 0.3),
               width: 3.0,
             ),
-            borderRadius: BorderRadius.circular(5.0),
+            borderRadius: BorderRadius.circular(15.0),
           ),
             child: Numberfield(
                 hint: "add new Payment", icon: Icons.payment),

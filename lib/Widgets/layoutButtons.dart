@@ -195,11 +195,10 @@ class QuickMoney extends StatefulWidget {
 class _QuickMoney extends State<QuickMoney> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
+    return
         Container(
           height: 40,
+          alignment: Alignment.center,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
@@ -214,23 +213,22 @@ class _QuickMoney extends State<QuickMoney> {
             // color: const Color.fromRGBO(
             //     15, 165, 210, 0.9),
             border: Border.all(
+              color: const Color.fromRGBO(21, 80, 199, 0.3),
               width: 3.0,
             ),
-            borderRadius: BorderRadius.circular(5.0),
+            borderRadius: BorderRadius.circular(15.0),
           ),
           child: TextButton(
             style: TextButton.styleFrom(
-              foregroundColor: Colors.black,
+              foregroundColor: Colors.white,
               //padding: const EdgeInsets.all(16.0),
-              textStyle: const TextStyle(fontSize: 15),
+              textStyle: const TextStyle(fontSize: 18),
             ),
             onPressed: () {
-              print("add: " + widget._text);
+              print("paid: , ${widget._text}");
             },
-            child: Text("€" + widget._text),
+            child: Text("€${widget._text}"),
           ),
-        ),
-      ],
     );
   }
 }
