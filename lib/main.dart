@@ -8,6 +8,8 @@ import 'loginPage.dart';
 import 'homePage.dart';
 import 'menuSettingsPage.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'createAccountPage.dart';
 import 'manageAccountPage.dart';
@@ -15,7 +17,11 @@ import 'manageAccountPage.dart';
 import 'package:MyNance/Widgets/layoutElements.dart';
 import 'package:MyNance/Widgets/layoutButtons.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

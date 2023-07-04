@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "172758620394",
+    "project_id": "mydemoapp-36f56",
+    "storage_bucket": "mydemoapp-36f56.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172758620394:android:257a13d80212de71925f93",
+        "android_client_info": {
+          "package_name": "com.example.mynance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172758620394-7rmtf3frl8ff7vs30rlvo34oc35ibpud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa5RWtuR_-ZZEx1-CePYBGjcywmHfR8rA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172758620394-7rmtf3frl8ff7vs30rlvo34oc35ibpud.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "172758620394-ep1i0ft5agado2326hqegp2tm0qqt50t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.my-first-app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
