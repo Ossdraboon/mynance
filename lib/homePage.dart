@@ -77,7 +77,7 @@ class HomePage extends StatelessWidget {
                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: values
                                             .map((element) => QuickMoney(
-                                          text: (-1 * element).toString(),
+                                          text: (1 * element).toString(),
                                         ))
                                             .toList()),
                                   ],
@@ -104,7 +104,7 @@ class HomePage extends StatelessWidget {
                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: values
                                             .map((element) => QuickMoney(
-                                          text: (-1 * element).toString(),
+                                          text: (1 * element).toString(),
                                         ))
                                             .toList()),
                                   ],
@@ -204,7 +204,7 @@ class HomePage extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: values
                                           .map((element) => QuickMoney(
-                                        text: (-1 * element).toString(),
+                                        text: (1 * element).toString(),
                                       ))
                                           .toList()),
                                 ],
@@ -231,7 +231,7 @@ class HomePage extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: values
                                           .map((element) => QuickMoney(
-                                        text: (-1 * element).toString(),
+                                        text: (1 * element).toString(),
                                       ))
                                           .toList()),
                                 ],

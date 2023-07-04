@@ -34,9 +34,9 @@ class LoginPage extends StatelessWidget {
                           hint: "Enter your Username", icon: Icons.person),
                       Textfield(
                           hint: "Enter your Password", icon: Icons.password),
-                      SizedBox(height: 20),
-                      MyTextButtonEmail(),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
+                      const MyTextButtonEmail(),
+                      const SizedBox(height: 20),
                       const Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +70,7 @@ class LoginPage extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment.center,
-                margin: EdgeInsetsDirectional.all(10),
+                margin: const EdgeInsetsDirectional.all(10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -80,9 +80,9 @@ class LoginPage extends StatelessWidget {
                             hint: "Enter your Username", icon: Icons.person),
                         Textfield(
                             hint: "Enter your Password", icon: Icons.password),
-                        SizedBox(height: 20),
-                        MyTextButtonEmail(),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
+                        const MyTextButtonEmail(),
+                        const SizedBox(height: 20),
                       ],
                     ),
                     const Center(

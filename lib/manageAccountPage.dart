@@ -124,73 +124,94 @@ class ManageAccount extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Column(
+                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          SizedBox(height: 170),
-                          PaymentSectionManage(),
-                          SizedBox(height: 20),
-                        ],
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 3.0,
-                              color: colorScheme.onPrimaryContainer),
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        height: 180,   
-                        width: 500,
-                        child: const SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              ListItem(),
-                              ListItem(),
-                              ListItem(),
-                              ListItem(),
-                              ListItem(),
-                              ListItem(),
+                          const SizedBox(height: 170),
+                          Column(
+                            children: <Widget>[
+                              ExpansionTile(
+                                title: const Text('Set your monthly Payment here...'),
+                                //subtitle: Text('do i need that?'),
+                                controlAffinity: ListTileControlAffinity.leading,
+                                children: <Widget>[
+                                  const PaymentSectionManage(),
+                                  const SizedBox(height: 20),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 3.0,
+                                          color: colorScheme.onPrimaryContainer),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    height: 220,
+                                    width: 500,
+                                    child: const SingleChildScrollView(
+                                      child: Column(
+                                        children: [
+                                          ListItem(),
+                                          ListItem(),
+                                          ListItem(),
+                                          ListItem(),
+                                          ListItem(),
+                                          ListItem(),
+                                        ],
+                                      ),
+                                    ),
+
+                                  ),
+                                  const SaveButton(),
+                                ],
+                              ),
                             ],
                           ),
-                        ),
-
+                        ],
                       ),
                       const Divider(
-                        height: 40,
+                        height: 10,
                         thickness: 2,
-                        indent: 0,
-                        endIndent: 0,
+                        indent: 20,
+                        endIndent: 20,
                         color: Colors.black,
                       ),
-                      const Column(
-                        children: [
-                          IncomeSectionManage(),
-                          SizedBox(height: 20),
-                        ],
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 3.0,
-                              color: colorScheme.onPrimaryContainer),
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        height: 180,
-                        width: 500,
-                        child: const SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              ListItem(),
-                              ListItem(),
-                              ListItem(),
-                              ListItem(),
-                              ListItem(),
-                              ListItem(),
+                      Column(
+                        children: <Widget>[
+                          ExpansionTile(
+                            title: const Text('Set your monthly Income here...'),
+                            //subtitle: Text('do i need that?'),
+                            controlAffinity: ListTileControlAffinity.leading,
+                            children: <Widget>[
+                              const IncomeSectionManage(),
+                              const SizedBox(height: 20),
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 3.0,
+                                      color: colorScheme.onPrimaryContainer),
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                height: 220,
+                                width: 500,
+                                child: const SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      ListItem(),
+                                      ListItem(),
+                                      ListItem(),
+                                      ListItem(),
+                                      ListItem(),
+                                      ListItem(),
+                                    ],
+                                  ),
+                                ),
+
+                              ),
+                              const SaveButton(),
                             ],
                           ),
-                        ),
-
+                        ],
                       ),
+
                     ],
                   ),
                 ),
