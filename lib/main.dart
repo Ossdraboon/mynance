@@ -7,7 +7,7 @@ import 'package:metaballs/metaballs.dart';
 import 'loginPage.dart';
 import 'homePage.dart';
 import 'menuSettingsPage.dart';
-
+import 'package:flutter/services.dart';
 
 import 'createAccountPage.dart';
 import 'manageAccountPage.dart';
@@ -15,7 +15,7 @@ import 'manageAccountPage.dart';
 import 'package:MyNance/Widgets/layoutElements.dart';
 import 'package:MyNance/Widgets/layoutButtons.dart';
 
-void main() async {
+void main() {
   runApp(const MyApp());
 }
 

@@ -9,6 +9,7 @@ environment:
   sdk: '>=2.19.4 <4.0.0'
 
 dependencies:
+  dropdown_button2: ^2.3.4
   metaballs: ^1.4.2
   flutter:
     sdk: flutter
