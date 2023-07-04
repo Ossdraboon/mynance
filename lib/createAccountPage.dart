@@ -29,8 +29,8 @@ class CreateAccount extends StatelessWidget {
                     children: <Widget>[
                       const SizedBox(height: 30),
                       Textfield(hint: "Name", icon: Icons.person),
-                      Textfield(hint: "Password", icon: Icons.password),
-                      Textfield(hint: "Repeat Password", icon: Icons.password),
+                      TextfieldPassword(hint: "Password", icon: Icons.password),
+                      TextfieldPassword(hint: "Repeat Password", icon: Icons.password),
                       TextfieldEmail(hint: "Email", icon: Icons.alternate_email),
                       NumberfieldPhone(
                           hint: "Phone Number", icon: Icons.phone_android),
@@ -106,8 +106,8 @@ class CreateAccount extends StatelessWidget {
                         children: <Widget>[
                           const SizedBox(height: 100),
                           Textfield(hint: "Name", icon: Icons.person),
-                          Textfield(hint: "Password", icon: Icons.password),
-                          Textfield(
+                          TextfieldPassword(hint: "Password", icon: Icons.password),
+                          TextfieldPassword(
                               hint: "Repeat Password", icon: Icons.password),
                           TextfieldEmail(hint: "Email", icon: Icons.alternate_email),
                           NumberfieldPhone(
