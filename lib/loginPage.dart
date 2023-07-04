@@ -32,7 +32,7 @@ class LoginPage extends StatelessWidget {
                     children: <Widget>[
                       Textfield(
                           hint: "Enter your Username", icon: Icons.person),
-                      Textfield(
+                      TextfieldPassword(
                           hint: "Enter your Password", icon: Icons.password),
                       const SizedBox(height: 20),
                       const MyTextButtonEmail(),
@@ -78,7 +78,7 @@ class LoginPage extends StatelessWidget {
                       children: <Widget>[
                         Textfield(
                             hint: "Enter your Username", icon: Icons.person),
-                        Textfield(
+                        TextfieldPassword(
                             hint: "Enter your Password", icon: Icons.password),
                         const SizedBox(height: 20),
                         const MyTextButtonEmail(),
