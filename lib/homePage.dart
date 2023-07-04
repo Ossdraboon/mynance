@@ -42,17 +42,19 @@ class HomePage extends StatelessWidget {
                                 ExpansionTile(
                                   title: Text('Add New Payment here...'),
                                   //subtitle: Text('do i need that?'),
-                                  controlAffinity: ListTileControlAffinity.leading,
+                                  controlAffinity:
+                                      ListTileControlAffinity.leading,
                                   children: <Widget>[
                                     const PaymentSection(),
                                     Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
                                         children: values
                                             .map((element) => QuickMoney(
-                                          text: (-1 * element).toString(),
-                                        ))
+                                                  text:
+                                                      (-1 * element).toString(),
+                                                ))
                                             .toList()),
-
                                   ],
                                 ),
                               ],
@@ -70,15 +72,18 @@ class HomePage extends StatelessWidget {
                                 ExpansionTile(
                                   title: Text('Add New Income here...'),
                                   //subtitle: Text('do i need that?'),
-                                  controlAffinity: ListTileControlAffinity.leading,
+                                  controlAffinity:
+                                      ListTileControlAffinity.leading,
                                   children: <Widget>[
                                     const IncomeSection(),
                                     Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
                                         children: values
                                             .map((element) => QuickMoney(
-                                          text: (1 * element).toString(),
-                                        ))
+                                                  text:
+                                                      (1 * element).toString(),
+                                                ))
                                             .toList()),
                                   ],
                                 ),
@@ -97,15 +102,18 @@ class HomePage extends StatelessWidget {
                                 ExpansionTile(
                                   title: Text('Add New Goal here...'),
                                   //subtitle: Text('do i need that?'),
-                                  controlAffinity: ListTileControlAffinity.leading,
+                                  controlAffinity:
+                                      ListTileControlAffinity.leading,
                                   children: <Widget>[
                                     const GoalSection(),
                                     Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
                                         children: values
                                             .map((element) => QuickMoney(
-                                          text: (1 * element).toString(),
-                                        ))
+                                                  text:
+                                                      (1 * element).toString(),
+                                                ))
                                             .toList()),
                                   ],
                                 ),
@@ -163,100 +171,161 @@ class HomePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           const SizedBox(height: 170),
-                     Column(
-                      children: <Widget>[
-                        ExpansionTile(
-                          title: Text('Add New Payment here...'),
-                          //subtitle: Text('do i need that?'),
-                          controlAffinity: ListTileControlAffinity.leading,
-                          children: <Widget>[
-                            const PaymentSection(),
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: values
-                                    .map((element) => QuickMoney(
-                                  text: (-1 * element).toString(),
-                                ))
-                                    .toList()),
-                          ],
-                        ),
-                      ],
-                    ),
+                          Container(decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                Colors.white,
+                                Colors.blue.withOpacity(0.8),
+                                Colors.lightBlue.withOpacity(0.5),
+                                Colors.cyan.withOpacity(0),
+                              ],
+                            ),
+                            // color: const Color.fromRGBO(
+                            //     15, 165, 210, 0.9),
+                            border: Border.all(
+                              width: 3.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                            child: Column(
+                              children: <Widget>[
+                                ExpansionTile(
+                                  title: Text('Add New Payment here...'),
+                                  //subtitle: Text('do i need that?'),
+                                  controlAffinity:
+                                      ListTileControlAffinity.leading,
+                                  children: <Widget>[
+                                    const PaymentSection(),
+                                    SizedBox(height: 20,),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: values
+                                            .map((element) => QuickMoney(
+                                                  text: (-1 * element).toString(),
+                                                ))
+                                            .toList()),
+                                    const SizedBox(height: 20),
+                                  ],
+                                ),
+                              ],
 
-
-                          const Divider(
-                            height: 20,
-                            thickness: 2,
-                            indent: 0,
-                            endIndent: 0,
-                            color: Colors.black,
+                            ),
                           ),
                           const SizedBox(height: 20),
-                          Column(
-                            children: <Widget>[
-                              ExpansionTile(
-                                title: Text('Add New Income here...'),
-                                //subtitle: Text('do i need that?'),
-                                controlAffinity: ListTileControlAffinity.leading,
-                                children: <Widget>[
-                                  const IncomeSection(),
-                                  Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: values
-                                          .map((element) => QuickMoney(
-                                        text: (1 * element).toString(),
-                                      ))
-                                          .toList()),
-                                ],
-                              ),
-                            ],
+                          Container(
+                            decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                Colors.white,
+                                Colors.blue.withOpacity(0.8),
+                                Colors.lightBlue.withOpacity(0.5),
+                                Colors.cyan.withOpacity(0),
+                              ],
+                            ),
+                            // color: const Color.fromRGBO(
+                            //     15, 165, 210, 0.9),
+                            border: Border.all(
+                              width: 3.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
                           ),
-                          const Divider(
-                            height: 20,
-                            thickness: 2,
-                            indent: 0,
-                            endIndent: 0,
-                            color: Colors.black,
+                            child: Column(
+                              children: <Widget>[
+                                ExpansionTile(
+                                  title: Text('Add New Income here...'),
+                                  //subtitle: Text('do i need that?'),
+                                  controlAffinity:
+                                      ListTileControlAffinity.leading,
+                                  children: <Widget>[
+                                    const IncomeSection(),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: values
+                                            .map((element) => QuickMoney(
+                                                  text: (1 * element).toString(),
+                                                ))
+                                            .toList()),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                           const SizedBox(height: 20),
-                          Column(
-                            children: <Widget>[
-                              ExpansionTile(
-                                title: Text('Add New Goal here...'),
-                                //subtitle: Text('do i need that?'),
-                                controlAffinity: ListTileControlAffinity.leading,
-                                children: <Widget>[
-                                  const GoalSection(),
-                                  Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: values
-                                          .map((element) => QuickMoney(
-                                        text: (1 * element).toString(),
-                                      ))
-                                          .toList()),
-                                ],
-                              ),
-                            ],
+                          Container(decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                Colors.white,
+                                Colors.blue.withOpacity(0.8),
+                                Colors.lightBlue.withOpacity(0.5),
+                                Colors.cyan.withOpacity(0),
+                              ],
+                            ),
+                            // color: const Color.fromRGBO(
+                            //     15, 165, 210, 0.9),
+                            border: Border.all(
+                              width: 3.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
                           ),
-                          const Divider(
-                            height: 20,
-                            thickness: 2,
-                            indent: 0,
-                            endIndent: 0,
-                            color: Colors.black,
+                            child: Column(
+                              children: <Widget>[
+                                ExpansionTile(
+                                  title: Text('Add New Goal here...'),
+                                  //subtitle: Text('do i need that?'),
+                                  controlAffinity:
+                                      ListTileControlAffinity.leading,
+                                  children: <Widget>[
+                                    const GoalSection(),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: values
+                                            .map((element) => QuickMoney(
+                                                  text: (1 * element).toString(),
+                                                ))
+                                            .toList()),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                           const SizedBox(height: 20),
                         ],
                       ),
                       Container(
                         decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Colors.white,
+                              Colors.blue.withOpacity(0.8),
+                              Colors.lightBlue.withOpacity(0.5),
+                              Colors.cyan.withOpacity(0),
+                            ],
+                          ),
+                          // color: const Color.fromRGBO(
+                          //     15, 165, 210, 0.9),
                           border: Border.all(
                               width: 3.0,
-                              color: colorScheme.onPrimaryContainer),
+                              ),
                           borderRadius: BorderRadius.circular(5.0),
                         ),
-                        height: 180,
-                        child: InfoSection(),
+                        //child: InfoSection(),
+                        child: const Column(
+                          children: [
+                            PieChartSample2(),
+                            MyTextButtonAnalytics(),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -269,4 +338,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-

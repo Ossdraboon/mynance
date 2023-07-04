@@ -201,19 +201,26 @@ class _QuickMoney extends State<QuickMoney> {
         Container(
           height: 40,
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.white),
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-            gradient: const LinearGradient(
-              colors: <Color>[
-                Color(0xFF0D47A1),
-                Color(0xFF1976D2),
-                Color(0xFF42A5F5),
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Colors.white,
+                Colors.blue.withOpacity(0.8),
+                Colors.lightBlue.withOpacity(0.5),
+                Colors.cyan.withOpacity(0),
               ],
             ),
+            // color: const Color.fromRGBO(
+            //     15, 165, 210, 0.9),
+            border: Border.all(
+              width: 3.0,
+            ),
+            borderRadius: BorderRadius.circular(5.0),
           ),
           child: TextButton(
             style: TextButton.styleFrom(
-              foregroundColor: Colors.white,
+              foregroundColor: Colors.black,
               //padding: const EdgeInsets.all(16.0),
               textStyle: const TextStyle(fontSize: 15),
             ),
@@ -284,7 +291,35 @@ class DeleteButton extends StatelessWidget {
   }
 }
 
+class MyTextButtonAnalytics extends StatelessWidget {
+  const MyTextButtonAnalytics({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.blueGrey;
+    }
+
+    return TextButton(
+        style: TextButton.styleFrom(
+          foregroundColor: Colors.white,
+          //padding: const EdgeInsets.all(16.0),
+          textStyle: const TextStyle(fontSize: 15),
+        ),
+        onPressed: () {
+          Navigator.of(context).pushNamed('/info');
+        },
+        child: const Text('more Information ...'),
+
+    );
+  }
+}
 
 
 
