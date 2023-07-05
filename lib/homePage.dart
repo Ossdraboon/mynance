@@ -9,7 +9,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var colorScheme = Theme.of(context).colorScheme;
     var values = [5, 10, 20, 50];
 
     return Scaffold(
@@ -17,7 +16,7 @@ class HomePage extends StatelessWidget {
         if (constrains.maxWidth >= 600) {
           return Stack(
             children: <Widget>[
-              const Animatedbackground(),
+              const CircularParticleScreen(),
               Image.asset(
                 "assets/images/MyNanceSide-noBG.png",
                 width: 400,
@@ -25,126 +24,27 @@ class HomePage extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               Container(
-                alignment: Alignment.center,
+                height: double.infinity,
+                // alignment: Alignment.center,
                 margin: const EdgeInsetsDirectional.all(10),
                 child: SingleChildScrollView(
-                  child: SizedBox(
-                    width: 600,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            const SizedBox(height: 30),
-                            Column(
-                              children: <Widget>[
-                                ExpansionTile(
-                                  title: Text('Add New Payment here...'),
-                                  //subtitle: Text('do i need that?'),
-                                  controlAffinity:
-                                      ListTileControlAffinity.leading,
-                                  children: <Widget>[
-                                    const PaymentSection(),
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: values
-                                            .map((element) => QuickMoney(
-                                                  text:
-                                                      (-1 * element).toString(),
-                                                ))
-                                            .toList()),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            const Divider(
-                              height: 20,
-                              thickness: 2,
-                              indent: 0,
-                              endIndent: 0,
-                              color: Colors.black,
-                            ),
-                            const SizedBox(height: 20),
-                            Column(
-                              children: <Widget>[
-                                ExpansionTile(
-                                  title: Text('Add New Income here...'),
-                                  //subtitle: Text('do i need that?'),
-                                  controlAffinity:
-                                      ListTileControlAffinity.leading,
-                                  children: <Widget>[
-                                    const IncomeSection(),
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: values
-                                            .map((element) => QuickMoney(
-                                                  text:
-                                                      (1 * element).toString(),
-                                                ))
-                                            .toList()),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            const Divider(
-                              height: 20,
-                              thickness: 2,
-                              indent: 0,
-                              endIndent: 0,
-                              color: Colors.black,
-                            ),
-                            const SizedBox(height: 20),
-                            Column(
-                              children: <Widget>[
-                                ExpansionTile(
-                                  title: Text('Add New Goal here...'),
-                                  //subtitle: Text('do i need that?'),
-                                  controlAffinity:
-                                      ListTileControlAffinity.leading,
-                                  children: <Widget>[
-                                    const GoalSection(),
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: values
-                                            .map((element) => QuickMoney(
-                                                  text:
-                                                      (1 * element).toString(),
-                                                ))
-                                            .toList()),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            const Divider(
-                              height: 20,
-                              thickness: 2,
-                              indent: 0,
-                              endIndent: 0,
-                              color: Colors.black,
-                            ),
-                            const SizedBox(height: 20),
-                          ],
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 3.0,
-                                color: colorScheme.onPrimaryContainer),
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          height: 180,
-                          width: 600,
-                          child: const InfoSection(),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        )
-                      ],
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          const SizedBox(height: 20),
+                          TopPaymentSection(values: values),
+                          const SizedBox(height: 20),
+                          TopIncomeSection(values: values),
+                          const SizedBox(height: 20),
+                          TopGoalSection(values: values),
+                          const SizedBox(height: 20),
+                        ],
+                      ),
+                      const TopInfoSection(),
+                    ],
                   ),
                 ),
               ),
@@ -153,7 +53,7 @@ class HomePage extends StatelessWidget {
         } else {
           return Stack(
             children: <Widget>[
-              const Animatedbackground(),
+              const CircularParticleScreen(),
               Image.asset(
                 "assets/images/LogoRender.png",
                 width: 600,
@@ -161,7 +61,8 @@ class HomePage extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               Container(
-                alignment: Alignment.center,
+                height: double.infinity,
+                // alignment: Alignment.center,
                 margin: const EdgeInsetsDirectional.all(10),
                 child: SingleChildScrollView(
                   child: Column(
@@ -325,31 +226,35 @@ class TopPaymentSection extends StatelessWidget {
       //     15, 165, 210, 0.9),
       border: Border.all(
         color: const Color.fromRGBO(21, 80, 199, 0.3),
-        width: 3.0,
+        width: 0,
       ),
       borderRadius: BorderRadius.circular(10.0),
     ),
       child: Column(
         children: <Widget>[
-          ExpansionTile(
-            //trailing: Icon(Icons.money, color: Colors.white,),
-            title: const Text('Add New Payment here...', style: TextStyle(color: Colors.white,fontSize: 20),),
-            subtitle: const Text('Manage your Daily Payments',style: TextStyle(color: Colors.white,fontSize: 15),),
-            controlAffinity:
-                ListTileControlAffinity.leading,
-            children: <Widget>[
-              const PaymentSection(),
-              const SizedBox(height: 20,),
-              Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.spaceEvenly,
-                  children: values
-                      .map((element) => QuickMoney(
-                            text: (-1 * element).toString(),
-                          ))
-                      .toList()),
-              const SizedBox(height: 20),
-            ],
+          Theme(
+            data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+            child: ExpansionTile(
+              // shape: Border(),
+              //trailing: Icon(Icons.money, color: Colors.white,),
+              title: const Text('Add New Payment here...', style: TextStyle(color: Colors.white,fontSize: 20),),
+              subtitle: const Text('Manage your Daily Payments',style: TextStyle(color: Colors.white,fontSize: 15),),
+              controlAffinity:
+                  ListTileControlAffinity.leading,
+              children: <Widget>[
+                const PaymentSection(),
+                const SizedBox(height: 20,),
+                Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment.spaceEvenly,
+                    children: values
+                        .map((element) => QuickMoney(
+                              text: (-1 * element).toString(),
+                            ))
+                        .toList()),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ],
 

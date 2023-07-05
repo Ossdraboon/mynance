@@ -10,12 +10,7 @@ import 'menuSettingsPage.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-
-import 'createAccountPage.dart';
-import 'manageAccountPage.dart';
-
-import 'package:MyNance/Widgets/layoutElements.dart';
-import 'package:MyNance/Widgets/layoutButtons.dart';
+import 'package:particles_flutter/particles_flutter.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -154,7 +149,10 @@ class _StartUpPageState extends State<StartUpPage> {
               children: [
                 Expanded(child: mainArea),
                 SafeArea(
+                  top: false,
                   child: BottomNavigationBar(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0.0,
                     items: getBottomTabs(_menuItems),
                     currentIndex: selectedIndex,
                     onTap: (value) {
@@ -225,5 +223,47 @@ class Animatedbackground extends StatelessWidget {
         glowRadius: 0.7,
         glowIntensity: 0.6,
         child: const Text('METABALLS'));
+  }
+}
+
+class CircularParticleScreen extends StatelessWidget {
+  const CircularParticleScreen({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    return Center(
+      child: Container(
+        key: UniqueKey(),
+        child: Center(
+          child: CircularParticle(
+            awayRadius: 80,
+            numberOfParticles: 50,
+            speedOfParticles: 0.5,
+            height: screenHeight,
+            width: screenWidth,
+            onTapAnimation: true,
+            particleColor: Colors.lightBlueAccent,
+            awayAnimationDuration: const Duration(milliseconds: 1000),
+            maxParticleSize: 5,
+            isRandSize: true,
+            isRandomColor: true,
+            randColorList: const [
+              Color.fromRGBO(37, 89, 222, 0.7),
+              Color.fromRGBO(37, 179, 222, 1.0),
+              Color.fromRGBO(37, 102, 222, 1.0),
+            ],
+            awayAnimationCurve: Curves.easeInOutBack,
+            enableHover: true,
+            hoverColor: Colors.white,
+            hoverRadius: 90,
+            connectDots: true, //not recommended
+          ),
+        ),
+      ),
+    );
   }
 }

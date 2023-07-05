@@ -155,3 +155,76 @@ class ManageAccount extends StatelessWidget {
     );
   }
 }
+
+
+class DropDownPayment extends StatefulWidget {
+  const DropDownPayment({super.key});
+
+  @override
+  State<DropDownPayment> createState() => _DropDownPaymentState();
+}
+
+class _DropDownPaymentState extends State<DropDownPayment> {
+  String dropdownValue = paymentList.first;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      isExpanded: true,
+      underline: Container(),
+      dropdownColor: Colors.transparent,
+      elevation: 0,
+      style: const TextStyle(
+        color: Colors.white,
+        fontSize: 18,
+      ),
+      alignment: Alignment.center,
+      onChanged: (String? value) {
+        // This is called when the user selects an item.
+        setState(() {
+          dropdownValue = value!;
+        });
+      },
+      items: paymentList.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: SizedBox(
+            child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Colors.white,
+                      Colors.blue.withOpacity(0.9),
+                      Colors.blue.withOpacity(0.9),
+                      Colors.lightBlue.withOpacity(0.8),
+                      Colors.cyan.withOpacity(0.1),
+                    ],
+                  ),
+                  border: Border.all(
+                    color: Colors.white.withOpacity(0.5),
+                    // color: const Color.fromRGBO(21, 80, 199, 0.3),
+                    width: 0,
+                  ),
+                  borderRadius: BorderRadius.circular(15.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white.withOpacity(0.7),
+                      spreadRadius: 3,
+                      blurRadius: 7,
+                      offset: const Offset(4, 4), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: Text(value)),
+          ),
+        );
+      }).toList(),
+    );
+  }
+}
+
+
