@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'Widgets/Buttons/MyTextButtonAnalytics.dart';
+import 'Widgets/Layouts/GoalElement.dart';
+import 'Widgets/Layouts/IncomeElement.dart';
+import 'Widgets/Layouts/InfoElement.dart';
+import 'Widgets/Layouts/PaymentElement.dart';
 import 'main.dart';
 import 'package:MyNance/Widgets/layoutElements.dart';
-import 'package:MyNance/Widgets/layoutButtons.dart';
+
 import 'package:MyNance/Widgets/Buttons/QuickMoney.dart';
 
 
@@ -318,7 +322,7 @@ class TopInfoSection extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
       ),
       //child: InfoSection(),
-      child: const Column(
+      child:  const Column(
         children: [
           PieChartSample2(),
           MyTextButtonAnalytics(),
@@ -326,4 +330,16 @@ class TopInfoSection extends StatelessWidget {
       ),
     );
   }
+
+
+
+
+
+
+
+
+
+
+
+
 }

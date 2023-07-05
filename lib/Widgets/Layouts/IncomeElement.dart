@@ -3,31 +3,114 @@ import 'package:flutter/services.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:MyNance/Widgets/Buttons/ChartButton.dart';
 
-import 'Buttons/MyIconButton.dart';
-import 'Layouts/PaymentElement.dart';
+import 'NumberField.dart';
+
+const List<String> incomeList = <String>[
+  'Other',
+  'Borrow',
+  'Gifts',
+];
+const List<String> incomeListManage = <String>[
+  'Other',
+  'Salary',
+  'Rental',
+  'Earnings',
+  'Revenue',
+  'Child Support',
+  'Parental Allowance'
+];
 
 
 
-
-
-
-//Dynamic Layout for Pay-/Income-/GoalSection for Home- and AccountBalancePage
-
-
-
-class DropDown extends StatefulWidget {
-  late List _list;
-
-
-   DropDown({required List list,super.key}){
-     _list = list;
-   }
+//income
+class IncomeSection extends StatelessWidget {
+  const IncomeSection({
+    super.key,
+  });
 
   @override
-  State<DropDown> createState() => _DropDownState();
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        const Expanded(flex: 3, child: DropDownIncome()),
+        const SizedBox(
+          width: 10,
+        ),
+        Expanded(
+          flex: 9,
+          child: Numberfield(hint: "add new Income", icon: Icons.money),
+        ),
+      ],
+    );
+  }
 }
-class _DropDownState extends State<DropDown> {
-  String dropdownValue = paymentList.first;    //dynamic list choose
+
+class DropDownIncomeManage extends StatefulWidget {
+  const DropDownIncomeManage({super.key});
+
+  @override
+  State<DropDownIncomeManage> createState() => _DropDownIncomeManageState();
+}
+
+class _DropDownIncomeManageState extends State<DropDownIncomeManage> {
+  String dropdownValue = incomeListManage.first;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      isExpanded: true,
+      style: const TextStyle(color: Colors.black),
+      alignment: Alignment.center,
+      onChanged: (String? value) {
+        // This is called when the user selects an item.
+        setState(() {
+          dropdownValue = value!;
+        });
+      },
+      items: incomeListManage.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  }
+}
+
+class IncomeSectionManage extends StatelessWidget {
+  const IncomeSectionManage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        const Expanded(flex: 3, child: DropDownIncomeManage()),
+        const SizedBox(
+          width: 10,
+        ),
+        Expanded(
+          flex: 9,
+          child: Numberfield(hint: "Set your Incomes", icon: Icons.money),
+        ),
+      ],
+    );
+  }
+}
+
+
+
+class DropDownIncome extends StatefulWidget {
+  const DropDownIncome({super.key});
+
+  @override
+  State<DropDownIncome> createState() => _DropDownIncomeState();
+}
+
+class _DropDownIncomeState extends State<DropDownIncome> {
+  String dropdownValue = incomeList.first;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +138,7 @@ class _DropDownState extends State<DropDown> {
               dropdownValue = value!;
             });
           },
-          items: paymentList.map<DropdownMenuItem<String>>((String value) {
+          items: incomeList.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: SizedBox(
@@ -97,41 +180,4 @@ class _DropDownState extends State<DropDown> {
     );
   }
 }
-
-
-
-
-class ListItem extends StatelessWidget {
-  const ListItem({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Row(
-            children: [
-              MyIconButton(icon: Icons.delete_forever, size: 20),
-              const SizedBox(
-                width: 10,
-              ),
-              const Text("LIST of ITEMS"),
-            ],
-          ),
-        ),
-        const Divider(
-          height: 2,
-          thickness: 1,
-          indent: 5,
-          endIndent: 5,
-          color: Colors.black,
-        ),
-      ],
-    );
-  }
-}
-
-
+//

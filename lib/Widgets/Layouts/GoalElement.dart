@@ -3,31 +3,50 @@ import 'package:flutter/services.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:MyNance/Widgets/Buttons/ChartButton.dart';
 
-import 'Buttons/MyIconButton.dart';
-import 'Layouts/PaymentElement.dart';
+import 'NumberField.dart';
 
 
+const List<String> goalList = <String>[
+  'Other',
+  'Car',
+  'Multimedia',
+  'Investment',
+  'Luxury',
+];
 
 
-
-
-//Dynamic Layout for Pay-/Income-/GoalSection for Home- and AccountBalancePage
-
-
-
-class DropDown extends StatefulWidget {
-  late List _list;
-
-
-   DropDown({required List list,super.key}){
-     _list = list;
-   }
+//goal
+class GoalSection extends StatelessWidget {
+  const GoalSection({
+    super.key,
+  });
 
   @override
-  State<DropDown> createState() => _DropDownState();
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        const Expanded(flex: 3, child: DropDownGoals()),
+        const SizedBox(
+          width: 10,
+        ),
+        Expanded(
+          flex: 9,
+          child: Numberfield(hint: "add new Goal", icon: Icons.pie_chart),
+        ),
+      ],
+    );
+  }
 }
-class _DropDownState extends State<DropDown> {
-  String dropdownValue = paymentList.first;    //dynamic list choose
+
+class DropDownGoals extends StatefulWidget {
+  const DropDownGoals({super.key});
+
+  @override
+  State<DropDownGoals> createState() => _DropDownGoalsState();
+}
+
+class _DropDownGoalsState extends State<DropDownGoals> {
+  String dropdownValue = goalList.first;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +74,7 @@ class _DropDownState extends State<DropDown> {
               dropdownValue = value!;
             });
           },
-          items: paymentList.map<DropdownMenuItem<String>>((String value) {
+          items: goalList.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: SizedBox(
@@ -97,41 +116,4 @@ class _DropDownState extends State<DropDown> {
     );
   }
 }
-
-
-
-
-class ListItem extends StatelessWidget {
-  const ListItem({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Row(
-            children: [
-              MyIconButton(icon: Icons.delete_forever, size: 20),
-              const SizedBox(
-                width: 10,
-              ),
-              const Text("LIST of ITEMS"),
-            ],
-          ),
-        ),
-        const Divider(
-          height: 2,
-          thickness: 1,
-          indent: 5,
-          endIndent: 5,
-          color: Colors.black,
-        ),
-      ],
-    );
-  }
-}
-
-
+//
