@@ -93,6 +93,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
+
 class TopGoalSection extends StatelessWidget {
   const TopGoalSection({
     super.key,
@@ -103,36 +104,44 @@ class TopGoalSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(decoration: BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.centerLeft,
-        end: Alignment.centerRight,
-        colors: [
-          Colors.white,
-          Colors.blue.withOpacity(0.8),
-          Colors.lightBlue.withOpacity(0.5),
-          Colors.cyan.withOpacity(0),
-        ],
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Colors.white,
+            Colors.blue.withOpacity(0.9),
+            Colors.blue.withOpacity(0.9),
+            Colors.lightBlue.withOpacity(0.8),
+            Colors.cyan.withOpacity(0.1),
+          ],
+        ),
+        // color: const Color.fromRGBO(
+        //     15, 165, 210, 0.9),
+        border: Border.all(
+          color: const Color.fromRGBO(21, 80, 199, 0.3),
+          width: 0,
+        ),
+        borderRadius: BorderRadius.circular(10.0),
       ),
-      // color: const Color.fromRGBO(
-      //     15, 165, 210, 0.9),
-      border: Border.all(
-        width: 3.0,
-      ),
-      borderRadius: BorderRadius.circular(5.0),
-    ),
       child: Column(
         children: <Widget>[
           ExpansionTile(
-            title: Text('Add New Goal here...'),
+            title: const Text(
+              'Add New Payment here...',
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            subtitle: const Text(
+              'Manage your Daily Payments',
+              style: TextStyle(color: Colors.white, fontSize: 15),
+            ),
             //subtitle: Text('do i need that?'),
-            controlAffinity:
-                ListTileControlAffinity.leading,
+            controlAffinity: ListTileControlAffinity.leading,
             children: <Widget>[
               const GoalSection(),
               Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: values
                       .map((element) => QuickMoney(
                             text: (1 * element).toString(),
@@ -158,35 +167,42 @@ class TopIncomeSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.centerLeft,
-        end: Alignment.centerRight,
-        colors: [
-          Colors.white,
-          Colors.blue.withOpacity(0.8),
-          Colors.lightBlue.withOpacity(0.5),
-          Colors.cyan.withOpacity(0),
-        ],
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Colors.white,
+            Colors.blue.withOpacity(0.9),
+            Colors.blue.withOpacity(0.9),
+            Colors.lightBlue.withOpacity(0.8),
+            Colors.cyan.withOpacity(0.1),
+          ],
+        ),
+        // color: const Color.fromRGBO(
+        //     15, 165, 210, 0.9),
+        border: Border.all(
+          color: const Color.fromRGBO(21, 80, 199, 0.3),
+          width: 0,
+        ),
+        borderRadius: BorderRadius.circular(10.0),
       ),
-      // color: const Color.fromRGBO(
-      //     15, 165, 210, 0.9),
-      border: Border.all(
-        width: 3.0,
-      ),
-      borderRadius: BorderRadius.circular(5.0),
-    ),
       child: Column(
         children: <Widget>[
           ExpansionTile(
-            title: Text('Add New Income here...'),
+            title: const Text(
+              'Add New Payment here...',
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            subtitle: const Text(
+              'Manage your Daily Payments',
+              style: TextStyle(color: Colors.white, fontSize: 15),
+            ),
             //subtitle: Text('do i need that?'),
-            controlAffinity:
-                ListTileControlAffinity.leading,
+            controlAffinity: ListTileControlAffinity.leading,
             children: <Widget>[
               const IncomeSection(),
               Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: values
                       .map((element) => QuickMoney(
                             text: (1 * element).toString(),
@@ -210,26 +226,27 @@ class TopPaymentSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(decoration: BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.centerLeft,
-        end: Alignment.centerRight,
-        colors: [
-          Colors.white,
-          Colors.blue.withOpacity(0.9),
-          Colors.blue.withOpacity(0.9),
-          Colors.lightBlue.withOpacity(0.8),
-          Colors.cyan.withOpacity(0.1),
-        ],
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Colors.white,
+            Colors.blue.withOpacity(0.9),
+            Colors.blue.withOpacity(0.9),
+            Colors.lightBlue.withOpacity(0.8),
+            Colors.cyan.withOpacity(0.1),
+          ],
+        ),
+        // color: const Color.fromRGBO(
+        //     15, 165, 210, 0.9),
+        border: Border.all(
+          color: const Color.fromRGBO(21, 80, 199, 0.3),
+          width: 0,
+        ),
+        borderRadius: BorderRadius.circular(10.0),
       ),
-      // color: const Color.fromRGBO(
-      //     15, 165, 210, 0.9),
-      border: Border.all(
-        color: const Color.fromRGBO(21, 80, 199, 0.3),
-        width: 0,
-      ),
-      borderRadius: BorderRadius.circular(10.0),
-    ),
       child: Column(
         children: <Widget>[
           Theme(
@@ -237,16 +254,22 @@ class TopPaymentSection extends StatelessWidget {
             child: ExpansionTile(
               // shape: Border(),
               //trailing: Icon(Icons.money, color: Colors.white,),
-              title: const Text('Add New Payment here...', style: TextStyle(color: Colors.white,fontSize: 20),),
-              subtitle: const Text('Manage your Daily Payments',style: TextStyle(color: Colors.white,fontSize: 15),),
-              controlAffinity:
-                  ListTileControlAffinity.leading,
+              title: const Text(
+                'Add New Payment here...',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              subtitle: const Text(
+                'Manage your Daily Payments',
+                style: TextStyle(color: Colors.white, fontSize: 15),
+              ),
+              controlAffinity: ListTileControlAffinity.leading,
               children: <Widget>[
                 const PaymentSection(),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: values
                         .map((element) => QuickMoney(
                               text: (-1 * element).toString(),
@@ -257,7 +280,6 @@ class TopPaymentSection extends StatelessWidget {
             ),
           ),
         ],
-
       ),
     );
   }
@@ -277,18 +299,19 @@ class TopInfoSection extends StatelessWidget {
           end: Alignment.centerRight,
           colors: [
             Colors.white,
-            Colors.blue.withOpacity(0.8),
-            Colors.lightBlue.withOpacity(0.5),
-            Colors.cyan.withOpacity(0),
+            Colors.blue.withOpacity(0.9),
+            Colors.blue.withOpacity(0.9),
+            Colors.lightBlue.withOpacity(0.8),
+            Colors.cyan.withOpacity(0.1),
           ],
         ),
         // color: const Color.fromRGBO(
         //     15, 165, 210, 0.9),
         border: Border.all(
           color: const Color.fromRGBO(21, 80, 199, 0.3),
-            width: 3.0,
-            ),
-        borderRadius: BorderRadius.circular(5.0),
+          width: 0,
+        ),
+        borderRadius: BorderRadius.circular(10.0),
       ),
       //child: InfoSection(),
       child: const Column(
