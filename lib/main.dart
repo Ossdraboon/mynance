@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           //brightness: Brightness.dark
         ),
         routes: {
-          '/': (context) => const LoginPage(),
+          '/': (context) =>  LoginPage(),
           '/home': (context) => const StartUpPage(),
           '/create': (context) => const CreateAccount(),
           '/manage': (context) => const ManageAccount(),

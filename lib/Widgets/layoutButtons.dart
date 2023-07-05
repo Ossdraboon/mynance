@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:MyNance/loginPage.dart';
 
 class SignUpButton extends StatelessWidget {
   const SignUpButton({super.key});
@@ -56,7 +57,9 @@ class MyBackButton extends StatelessWidget {
 }
 
 class LoginButton extends StatelessWidget {
-  const LoginButton({super.key});
+  LoginButton({super.key});
+  //final Function login;
+
 
   @override
   Widget build(BuildContext context) {
@@ -70,12 +73,14 @@ class LoginButton extends StatelessWidget {
       return Colors.black;
     }
 
+
     return ElevatedButton(
       style: ButtonStyle(
         // animationDuration: Duration(seconds: 2),
         foregroundColor: MaterialStateProperty.resolveWith(getColor),
       ),
       onPressed: () {
+
         Navigator.of(context).pushNamed('/home');
       },
       child: const Text('LOGIN'),

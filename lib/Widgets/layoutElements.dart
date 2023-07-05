@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 import 'layoutButtons.dart';
 import 'package:fl_chart/fl_chart.dart';
 
+
+
+
 class Textfield extends StatefulWidget {
   late String _hint;
   late IconData _icon;
@@ -58,6 +61,8 @@ class _TextfieldEmailState extends State<TextfieldEmail> {
       width: 600,
       child: TextFormField(
         keyboardType: TextInputType.emailAddress,
+
+
         decoration: InputDecoration(
             labelText: widget._hint,
             iconColor: Colors.black,
@@ -86,23 +91,25 @@ class Numberfield extends StatefulWidget {
 }
 
 class _NumberFieldState extends State<Numberfield> {
+
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       style: const TextStyle(color: Colors.white, fontSize: 25),
-      keyboardType: TextInputType.number,
-      inputFormatters: <TextInputFormatter>[
-        FilteringTextInputFormatter.allow(
-            RegExp(r'^(?=\D*(?:\d\D*){1,12}$)\d+(?:\.\d{0,2})?$')),
-      ],
-      decoration: InputDecoration(
-        labelText: widget._hint2,
-        labelStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
-        hintText: widget._hint2,
-        hintStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
-        border: InputBorder.none,
-        icon: Icon(widget._icon2, color: Colors.blueAccent,size: 30,),
-      ),
+          keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.allow(RegExp(r'^(?=\D*(?:\d\D*){1,12}$)\d+(?:\.\d{0,2})?$')),
+          ],
+          decoration: InputDecoration(
+            labelText: widget._hint2,
+            labelStyle:
+            const TextStyle(color: Colors.white, fontSize: 18.0),
+            hintText: widget._hint2,
+            hintStyle:
+            const TextStyle(color: Colors.white, fontSize: 18.0),
+            icon: Icon(widget._icon2),
+          ),
     );
   }
 }
@@ -121,6 +128,8 @@ class NumberfieldPhone extends StatefulWidget {
 }
 
 class _NumberFieldPhoneState extends State<NumberfieldPhone> {
+
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -179,6 +188,8 @@ class _TextfieldPasswordState extends State<TextfieldPassword> {
     );
   }
 }
+
+
 
 class LoginPasswort extends StatelessWidget {
   const LoginPasswort({
@@ -272,16 +283,10 @@ class LoginContainer extends StatelessWidget {
   }
 }
 
+
+
 const List<String> paymentList = <String>[
-  'Other',
-  'Food',
-  'Clothing',
-  'Children',
-  'Health',
-  'Travel',
-  'Car',
-  'Sport',
-  'Gifts'
+  'Other', 'Food', 'Clothing', 'Children','Health', 'Travel', 'Car', 'Sport','Gifts'
 ];
 
 class DropDownPayment extends StatefulWidget {
@@ -296,78 +301,57 @@ class _DropDownPaymentState extends State<DropDownPayment> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Text("Categories",
-        style: TextStyle(color: Colors.white),
-        textAlign: TextAlign.center,
+    return DropdownButton<String>(
+      value: dropdownValue,
+      isExpanded: true,
+      underline: Container(),
+      dropdownColor: Colors.transparent,
+      style: const TextStyle(
+          color: Colors.white,
+        fontSize: 18,
+      ),
+      alignment: Alignment.center,
+      onChanged: (String? value) {
+        // This is called when the user selects an item.
+        setState(() {
+          dropdownValue = value!;
+        });
+      },
+      items: paymentList.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: SizedBox(
+            child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+              gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+              Colors.white,
+              Colors.blue.withOpacity(0.9),
+        Colors.lightBlue.withOpacity(0.8),
+        Colors.cyan.withOpacity(0.7),
+        ],
         ),
-        DropdownButton<String>(
-                iconSize: 0.0,
-          value: dropdownValue,
-          isExpanded: true,
-          underline: Container(),
-          dropdownColor: Colors.transparent,
-          elevation: 0,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 18,
+        // color: const Color.fromRGBO(
+        //     15, 165, 210, 0.9),
+        border: Border.all(
+          color: const Color.fromRGBO(21, 80, 199, 0.3),
+        width: 3.0,
+        ),
+        borderRadius: BorderRadius.circular(15.0),
+        ),
+                child: Text(value)),
           ),
-          alignment: Alignment.center,
-          onChanged: (String? value) {
-            // This is called when the user selects an item.
-            setState(() {
-              dropdownValue = value!;
-            });
-          },
-          items: paymentList.map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: SizedBox(
-                child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          Colors.white,
-                          Colors.blue.withOpacity(0.9),
-                          Colors.blue.withOpacity(0.9),
-                          Colors.lightBlue.withOpacity(0.8),
-                          Colors.cyan.withOpacity(0.1),
-                        ],
-                      ),
-                      border: Border.all(
-                        color: Colors.white.withOpacity(0.5),
-                        // color: const Color.fromRGBO(21, 80, 199, 0.3),
-                        width: 0,
-                      ),
-                      borderRadius: BorderRadius.circular(15.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.white.withOpacity(0.7),
-                          spreadRadius: 1,
-                          blurRadius: 7,
-                          offset: const Offset(2, 2), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    child: Text(value)),
-              ),
-            );
-          }).toList(),
-        ),
-      ],
+        );
+      }).toList(),
     );
   }
 }
 
-const List<String> incomeList = <String>[
-  'Other',
-  'Borrow',
-  'Gifts',
-];
+
+const List<String> incomeList = <String>['Other', 'Borrow', 'Gifts',];
 
 class DropDownIncome extends StatefulWidget {
   const DropDownIncome({super.key});
@@ -402,13 +386,8 @@ class _DropDownIncomeState extends State<DropDownIncome> {
   }
 }
 
-const List<String> goalList = <String>[
-  'Other',
-  'Car',
-  'Multimedia',
-  'Investment',
-  'Luxury',
-];
+
+const List<String> goalList = <String>['Other', 'Car', 'Multimedia', 'Investment', 'Luxury',];
 
 class DropDownGoals extends StatefulWidget {
   const DropDownGoals({super.key});
@@ -443,6 +422,8 @@ class _DropDownGoalsState extends State<DropDownGoals> {
   }
 }
 
+
+
 class InfoSection extends StatelessWidget {
   const InfoSection({
     super.key,
@@ -457,7 +438,9 @@ class InfoSection extends StatelessWidget {
           flex: 3,
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(width: 3.0, color: Colors.black),
+              border: Border.all(
+                  width: 3.0,
+                  color: Colors.black),
               borderRadius: BorderRadius.circular(5.0),
             ),
             height: 150,
@@ -471,32 +454,27 @@ class InfoSection extends StatelessWidget {
           flex: 5,
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(width: 3.0, color: Colors.black),
+              border: Border.all(
+                  width: 3.0,
+                  color: Colors.black),
               borderRadius: BorderRadius.circular(5.0),
             ),
             height: 150,
             child: const SingleChildScrollView(
               child: Column(
                 children: [
-                  Text("Test text for show of Day Information and Analytics"),
-                  SizedBox(
-                    height: 5,
-                  ),
+                  Text(
+                      "Test text for show of Day Information and Analytics"),
+                  SizedBox(height: 5,),
                   Text(
                       "Test text for show of Weekly Information and Analytics"),
-                  SizedBox(
-                    height: 5,
-                  ),
+                  SizedBox(height: 5,),
                   Text(
                       "Test text for show of Monthly Information and Analytics"),
-                  SizedBox(
-                    height: 5,
-                  ),
+                  SizedBox(height: 5,),
                   Text(
                       "Test text for show of Yearly Information and Analytics"),
-                  SizedBox(
-                    height: 5,
-                  ),
+                  SizedBox(height: 5,),
                   Text(
                       "Test text for show of Overall Information and Analytics"),
                 ],
@@ -518,14 +496,16 @@ class GoalSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: <Widget>[
-        const Expanded(flex: 3, child: DropDownGoals()),
-        const SizedBox(
-          width: 10,
+      children:<Widget> [
+        const Expanded(
+            flex: 3,
+            child: DropDownGoals()
         ),
+        const SizedBox(width: 10,),
         Expanded(
           flex: 9,
-          child: Numberfield(hint: "add new Goal", icon: Icons.pie_chart),
+          child: Numberfield(
+              hint: "add new Goal", icon: Icons.pie_chart),
         ),
       ],
     );
@@ -540,14 +520,16 @@ class IncomeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: <Widget>[
-        const Expanded(flex: 3, child: DropDownIncome()),
-        const SizedBox(
-          width: 10,
+      children:<Widget> [
+        const Expanded(
+            flex: 3,
+            child: DropDownIncome()
         ),
+        const SizedBox(width: 10,),
         Expanded(
           flex: 9,
-          child: Numberfield(hint: "add new Income", icon: Icons.money),
+          child: Numberfield(
+              hint: "add new Income", icon: Icons.money),
         ),
       ],
     );
@@ -562,65 +544,49 @@ class PaymentSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: <Widget>[
-        const SizedBox(
-          width: 10,
+      children:<Widget> [
+        const SizedBox(width: 10,),
+        const Expanded(
+            flex: 4,
+            child: DropDownPayment()
         ),
-        const Expanded(flex: 4, child: DropDownPayment()),
-        const SizedBox(
-          width: 10,
-        ),
+        const SizedBox(width: 10,),
         Expanded(
           flex: 9,
           child: Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-                  Colors.white,
-                  Colors.blue.withOpacity(0.9),
-                  Colors.blue.withOpacity(0.9),
-                  Colors.lightBlue.withOpacity(0.8),
-                  Colors.cyan.withOpacity(0.1),
-                ],
-              ),
-              border: Border.all(
-                color: Colors.white.withOpacity(0.5),
-                // color: const Color.fromRGBO(21, 80, 199, 0.3),
-                width: 0,
-              ),
-              borderRadius: BorderRadius.circular(15.0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.white.withOpacity(0.7),
-                  spreadRadius: 1,
-                  blurRadius: 7,
-                  offset: const Offset(2, 2), // changes position of shadow
-                ),
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Colors.white,
+                Colors.blue.withOpacity(0.8),
+                Colors.lightBlue.withOpacity(0.5),
+                Colors.cyan.withOpacity(0),
               ],
             ),
-            child: Numberfield(hint: "add new Payment", icon: Icons.payment),
+            // color: const Color.fromRGBO(
+            //     15, 165, 210, 0.9),
+            border: Border.all(
+              color: const Color.fromRGBO(21, 80, 199, 0.3),
+              width: 3.0,
+            ),
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+            child: Numberfield(
+                hint: "add new Payment", icon: Icons.payment),
+
           ),
         ),
-        const SizedBox(
-          width: 10,
-        ),
+        const SizedBox(width: 10,),
       ],
     );
   }
 }
 
+
 const List<String> paymentListManage = <String>[
-  'Other',
-  'Rent',
-  'Home',
-  'Insurance',
-  'Electricity',
-  'Phone',
-  'Car',
-  'Sport',
-  'TV'
+  'Other', 'Rent', 'Home', 'Insurance', 'Electricity', 'Phone', 'Car', 'Sport','TV'
 ];
 
 class DropDownPaymentManage extends StatefulWidget {
@@ -664,28 +630,25 @@ class PaymentSectionManage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: <Widget>[
-        const Expanded(flex: 3, child: DropDownPaymentManage()),
-        const SizedBox(
-          width: 10,
+      children:<Widget> [
+        const Expanded(
+            flex: 3,
+            child: DropDownPaymentManage()
         ),
+        const SizedBox(width: 10,),
         Expanded(
           flex: 9,
-          child: Numberfield(hint: "Set your Payments", icon: Icons.payment),
+          child: Numberfield(
+              hint: "Set your Payments", icon: Icons.payment),
         ),
       ],
     );
   }
 }
 
+
 const List<String> incomeListManage = <String>[
-  'Other',
-  'Salary',
-  'Rental',
-  'Earnings',
-  'Revenue',
-  'Child Support',
-  'Parental Allowance'
+  'Other', 'Salary', 'Rental', 'Earnings', 'Revenue', 'Child Support', 'Parental Allowance'
 ];
 
 class DropDownIncomeManage extends StatefulWidget {
@@ -729,19 +692,23 @@ class IncomeSectionManage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: <Widget>[
-        const Expanded(flex: 3, child: DropDownIncomeManage()),
-        const SizedBox(
-          width: 10,
+      children:<Widget> [
+        const Expanded(
+            flex: 3,
+            child: DropDownIncomeManage()
         ),
+        const SizedBox(width: 10,),
         Expanded(
           flex: 9,
-          child: Numberfield(hint: "Set your Incomes", icon: Icons.money),
+          child: Numberfield(
+              hint: "Set your Incomes", icon: Icons.money),
         ),
       ],
     );
   }
 }
+
+
 
 class ListItem extends StatelessWidget {
   const ListItem({
@@ -757,9 +724,7 @@ class ListItem extends StatelessWidget {
           child: Row(
             children: [
               MyIconButton(icon: Icons.delete_forever, size: 20),
-              const SizedBox(
-                width: 10,
-              ),
+              const SizedBox(width: 10,),
               const Text("LIST of ITEMS"),
             ],
           ),
@@ -775,6 +740,8 @@ class ListItem extends StatelessWidget {
     );
   }
 }
+
+
 
 class PieChartSample2 extends StatefulWidget {
   const PieChartSample2({super.key});
@@ -824,7 +791,7 @@ class PieChart2State extends State {
               ),
             ),
           ),
-          const Column(
+           const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -942,7 +909,6 @@ class Indicator extends StatelessWidget {
     this.size = 16,
     this.textColor,
   });
-
   final Color color;
   final String text;
   final bool isSquare;

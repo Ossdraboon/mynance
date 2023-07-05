@@ -1,13 +1,17 @@
+import 'dart:developer';
+import 'package:MyNance/homePage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'package:MyNance/Widgets/layoutElements.dart';
 import 'package:MyNance/Widgets/layoutButtons.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 //import 'Widgets/animatedBackground.dart';
 
 //import 'package:metaballs/metaballs.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +35,13 @@ class LoginPage extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       Textfield(
-                          hint: "Enter your Username", icon: Icons.person),
+                          hint: "Enter your Email", icon: Icons.email),
                       TextfieldPassword(
                           hint: "Enter your Password", icon: Icons.password),
                       const SizedBox(height: 20),
                       const MyTextButtonEmail(),
                       const SizedBox(height: 20),
-                      const Center(
+                      Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -77,7 +81,7 @@ class LoginPage extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         Textfield(
-                            hint: "Enter your Username", icon: Icons.person),
+                            hint: "Enter your Email", icon: Icons.email),
                         TextfieldPassword(
                             hint: "Enter your Password", icon: Icons.password),
                         const SizedBox(height: 20),
@@ -85,12 +89,12 @@ class LoginPage extends StatelessWidget {
                         const SizedBox(height: 20),
                       ],
                     ),
-                    const Center(
+                    Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Spacer(),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           LoginButton(),
@@ -109,5 +113,10 @@ class LoginPage extends StatelessWidget {
       }),
     );
   }
-}
 
+
+  void performLogin(){
+    log("Hello World!");
+  }
+
+}
