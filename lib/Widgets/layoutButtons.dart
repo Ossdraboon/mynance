@@ -57,8 +57,8 @@ class MyBackButton extends StatelessWidget {
 }
 
 class LoginButton extends StatelessWidget {
-  LoginButton({super.key});
-  //final Function login;
+  LoginButton({super.key, required this.login});
+  final Function login;
 
 
   @override
@@ -80,7 +80,7 @@ class LoginButton extends StatelessWidget {
         foregroundColor: MaterialStateProperty.resolveWith(getColor),
       ),
       onPressed: () {
-
+        login();
         Navigator.of(context).pushNamed('/home');
       },
       child: const Text('LOGIN'),
