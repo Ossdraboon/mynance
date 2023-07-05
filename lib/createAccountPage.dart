@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:MyNance/Widgets/layoutElements.dart';
-import 'package:MyNance/Widgets/layoutButtons.dart';
+import 'package:MyNance/Widgets/Buttons/SignUpButton.dart';
+import 'package:MyNance/Widgets/Buttons/MyBackButton.dart';
 import 'main.dart';
 
 class CreateAccount extends StatelessWidget {

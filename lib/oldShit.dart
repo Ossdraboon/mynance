@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'Widgets/Buttons/DeleteButton.dart';
+import 'Widgets/Buttons/SaveButton.dart';
 import 'main.dart';
-
 import 'package:MyNance/Widgets/layoutElements.dart';
 import 'package:MyNance/Widgets/layoutButtons.dart';
 

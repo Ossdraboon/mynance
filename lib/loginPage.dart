@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'package:MyNance/Widgets/layoutElements.dart';
 import 'package:MyNance/Widgets/layoutButtons.dart';
+import 'package:MyNance/Widgets/Buttons/LoginButton.dart';
+import 'package:MyNance/Widgets/Buttons/CreateAccountButton.dart';
+import 'package:MyNance/Widgets/Buttons/MyTextButtonEmail.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 //import 'Widgets/animatedBackground.dart';
 
