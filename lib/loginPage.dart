@@ -48,7 +48,7 @@ class LoginPage extends StatelessWidget {
                             Spacer(),
                             Spacer(),
                             SizedBox(height: 20),
-                            LoginButton(),
+                            LoginButton(login: performLogin),
                             Spacer(),
                             CreateAccountButton(),
                             Spacer(),
@@ -97,7 +97,7 @@ class LoginPage extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-                          LoginButton(),
+                          LoginButton(login: performLogin),
                           Spacer(),
                           CreateAccountButton(),
                           Spacer(),
@@ -116,7 +116,7 @@ class LoginPage extends StatelessWidget {
 
 
   void performLogin(){
-    log("Hello World!");
+    print("Hello World!");
   }
 
 }
