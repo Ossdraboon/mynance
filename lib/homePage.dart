@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'Model/SectionConfiguration.dart';
 import 'Widgets/Buttons/MyTextButtonAnalytics.dart';
-import 'Widgets/Layouts/GoalElement.dart';
-import 'Widgets/Layouts/IncomeElement.dart';
 import 'Widgets/Layouts/InfoElement.dart';
-import 'Widgets/Layouts/PaymentElement.dart';
+import 'Widgets/Layouts/ListItem.dart';
+import 'Widgets/Layouts/MoneyElements.dart';
 import 'main.dart';
-import 'package:MyNance/Widgets/layoutElements.dart';
+import 'package:MyNance/Widgets/Layouts/Dropdown.dart';
 
 import 'package:MyNance/Widgets/Buttons/QuickMoney.dart';
 
@@ -17,7 +17,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var values = [5, 10, 20, 50];
 
     return Scaffold(
       body: LayoutBuilder(builder: (context, constrains) {
@@ -43,11 +42,23 @@ class HomePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           const SizedBox(height: 20),
-                          TopPaymentSection(values: values),
+                          MoneySectionBuilder(sectionConfiguration:
+                          SectionConfiguration("PAYMENT","manage your daily Payments here",
+                              CategoryConfiguration(paymentList),
+                              InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
+                              QuickValueConfiguration(quickmoneyList,-1)),),
                           const SizedBox(height: 20),
-                          TopIncomeSection(values: values),
+                          MoneySectionBuilder(sectionConfiguration:
+                          SectionConfiguration("INCOME","manage your daily Income here",
+                              CategoryConfiguration(incomeList),
+                              InputFieldConfiguration("individually Income","add Income",Icons.add),
+                              QuickValueConfiguration(quickmoneyList,1)),),
                           const SizedBox(height: 20),
-                          TopGoalSection(values: values),
+                          MoneySectionBuilder(sectionConfiguration:
+                          SectionConfiguration("GOAL","set your Goal here",
+                              CategoryConfiguration(goalList),
+                              InputFieldConfiguration("individually Goal","add Gaol",Icons.savings_outlined),
+                              QuickValueConfiguration(quickmoneyList,1)),),
                           const SizedBox(height: 20),
                         ],
                       ),
@@ -80,11 +91,23 @@ class HomePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           const SizedBox(height: 170),
-                          TopPaymentSection(values: values),
+                          MoneySectionBuilder(sectionConfiguration:
+                          SectionConfiguration("PAYMENT","manage your daily Payments here",
+                              CategoryConfiguration(paymentList),
+                              InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
+                              QuickValueConfiguration(quickmoneyList,-1)),),
                           const SizedBox(height: 20),
-                          TopIncomeSection(values: values),
+                          MoneySectionBuilder(sectionConfiguration:
+                          SectionConfiguration("INCOME","manage your daily Income here",
+                              CategoryConfiguration(incomeList),
+                              InputFieldConfiguration("individually Income","add Income",Icons.add),
+                              QuickValueConfiguration(quickmoneyList,1)),),
                           const SizedBox(height: 20),
-                          TopGoalSection(values: values),
+                          MoneySectionBuilder(sectionConfiguration:
+                          SectionConfiguration("GOAL","set your Goal here",
+                              CategoryConfiguration(goalList),
+                              InputFieldConfiguration("individually Goal","add Gaol",Icons.savings_outlined),
+                              QuickValueConfiguration(quickmoneyList,1)),),
                           const SizedBox(height: 20),
                         ],
                       ),
@@ -102,136 +125,27 @@ class HomePage extends StatelessWidget {
 }
 
 
-class TopGoalSection extends StatelessWidget {
-  const TopGoalSection({
-    super.key,
-    required this.values,
-  });
 
-  final List<int> values;
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: [
-            Colors.white,
-            Colors.blue.withOpacity(0.9),
-            Colors.blue.withOpacity(0.9),
-            Colors.lightBlue.withOpacity(0.8),
-            Colors.cyan.withOpacity(0.1),
-          ],
-        ),
-        // color: const Color.fromRGBO(
-        //     15, 165, 210, 0.9),
-        border: Border.all(
-          color: const Color.fromRGBO(21, 80, 199, 0.3),
-          width: 0,
-        ),
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Column(
-        children: <Widget>[
-          ExpansionTile(
-            title: const Text(
-              'Add New Payment here...',
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            subtitle: const Text(
-              'Manage your Daily Payments',
-              style: TextStyle(color: Colors.white, fontSize: 15),
-            ),
-            //subtitle: Text('do i need that?'),
-            controlAffinity: ListTileControlAffinity.leading,
-            children: <Widget>[
-              const GoalSection(),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: values
-                      .map((element) => QuickMoney(
-                            text: (1 * element).toString(),
-                          ))
-                      .toList()),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
 
-class TopIncomeSection extends StatelessWidget {
-  const TopIncomeSection({
-    super.key,
-    required this.values,
-  });
+class MoneySectionBuilder extends StatefulWidget {
+ late SectionConfiguration _sectionConfiguration;
 
-  final List<int> values;
+
+
+   MoneySectionBuilder({
+    super.key,required SectionConfiguration sectionConfiguration
+  }){
+     _sectionConfiguration = sectionConfiguration;
+   }
+
+
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: [
-            Colors.white,
-            Colors.blue.withOpacity(0.9),
-            Colors.blue.withOpacity(0.9),
-            Colors.lightBlue.withOpacity(0.8),
-            Colors.cyan.withOpacity(0.1),
-          ],
-        ),
-        // color: const Color.fromRGBO(
-        //     15, 165, 210, 0.9),
-        border: Border.all(
-          color: const Color.fromRGBO(21, 80, 199, 0.3),
-          width: 0,
-        ),
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Column(
-        children: <Widget>[
-          ExpansionTile(
-            title: const Text(
-              'Add New Payment here...',
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            subtitle: const Text(
-              'Manage your Daily Payments',
-              style: TextStyle(color: Colors.white, fontSize: 15),
-            ),
-            //subtitle: Text('do i need that?'),
-            controlAffinity: ListTileControlAffinity.leading,
-            children: <Widget>[
-              const IncomeSection(),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: values
-                      .map((element) => QuickMoney(
-                            text: (1 * element).toString(),
-                          ))
-                      .toList()),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+  State<MoneySectionBuilder> createState() => _MoneySectionBuilderState();
 }
 
-class TopPaymentSection extends StatelessWidget {
-  const TopPaymentSection({
-    super.key,
-    required this.values,
-  });
-
-  final List<int> values;
-
+class _MoneySectionBuilderState extends State<MoneySectionBuilder> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -262,28 +176,30 @@ class TopPaymentSection extends StatelessWidget {
             child: ExpansionTile(
               // shape: Border(),
               //trailing: Icon(Icons.money, color: Colors.white,),
-              title: const Text(
-                'Add New Payment here...',
-                style: TextStyle(color: Colors.white, fontSize: 20),
+              title:  Text(widget._sectionConfiguration.title,
+                style: const TextStyle(color: Colors.white, fontSize: 20),
               ),
-              subtitle: const Text(
-                'Manage your Daily Payments',
-                style: TextStyle(color: Colors.white, fontSize: 15),
+              subtitle:  Text(
+                widget._sectionConfiguration.subtitle,
+                style: const TextStyle(color: Colors.white, fontSize: 15),
               ),
               controlAffinity: ListTileControlAffinity.leading,
               children: <Widget>[
-                const PaymentSection(),
+                MoneySection(categoryConfiguration: widget._sectionConfiguration.categoryConfiguration, inputFieldConfiguration: widget._sectionConfiguration.inputFieldConfiguration),
                 const SizedBox(
                   height: 20,
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: values
+                    children: widget._sectionConfiguration.quickValueConfiguration.values
                         .map((element) => QuickMoney(
-                              text: (-1 * element).toString(),
-                            ))
+                      text: (widget._sectionConfiguration.quickValueConfiguration.signe * element).toString(),
+                    ))
                         .toList()),
                 const SizedBox(height: 20),
+                const Text("History List",style: TextStyle(color: Colors.white,fontSize: 20)),
+                const SizedBox(height: 10),
+                const HistoryBox(),
               ],
             ),
           ),
@@ -292,6 +208,10 @@ class TopPaymentSection extends StatelessWidget {
     );
   }
 }
+
+
+
+
 
 class TopInfoSection extends StatelessWidget {
   const TopInfoSection({

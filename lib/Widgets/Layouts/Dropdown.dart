@@ -1,33 +1,91 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:MyNance/Widgets/Buttons/ChartButton.dart';
+import '../../Model/SectionConfiguration.dart';
 
-import 'Buttons/MyIconButton.dart';
-import 'Layouts/PaymentElement.dart';
+const List<String> paymentList = <String>[
+  'Other',
+  'Food',
+  'Clothing',
+  'Children',
+  'Health',
+  'Travel',
+  'Car',
+  'Sport',
+  'Gifts'
+];
 
+const List<String> goalList = <String>[
+  'Other',
+  'Car',
+  'Multimedia',
+  'Investment',
+  'Luxury',
+];
 
+const List<String> incomeList = <String>[
+  'Other',
+  'Borrow',
+  'Gifts',
+];
 
+const List<String> incomeListMonthlyManage = <String>[
+  'Other',
+  'Salary',
+  'Rental',
+  'Earnings',
+  'Revenue',
+  'Child Support',
+  'Parental Allowance'
+];
 
+const List<String> incomeListYearlyManage = <String>[
+  'Other',
+  'Salary',
+  'Rental',
+  'Earnings',
+  'Revenue',
+  'Child Support',
+  'Parental Allowance'
+];
 
+const List<String> paymentListMonthlyManage = <String>[
+  'Other',
+  'Rent',
+  'Home',
+  'Insurance',
+  'Electricity',
+  'Phone',
+  'Car',
+  'Sport',
+  'TV'
+];
 
-//Dynamic Layout for Pay-/Income-/GoalSection for Home- and AccountBalancePage
-
-
+const List<String> paymentListYearlyManage = <String>[
+  'Other',
+  'Rent',
+  'Home',
+  'Insurance',
+  'Electricity',
+  'Phone',
+  'Car',
+  'Sport',
+  'TV'
+];
 
 class DropDown extends StatefulWidget {
-  late List _list;
+  late CategoryConfiguration _categoryConfiguration;
 
 
-   DropDown({required List list,super.key}){
-     _list = list;
+   DropDown({required CategoryConfiguration categoryConfiguration,super.key}){
+     _categoryConfiguration = categoryConfiguration;
    }
 
   @override
   State<DropDown> createState() => _DropDownState();
 }
+
 class _DropDownState extends State<DropDown> {
-  String dropdownValue = paymentList.first;    //dynamic list choose
+  late String dropdownValue = widget._categoryConfiguration.categories.first;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +113,7 @@ class _DropDownState extends State<DropDown> {
               dropdownValue = value!;
             });
           },
-          items: paymentList.map<DropdownMenuItem<String>>((String value) {
+          items: widget._categoryConfiguration.categories.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: SizedBox(
@@ -101,37 +159,6 @@ class _DropDownState extends State<DropDown> {
 
 
 
-class ListItem extends StatelessWidget {
-  const ListItem({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Row(
-            children: [
-              MyIconButton(icon: Icons.delete_forever, size: 20),
-              const SizedBox(
-                width: 10,
-              ),
-              const Text("LIST of ITEMS"),
-            ],
-          ),
-        ),
-        const Divider(
-          height: 2,
-          thickness: 1,
-          indent: 5,
-          endIndent: 5,
-          color: Colors.black,
-        ),
-      ],
-    );
-  }
-}
 
 

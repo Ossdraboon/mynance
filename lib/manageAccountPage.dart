@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'Model/SectionConfiguration.dart';
 import 'Widgets/Buttons/SaveButton.dart';
-import 'Widgets/Layouts/IncomeElement.dart';
-import 'Widgets/Layouts/PaymentElement.dart';
+import 'Widgets/Layouts/ListItem.dart';
+import 'Widgets/Layouts/MoneyElements.dart';
+import 'homePage.dart';
 import 'main.dart';
-
-import 'package:MyNance/Widgets/layoutElements.dart';
+import 'package:MyNance/Widgets/Layouts/Dropdown.dart';
 
 
 class ManageAccount extends StatelessWidget {
@@ -31,80 +32,52 @@ class ManageAccount extends StatelessWidget {
                 alignment: Alignment.center,
                 margin: const EdgeInsetsDirectional.all(10),
                 child: SingleChildScrollView(
-                  child: SizedBox(
-                    width: 600,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            SizedBox(height: 30),
-                            PaymentSectionManage(),
-                            SizedBox(height: 20),
-                          ],
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 3.0,
-                                color: colorScheme.onPrimaryContainer),
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          height: 180,
-                          width: 600,
-                          child: const SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                ListItem(),
-                                ListItem(),
-                                ListItem(),
-                                ListItem(),
-                                ListItem(),
-                                ListItem(),
-                              ],
-                            ),
-                          ),
-
-                        ),
-                        const Divider(
-                          height: 40,
-                          thickness: 2,
-                          indent: 0,
-                          endIndent: 0,
-                          color: Colors.black,
-                        ),
-                        const Column(
-                          children: [
-                            IncomeSectionManage(),
-                            SizedBox(height: 20),
-                          ],
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 3.0,
-                                color: colorScheme.onPrimaryContainer),
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          height: 180,
-                          width: 600,
-                          child: const SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                ListItem(),
-                                ListItem(),
-                                ListItem(),
-                                ListItem(),
-                                ListItem(),
-                                ListItem(),
-                              ],
-                            ),
-                          ),
-
-                        ),
-                      ],
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          const SizedBox(height: 20),
+                          MoneySectionBuilder(sectionConfiguration:
+                          SectionConfiguration("YEARLY FIX COST","manage your yearly Costs here",
+                              CategoryConfiguration(paymentListYearlyManage),
+                              InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
+                              QuickValueConfiguration(quickmoneyList,-1)),),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          const SizedBox(height: 20),
+                          MoneySectionBuilder(sectionConfiguration:
+                          SectionConfiguration("MONTHLY FIX COST","manage your monthly Cost here",
+                              CategoryConfiguration(paymentListMonthlyManage),
+                              InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
+                              QuickValueConfiguration(quickmoneyList,-1)),),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          const SizedBox(height: 20),
+                          MoneySectionBuilder(sectionConfiguration:
+                          SectionConfiguration("YEARLY INCOME","manage your yearly Income here",
+                              CategoryConfiguration(incomeListMonthlyManage),
+                              InputFieldConfiguration("individually Income","add Income",Icons.add),
+                              QuickValueConfiguration(quickmoneyList,1)),),
+                        ],
+                      ),Column(
+                        children: [
+                          const SizedBox(height: 20),
+                          MoneySectionBuilder(sectionConfiguration:
+                          SectionConfiguration("MONTHLY INCOME","manage your monthly Income here",
+                              CategoryConfiguration(incomeListYearlyManage),
+                              InputFieldConfiguration("individually Income","add Income",Icons.add),
+                              QuickValueConfiguration(quickmoneyList,1)),),
+                          const SizedBox(height: 20),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -127,94 +100,48 @@ class ManageAccount extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                       Column(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          const SizedBox(height: 170),
-                          Column(
-                            children: <Widget>[
-                              ExpansionTile(
-                                title: const Text('Set your monthly Payment here...'),
-                                //subtitle: Text('do i need that?'),
-                                controlAffinity: ListTileControlAffinity.leading,
-                                children: <Widget>[
-                                  const PaymentSectionManage(),
-                                  const SizedBox(height: 20),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          width: 3.0,
-                                          color: colorScheme.onPrimaryContainer),
-                                      borderRadius: BorderRadius.circular(5.0),
-                                    ),
-                                    height: 220,
-                                    width: 500,
-                                    child: const SingleChildScrollView(
-                                      child: Column(
-                                        children: [
-                                          ListItem(),
-                                          ListItem(),
-                                          ListItem(),
-                                          ListItem(),
-                                          ListItem(),
-                                          ListItem(),
-                                        ],
-                                      ),
-                                    ),
-
-                                  ),
-                                  const SaveButton(),
-                                ],
-                              ),
-                            ],
-                          ),
+                          const SizedBox(height: 20),
+                          MoneySectionBuilder(sectionConfiguration:
+                          SectionConfiguration("YEARLY FIX COST","manage your yearly Costs here",
+                              CategoryConfiguration(paymentListYearlyManage),
+                              InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
+                              QuickValueConfiguration(quickmoneyList,-1)),),
                         ],
-                      ),
-                      const Divider(
-                        height: 10,
-                        thickness: 2,
-                        indent: 20,
-                        endIndent: 20,
-                        color: Colors.black,
                       ),
                       Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          ExpansionTile(
-                            title: const Text('Set your monthly Income here...'),
-                            //subtitle: Text('do i need that?'),
-                            controlAffinity: ListTileControlAffinity.leading,
-                            children: <Widget>[
-                              const IncomeSectionManage(),
-                              const SizedBox(height: 20),
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      width: 3.0,
-                                      color: colorScheme.onPrimaryContainer),
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                height: 220,
-                                width: 500,
-                                child: const SingleChildScrollView(
-                                  child: Column(
-                                    children: [
-                                      ListItem(),
-                                      ListItem(),
-                                      ListItem(),
-                                      ListItem(),
-                                      ListItem(),
-                                      ListItem(),
-                                    ],
-                                  ),
-                                ),
-
-                              ),
-                              const SaveButton(),
-                            ],
-                          ),
+                          const SizedBox(height: 20),
+                          MoneySectionBuilder(sectionConfiguration:
+                          SectionConfiguration("MONTHLY FIX COST","manage your monthly Cost here",
+                              CategoryConfiguration(paymentListMonthlyManage),
+                              InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
+                              QuickValueConfiguration(quickmoneyList,-1)),),
                         ],
                       ),
-
+                      Column(
+                        children: [
+                          const SizedBox(height: 20),
+                          MoneySectionBuilder(sectionConfiguration:
+                          SectionConfiguration("YEARLY INCOME","manage your yearly Income here",
+                              CategoryConfiguration(incomeListMonthlyManage),
+                              InputFieldConfiguration("individually Income","add Income",Icons.add),
+                              QuickValueConfiguration(quickmoneyList,1)),),
+                        ],
+                      ),Column(
+                        children: [
+                          const SizedBox(height: 20),
+                          MoneySectionBuilder(sectionConfiguration:
+                          SectionConfiguration("MONTHLY INCOME","manage your monthly Income here",
+                              CategoryConfiguration(incomeListYearlyManage),
+                              InputFieldConfiguration("individually Income","add Income",Icons.add),
+                              QuickValueConfiguration(quickmoneyList,1)),),
+                          const SizedBox(height: 20),
+                        ],
+                      ),
                     ],
                   ),
                 ),

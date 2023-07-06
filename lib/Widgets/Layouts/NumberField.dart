@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../Model/SectionConfiguration.dart';
+
 
 class Numberfield extends StatefulWidget {
-  late String _hint2;
-  late IconData _icon2;
 
-  Numberfield({required String hint, required IconData icon, super.key}) {
-    _hint2 = hint;
-    _icon2 = icon;
+  late InputFieldConfiguration _inputFieldConfiguration;
+
+  Numberfield({required InputFieldConfiguration inputFieldConfiguration, super.key}) {
+
+    _inputFieldConfiguration = inputFieldConfiguration;
   }
 
   @override
@@ -28,12 +30,12 @@ class _NumberFieldState extends State<Numberfield> {
             RegExp(r'^(?=\D*(?:\d\D*){1,12}$)\d+(?:\.\d{0,2})?$')),
       ],
       decoration: InputDecoration(
-        labelText: widget._hint2,
+        labelText: widget._inputFieldConfiguration.text,
         labelStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
-        hintText: widget._hint2,
+        hintText: widget._inputFieldConfiguration.hint,
         hintStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
         border: InputBorder.none,
-        icon: Icon(widget._icon2, color: Colors.blueAccent,size: 30,),
+        icon: Icon(widget._inputFieldConfiguration.icon, color: Colors.blueAccent,size: 30,),
       ),
     );
   }
