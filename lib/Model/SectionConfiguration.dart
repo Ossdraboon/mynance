@@ -9,9 +9,10 @@ class SectionConfiguration {
   CategoryConfiguration categoryConfiguration;
   InputFieldConfiguration inputFieldConfiguration;
   QuickValueConfiguration quickValueConfiguration;
+  HistoryBoxConfiguration historyBoxConfiguration;
 
   SectionConfiguration(this.title, this.subtitle, this.categoryConfiguration,
-      this.inputFieldConfiguration, this.quickValueConfiguration);
+      this.inputFieldConfiguration, this.quickValueConfiguration, this.historyBoxConfiguration);
 }
 
 class CategoryConfiguration {
@@ -32,4 +33,10 @@ class QuickValueConfiguration {
   List<int> values;
   int signe;
   QuickValueConfiguration(this.values, this.signe);
+}
+
+class HistoryBoxConfiguration {
+  List<num> values;
+
+  HistoryBoxConfiguration(this.values);
 }

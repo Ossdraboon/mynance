@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'Model/SectionConfiguration.dart';
 import 'Widgets/Buttons/SaveButton.dart';
-import 'Widgets/Layouts/ListItem.dart';
+import 'Widgets/Layouts/HistoryBox.dart';
 import 'Widgets/Layouts/MoneyElements.dart';
 import 'homePage.dart';
 import 'main.dart';
@@ -43,7 +43,9 @@ class ManageAccount extends StatelessWidget {
                           SectionConfiguration("YEARLY FIX COST","manage your yearly Costs here",
                               CategoryConfiguration(paymentListYearlyManage),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
-                              QuickValueConfiguration(quickmoneyList,-1)),),
+                              QuickValueConfiguration(quickmoneyList,-1),
+                            HistoryBoxConfiguration(historyList),
+                          ),),
                         ],
                       ),
                       Column(
@@ -54,7 +56,9 @@ class ManageAccount extends StatelessWidget {
                           SectionConfiguration("MONTHLY FIX COST","manage your monthly Cost here",
                               CategoryConfiguration(paymentListMonthlyManage),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
-                              QuickValueConfiguration(quickmoneyList,-1)),),
+                              QuickValueConfiguration(quickmoneyList,-1),
+                            HistoryBoxConfiguration(historyList),
+                          ),),
                         ],
                       ),
                       Column(
@@ -64,7 +68,9 @@ class ManageAccount extends StatelessWidget {
                           SectionConfiguration("YEARLY INCOME","manage your yearly Income here",
                               CategoryConfiguration(incomeListMonthlyManage),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
-                              QuickValueConfiguration(quickmoneyList,1)),),
+                              QuickValueConfiguration(quickmoneyList,1),
+                            HistoryBoxConfiguration(historyList),
+                          ),),
                         ],
                       ),Column(
                         children: [
@@ -73,7 +79,9 @@ class ManageAccount extends StatelessWidget {
                           SectionConfiguration("MONTHLY INCOME","manage your monthly Income here",
                               CategoryConfiguration(incomeListYearlyManage),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
-                              QuickValueConfiguration(quickmoneyList,1)),),
+                              QuickValueConfiguration(quickmoneyList,1),
+                            HistoryBoxConfiguration(historyList),
+                          ),),
                           const SizedBox(height: 20),
                         ],
                       ),
@@ -108,7 +116,9 @@ class ManageAccount extends StatelessWidget {
                           SectionConfiguration("YEARLY FIX COST","manage your yearly Costs here",
                               CategoryConfiguration(paymentListYearlyManage),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
-                              QuickValueConfiguration(quickmoneyList,-1)),),
+                              QuickValueConfiguration(quickmoneyList,-1),
+                            HistoryBoxConfiguration(historyList),
+                          ),),
                         ],
                       ),
                       Column(
@@ -119,7 +129,9 @@ class ManageAccount extends StatelessWidget {
                           SectionConfiguration("MONTHLY FIX COST","manage your monthly Cost here",
                               CategoryConfiguration(paymentListMonthlyManage),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
-                              QuickValueConfiguration(quickmoneyList,-1)),),
+                              QuickValueConfiguration(quickmoneyList,-1),
+                            HistoryBoxConfiguration(historyList),
+                          ),),
                         ],
                       ),
                       Column(
@@ -129,7 +141,9 @@ class ManageAccount extends StatelessWidget {
                           SectionConfiguration("YEARLY INCOME","manage your yearly Income here",
                               CategoryConfiguration(incomeListMonthlyManage),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
-                              QuickValueConfiguration(quickmoneyList,1)),),
+                              QuickValueConfiguration(quickmoneyList,1),
+                            HistoryBoxConfiguration(historyList),
+                          ),),
                         ],
                       ),Column(
                         children: [
@@ -138,7 +152,9 @@ class ManageAccount extends StatelessWidget {
                           SectionConfiguration("MONTHLY INCOME","manage your monthly Income here",
                               CategoryConfiguration(incomeListYearlyManage),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
-                              QuickValueConfiguration(quickmoneyList,1)),),
+                              QuickValueConfiguration(quickmoneyList,1),
+                            HistoryBoxConfiguration(historyList),
+                          ),),
                           const SizedBox(height: 20),
                         ],
                       ),

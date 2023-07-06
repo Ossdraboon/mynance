@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'Model/SectionConfiguration.dart';
 import 'Widgets/Buttons/MyTextButtonAnalytics.dart';
 import 'Widgets/Layouts/InfoElement.dart';
-import 'Widgets/Layouts/ListItem.dart';
+import 'Widgets/Layouts/HistoryBox.dart';
 import 'Widgets/Layouts/MoneyElements.dart';
 import 'main.dart';
 import 'package:MyNance/Widgets/Layouts/Dropdown.dart';
@@ -46,19 +46,25 @@ class HomePage extends StatelessWidget {
                           SectionConfiguration("PAYMENT","manage your daily Payments here",
                               CategoryConfiguration(paymentList),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
-                              QuickValueConfiguration(quickmoneyList,-1)),),
+                              QuickValueConfiguration(quickmoneyList,-1),
+                            HistoryBoxConfiguration(historyList),
+                          ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
                           SectionConfiguration("INCOME","manage your daily Income here",
                               CategoryConfiguration(incomeList),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
-                              QuickValueConfiguration(quickmoneyList,1)),),
+                              QuickValueConfiguration(quickmoneyList,1),
+                            HistoryBoxConfiguration(historyList),
+                          ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
                           SectionConfiguration("GOAL","set your Goal here",
                               CategoryConfiguration(goalList),
                               InputFieldConfiguration("individually Goal","add Gaol",Icons.savings_outlined),
-                              QuickValueConfiguration(quickmoneyList,1)),),
+                              QuickValueConfiguration(quickmoneyList,1),
+                            HistoryBoxConfiguration(historyList),
+                          ),),
                           const SizedBox(height: 20),
                         ],
                       ),
@@ -95,19 +101,25 @@ class HomePage extends StatelessWidget {
                           SectionConfiguration("PAYMENT","manage your daily Payments here",
                               CategoryConfiguration(paymentList),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
-                              QuickValueConfiguration(quickmoneyList,-1)),),
+                              QuickValueConfiguration(quickmoneyList,-1),
+                              HistoryBoxConfiguration(historyList),
+                          ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
                           SectionConfiguration("INCOME","manage your daily Income here",
                               CategoryConfiguration(incomeList),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
-                              QuickValueConfiguration(quickmoneyList,1)),),
+                              QuickValueConfiguration(quickmoneyList,1),
+                              HistoryBoxConfiguration(historyList),
+                          ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
                           SectionConfiguration("GOAL","set your Goal here",
                               CategoryConfiguration(goalList),
                               InputFieldConfiguration("individually Goal","add Gaol",Icons.savings_outlined),
-                              QuickValueConfiguration(quickmoneyList,1)),),
+                              QuickValueConfiguration(quickmoneyList,1),
+                            HistoryBoxConfiguration(historyList),
+                          ),),
                           const SizedBox(height: 20),
                         ],
                       ),
@@ -195,11 +207,23 @@ class _MoneySectionBuilderState extends State<MoneySectionBuilder> {
                         .map((element) => QuickMoney(
                       text: (widget._sectionConfiguration.quickValueConfiguration.signe * element).toString(),
                     ))
-                        .toList()),
+                        .toList()
+                ),
                 const SizedBox(height: 20),
                 const Text("History List",style: TextStyle(color: Colors.white,fontSize: 20)),
                 const SizedBox(height: 10),
-                const HistoryBox(),
+                 Container(
+                   height: 200,
+                   child: SingleChildScrollView(
+                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: widget._sectionConfiguration.historyBoxConfiguration.values
+                          .map((element) => HistoryBox(
+                        text: element.toString(),
+                      ))
+                          .toList()),
+                   ),
+                 ),
               ],
             ),
           ),

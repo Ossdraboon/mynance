@@ -7,6 +7,8 @@ import 'NumberField.dart';
 
 var quickmoneyList = [5, 10, 20, 50];
 
+var historyList = [50,100, 10.00, 205.30, 50.99, 1000.30, 777.77, 1234.53];
+
 class MoneySection extends StatelessWidget {
   late CategoryConfiguration _categoryConfiguration;
   late InputFieldConfiguration _inputFieldConfiguration;
