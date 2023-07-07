@@ -26,8 +26,9 @@ class LoginButton extends StatelessWidget {
         foregroundColor: MaterialStateProperty.resolveWith(getColor),
       ),
       onPressed: () {
-        login();
-        Navigator.of(context).pushNamed('/home');
+        login(context);
+        //Navigator.of(context).pushNamed('/home');
+
       },
       child: const Text('LOGIN'),
     );

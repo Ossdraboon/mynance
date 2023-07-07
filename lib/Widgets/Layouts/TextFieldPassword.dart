@@ -6,17 +6,22 @@ import 'package:flutter/services.dart';
 class TextfieldPassword extends StatefulWidget {
   late String _hint;
   late IconData _icon;
+  late TextEditingController passwordController;
 
-  TextfieldPassword({required String hint, required IconData icon, super.key}) {
+  TextfieldPassword({required String hint, required IconData icon,required TextEditingController controller ,super.key}) {
     _hint = hint;
     _icon = icon;
+    passwordController = controller;
   }
 
   @override
-  State<TextfieldPassword> createState() => _TextfieldPasswordState();
+  State<TextfieldPassword> createState() => _TextfieldPasswordState(passwordController);
 }
 
 class _TextfieldPasswordState extends State<TextfieldPassword> {
+  TextEditingController passwordController;
+  _TextfieldPasswordState(this.passwordController);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -25,6 +30,19 @@ class _TextfieldPasswordState extends State<TextfieldPassword> {
       child: TextFormField(
         obscureText: true,
         keyboardType: TextInputType.visiblePassword,
+        validator: (value){
+          RegExp regex = new RegExp(r'^.{6,}$');
+          if(value!.isEmpty){
+            return ("Password is required for Login");
+          }
+          if(!regex.hasMatch(value)){
+            return ("Please Enter a Valid Password(Min. 6 Character");
+          }
+        },
+        onSaved: (value){
+          passwordController.text = value!;
+        },
+        controller: passwordController,
         decoration: InputDecoration(
             labelText: widget._hint,
             iconColor: Colors.black,
