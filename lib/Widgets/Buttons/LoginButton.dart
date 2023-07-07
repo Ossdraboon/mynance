@@ -27,7 +27,7 @@ class LoginButton extends StatelessWidget {
       ),
       onPressed: () {
         login();
-        Navigator.of(context).pushNamed('/home');
+        //Navigator.of(context).pushNamed('/home');
       },
       child: const Text('LOGIN'),
     );

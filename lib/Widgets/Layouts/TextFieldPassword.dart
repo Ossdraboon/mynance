@@ -17,6 +17,8 @@ class TextfieldPassword extends StatefulWidget {
 }
 
 class _TextfieldPasswordState extends State<TextfieldPassword> {
+  final TextEditingController passwordController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -25,6 +27,19 @@ class _TextfieldPasswordState extends State<TextfieldPassword> {
       child: TextFormField(
         obscureText: true,
         keyboardType: TextInputType.visiblePassword,
+        validator: (value){
+          RegExp regex = new RegExp(r'^.{6,}$');
+          if(value!.isEmpty){
+            return ("Password is required for Login");
+          }
+          if(!regex.hasMatch(value)){
+            return ("Please Enter a Valid Password(Min. 6 Character");
+          }
+        },
+        onSaved: (value){
+          passwordController.text = value!;
+        },
+        controller: passwordController,
         decoration: InputDecoration(
             labelText: widget._hint,
             iconColor: Colors.black,

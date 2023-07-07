@@ -9,7 +9,9 @@ import 'Widgets/Layouts/TextFieldPassword.dart';
 import 'main.dart';
 
 class CreateAccount extends StatelessWidget {
-  const CreateAccount({super.key});
+   CreateAccount({super.key});
+  final TextEditingController emailController =  TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class CreateAccount extends StatelessWidget {
                       Textfield(hint: "Name", icon: Icons.person),
                       TextfieldPassword(hint: "Password", icon: Icons.password),
                       TextfieldPassword(hint: "Repeat Password", icon: Icons.password), // TODO: P3, 23.07.04, Show password (toggle)
-                      TextfieldEmail(hint: "Email", icon: Icons.alternate_email), // TODO: P3, 23.07.04, Regex for Emailvalidation
+                      TextfieldEmail(hint: "Email", icon: Icons.alternate_email, controller: emailController,), // TODO: P3, 23.07.04, Regex for Emailvalidation
                       NumberfieldPhone(
                           hint: "Phone Number", icon: Icons.phone_android),
                       const SizedBox(height: 20),
@@ -114,7 +116,7 @@ class CreateAccount extends StatelessWidget {
                           TextfieldPassword(hint: "Password", icon: Icons.password),
                           TextfieldPassword(
                               hint: "Repeat Password", icon: Icons.password),
-                          TextfieldEmail(hint: "Email", icon: Icons.alternate_email),
+                          TextfieldEmail(hint: "Email",controller: emailController ,icon: Icons.alternate_email),
                           NumberfieldPhone(
                               hint: "Phone Number",
                               icon: Icons.phone_android_outlined),

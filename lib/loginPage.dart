@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:MyNance/Widgets/Layouts/TextFieldEmail.dart';
 import 'package:MyNance/homePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,14 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
+  final TextEditingController emailController = new TextEditingController();
+  final TextEditingController passwordController = new TextEditingController();
+
+
+  // firebase
+  final _auth = FirebaseAuth.instance;
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +47,8 @@ class LoginPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
-                      Textfield(
+                      TextfieldEmail(
+                         controller: emailController,
                           hint: "Enter your Email", icon: Icons.email),
                       TextfieldPassword(
                           hint: "Enter your Password", icon: Icons.password),
@@ -76,15 +86,17 @@ class LoginPage extends StatelessWidget {
                 height: 200,
                 fit: BoxFit.cover,
               ),
-              Container(
-                alignment: Alignment.center,
-                margin: const EdgeInsetsDirectional.all(10),
+              Form(
+                key: _formKey,
+                //alignment: Alignment.center,
+                //margin: const EdgeInsetsDirectional.all(10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Column(
                       children: <Widget>[
-                        Textfield(
+                        TextfieldEmail(
+                            controller: emailController,
                             hint: "Enter your Email", icon: Icons.email),
                         TextfieldPassword(
                             hint: "Enter your Password", icon: Icons.password),
@@ -118,9 +130,24 @@ class LoginPage extends StatelessWidget {
     );
   }
 
+  void performLogin() async {
+    print("perform login: " + emailController.text + " " + passwordController.text);
+    if (_formKey.currentState!.validate()) {
+      try {
+        await _auth
+            .signInWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text)
+            .then((uid) =>
+        {
+          Fluttertoast.showToast(msg: "Login Successful"),
+          Navigator.of(BuildContext as BuildContext).pushReplacement(
+              MaterialPageRoute(builder: (context) => HomePage())),
+        });
+      } on FirebaseAuthException catch(e){
+       print("Failed with error code:  ${e.code}");
+       print(e.message);
+      };
+    }
 
-  void performLogin(){
-    print("Hello World!");
   }
-
 }
