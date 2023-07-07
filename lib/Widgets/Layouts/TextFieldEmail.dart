@@ -14,11 +14,13 @@ class TextfieldEmail extends StatefulWidget {
   }
 
   @override
-  State<TextfieldEmail> createState() => _TextfieldEmailState();
+  State<TextfieldEmail> createState() => _TextfieldEmailState(emailController);
 }
 
 class _TextfieldEmailState extends State<TextfieldEmail> {
-  final TextEditingController emailController = new TextEditingController();
+  TextEditingController emailController;
+  _TextfieldEmailState(this.emailController);
+
 
   @override
   Widget build(BuildContext context) {

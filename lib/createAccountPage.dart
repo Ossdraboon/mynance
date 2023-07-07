@@ -11,9 +11,11 @@ import 'main.dart';
 class CreateAccount extends StatelessWidget {
    CreateAccount({super.key});
   final TextEditingController emailController =  TextEditingController();
+   final TextEditingController passwordController =  TextEditingController();
 
 
-  @override
+
+   @override
   Widget build(BuildContext context) {
     //var colorScheme = Theme.of(context).colorScheme;
 
@@ -36,8 +38,8 @@ class CreateAccount extends StatelessWidget {
                     children: <Widget>[
                       const SizedBox(height: 30),
                       Textfield(hint: "Name", icon: Icons.person),
-                      TextfieldPassword(hint: "Password", icon: Icons.password),
-                      TextfieldPassword(hint: "Repeat Password", icon: Icons.password), // TODO: P3, 23.07.04, Show password (toggle)
+                      TextfieldPassword(hint: "Password",controller: passwordController ,icon: Icons.password),
+                      TextfieldPassword(hint: "Repeat Password",controller: passwordController ,icon: Icons.password), // TODO: P3, 23.07.04, Show password (toggle)
                       TextfieldEmail(hint: "Email", icon: Icons.alternate_email, controller: emailController,), // TODO: P3, 23.07.04, Regex for Emailvalidation
                       NumberfieldPhone(
                           hint: "Phone Number", icon: Icons.phone_android),
@@ -113,9 +115,9 @@ class CreateAccount extends StatelessWidget {
                         children: <Widget>[
                           const SizedBox(height: 100),
                           Textfield(hint: "Name", icon: Icons.person),
-                          TextfieldPassword(hint: "Password", icon: Icons.password),
+                          TextfieldPassword(hint: "Password",controller: passwordController ,icon: Icons.password),
                           TextfieldPassword(
-                              hint: "Repeat Password", icon: Icons.password),
+                              hint: "Repeat Password",controller: passwordController ,icon: Icons.password),
                           TextfieldEmail(hint: "Email",controller: emailController ,icon: Icons.alternate_email),
                           NumberfieldPhone(
                               hint: "Phone Number",

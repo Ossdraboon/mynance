@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
                          controller: emailController,
                           hint: "Enter your Email", icon: Icons.email),
                       TextfieldPassword(
-                          hint: "Enter your Password", icon: Icons.password),
+                          hint: "Enter your Password",controller: passwordController ,icon: Icons.password),
                       const SizedBox(height: 20),
                       const MyTextButtonEmail(),
                       const SizedBox(height: 20),
@@ -99,7 +99,7 @@ class LoginPage extends StatelessWidget {
                             controller: emailController,
                             hint: "Enter your Email", icon: Icons.email),
                         TextfieldPassword(
-                            hint: "Enter your Password", icon: Icons.password),
+                            hint: "Enter your Password",controller: passwordController ,icon: Icons.password),
                         const SizedBox(height: 20),
                         const MyTextButtonEmail(),
                         const SizedBox(height: 20),
@@ -130,7 +130,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  void performLogin() async {
+  void performLogin(BuildContext context) async {
     print("perform login: " + emailController.text + " " + passwordController.text);
     if (_formKey.currentState!.validate()) {
       try {
@@ -140,8 +140,9 @@ class LoginPage extends StatelessWidget {
             .then((uid) =>
         {
           Fluttertoast.showToast(msg: "Login Successful"),
-          Navigator.of(BuildContext as BuildContext).pushReplacement(
-              MaterialPageRoute(builder: (context) => HomePage())),
+          //Navigator.of(context).pushReplacement(
+            //  MaterialPageRoute(builder: (context) => StartUpPage())),
+          Navigator.of(context).pushNamed('/home')
         });
       } on FirebaseAuthException catch(e){
        print("Failed with error code:  ${e.code}");

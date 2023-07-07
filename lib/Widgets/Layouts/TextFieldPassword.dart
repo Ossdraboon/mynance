@@ -6,18 +6,21 @@ import 'package:flutter/services.dart';
 class TextfieldPassword extends StatefulWidget {
   late String _hint;
   late IconData _icon;
+  late TextEditingController passwordController;
 
-  TextfieldPassword({required String hint, required IconData icon, super.key}) {
+  TextfieldPassword({required String hint, required IconData icon,required TextEditingController controller ,super.key}) {
     _hint = hint;
     _icon = icon;
+    passwordController = controller;
   }
 
   @override
-  State<TextfieldPassword> createState() => _TextfieldPasswordState();
+  State<TextfieldPassword> createState() => _TextfieldPasswordState(passwordController);
 }
 
 class _TextfieldPasswordState extends State<TextfieldPassword> {
-  final TextEditingController passwordController = new TextEditingController();
+  TextEditingController passwordController;
+  _TextfieldPasswordState(this.passwordController);
 
   @override
   Widget build(BuildContext context) {
