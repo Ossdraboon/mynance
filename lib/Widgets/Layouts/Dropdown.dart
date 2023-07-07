@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../Model/SectionConfiguration.dart';
+import '../../Model/MoneySectionConfiguration.dart';
 
 const List<String> paymentList = <String>[
   'Other',

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'main.dart';
-
+import 'Widgets/Layouts/Sandbox.dart';
 //import 'Widgets/animatedBackground.dart';
 
 //import 'package:metaballs/metaballs.dart';
@@ -34,22 +34,26 @@ class InfoChart extends StatelessWidget {
                     children: <Widget>[
                       Container(
                       ),
-                      const Row(
-                        children: [
-                          Expanded(
-                            child:
-                            Weekly(),
-                          ),
-                          Expanded(
-                            child:
-                            Monthly(),
-                          ),
-                          Expanded(
-                            child:
-                            Yearly(),
-                          ),
-                        ],
+                      Sandbox(
+                        dayNames: ["Mo", "Di", "Mi"],
+                        values: [23, 45, 56],
                       ),
+                      // const Row(
+                      //   children: [
+                      //     Expanded(
+                      //       child:
+                      //       Weekly(),
+                      //     ),
+                      //     Expanded(
+                      //       child:
+                      //       Monthly(),
+                      //     ),
+                      //     Expanded(
+                      //       child:
+                      //       Yearly(),
+                      //     ),
+                      //   ],
+                      // ),
                       const BackButton(),
                     ],
                   ),
@@ -77,23 +81,29 @@ class InfoChart extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         Container(
+                          height: 100,
+                          width: 600,
                         ),
-                        const Row(
-                          children: [
-                            Expanded(
-                                child:
-                                Weekly(),
-                            ),
-                            Expanded(
-                                child:
-                                Monthly(),
-                            ),
-                            Expanded(
-                                child:
-                                Yearly(),
-                            ),
-                          ],
+                        Sandbox(
+                          dayNames: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+                          values: [23, 45, 56,33, 45, 67, 4],
                         ),
+                        // const Row(
+                        //   children: [
+                        //     Expanded(
+                        //         child:
+                        //         Weekly(),
+                        //     ),
+                        //     Expanded(
+                        //         child:
+                        //         Monthly(),
+                        //     ),
+                        //     Expanded(
+                        //         child:
+                        //         Yearly(),
+                        //     ),
+                        //   ],
+                        // ),
                         const BackButton(),
                       ],
                     ),

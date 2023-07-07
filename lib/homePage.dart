@@ -1,14 +1,14 @@
+import 'package:MyNance/Model/ChartSectionConfiguration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'Model/SectionConfiguration.dart';
-import 'Widgets/Buttons/MyTextButtonAnalytics.dart';
+import 'Model/MoneySectionConfiguration.dart';
 import 'Widgets/Layouts/InfoElement.dart';
 import 'Widgets/Layouts/HistoryBox.dart';
 import 'Widgets/Layouts/MoneyElements.dart';
 import 'main.dart';
 import 'package:MyNance/Widgets/Layouts/Dropdown.dart';
-
 import 'package:MyNance/Widgets/Buttons/QuickMoney.dart';
+import 'Widgets/Layouts/Sandbox.dart';
 
 
 
@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                         children: <Widget>[
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          SectionConfiguration("PAYMENT","manage your daily Payments here",
+                          MoneySectionConfiguration("PAYMENT","manage your daily Payments here",
                               CategoryConfiguration(paymentList),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
                               QuickValueConfiguration(quickmoneyList,-1),
@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
                           ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          SectionConfiguration("INCOME","manage your daily Income here",
+                          MoneySectionConfiguration("INCOME","manage your daily Income here",
                               CategoryConfiguration(incomeList),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
                               QuickValueConfiguration(quickmoneyList,1),
@@ -59,7 +59,7 @@ class HomePage extends StatelessWidget {
                           ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          SectionConfiguration("GOAL","set your Goal here",
+                          MoneySectionConfiguration("GOAL","set your Goal here",
                               CategoryConfiguration(goalList),
                               InputFieldConfiguration("individually Goal","add Gaol",Icons.savings_outlined),
                               QuickValueConfiguration(quickmoneyList,1),
@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
                           const SizedBox(height: 20),
                         ],
                       ),
-                      const TopInfoSection(),
+                      const InfoSection(),
                     ],
                   ),
                 ),
@@ -98,7 +98,7 @@ class HomePage extends StatelessWidget {
                         children: <Widget>[
                           const SizedBox(height: 170),
                           MoneySectionBuilder(sectionConfiguration:
-                          SectionConfiguration("PAYMENT","manage your daily Payments here",
+                          MoneySectionConfiguration("PAYMENT","manage your daily Payments here",
                               CategoryConfiguration(paymentList),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
                               QuickValueConfiguration(quickmoneyList,-1),
@@ -106,7 +106,7 @@ class HomePage extends StatelessWidget {
                           ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          SectionConfiguration("INCOME","manage your daily Income here",
+                          MoneySectionConfiguration("INCOME","manage your daily Income here",
                               CategoryConfiguration(incomeList),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
                               QuickValueConfiguration(quickmoneyList,1),
@@ -114,7 +114,7 @@ class HomePage extends StatelessWidget {
                           ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          SectionConfiguration("GOAL","set your Goal here",
+                          MoneySectionConfiguration("GOAL","set your Goal here",
                               CategoryConfiguration(goalList),
                               InputFieldConfiguration("individually Goal","add Gaol",Icons.savings_outlined),
                               QuickValueConfiguration(quickmoneyList,1),
@@ -123,7 +123,12 @@ class HomePage extends StatelessWidget {
                           const SizedBox(height: 20),
                         ],
                       ),
-                      const TopInfoSection(),
+                      InfoSectionBuilder(chartSectionConfiguration:
+                      ChartSectionConfiguration(
+                        LineChartConfiguration(weeklyCost)
+                      ),
+
+                      ),
                     ],
                   ),
                 ),
@@ -136,17 +141,36 @@ class HomePage extends StatelessWidget {
   }
 }
 
+class InfoSectionBuilder extends StatefulWidget {
+
+  InfoSectionBuilder({
+    super.key, required ChartSectionConfiguration chartSectionConfiguration
+  });
+
+  @override
+  State<InfoSectionBuilder> createState() => _InfoSectionBuilderState();
+}
+
+class _InfoSectionBuilderState extends State<InfoSectionBuilder> {
+  late ChartSectionConfiguration _chartSectionConfiguration;
+
+  @override
+  Widget build(BuildContext context) {
+    return const InfoSection();
+  }
+}
+
 
 
 
 
 class MoneySectionBuilder extends StatefulWidget {
- late SectionConfiguration _sectionConfiguration;
+ late MoneySectionConfiguration _sectionConfiguration;
 
 
 
    MoneySectionBuilder({
-    super.key,required SectionConfiguration sectionConfiguration
+    super.key,required MoneySectionConfiguration sectionConfiguration
   }){
      _sectionConfiguration = sectionConfiguration;
    }
@@ -234,56 +258,3 @@ class _MoneySectionBuilderState extends State<MoneySectionBuilder> {
 }
 
 
-
-
-
-class TopInfoSection extends StatelessWidget {
-  const TopInfoSection({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: [
-            Colors.white,
-            Colors.blue.withOpacity(0.9),
-            Colors.blue.withOpacity(0.9),
-            Colors.lightBlue.withOpacity(0.8),
-            Colors.cyan.withOpacity(0.1),
-          ],
-        ),
-        // color: const Color.fromRGBO(
-        //     15, 165, 210, 0.9),
-        border: Border.all(
-          color: const Color.fromRGBO(21, 80, 199, 0.3),
-          width: 0,
-        ),
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      //child: InfoSection(),
-      child:  const Column(
-        children: [
-          PieChartSample2(),
-          MyTextButtonAnalytics(),
-        ],
-      ),
-    );
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-}

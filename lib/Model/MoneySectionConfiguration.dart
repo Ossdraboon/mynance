@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 
 
-class SectionConfiguration {
+class MoneySectionConfiguration {
   String title;
   String subtitle;
   CategoryConfiguration categoryConfiguration;
@@ -11,7 +11,7 @@ class SectionConfiguration {
   QuickValueConfiguration quickValueConfiguration;
   HistoryBoxConfiguration historyBoxConfiguration;
 
-  SectionConfiguration(this.title, this.subtitle, this.categoryConfiguration,
+  MoneySectionConfiguration(this.title, this.subtitle, this.categoryConfiguration,
       this.inputFieldConfiguration, this.quickValueConfiguration, this.historyBoxConfiguration);
 }
 
