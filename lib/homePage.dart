@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
                           const SizedBox(height: 20),
                         ],
                       ),
-                      const InfoSection(),
+                      // InfoSection(),
                     ],
                   ),
                 ),
@@ -125,7 +125,8 @@ class HomePage extends StatelessWidget {
                       ),
                       InfoSectionBuilder(chartSectionConfiguration:
                       ChartSectionConfiguration(
-                        LineChartConfiguration(weeklyCost)
+                        LineChartConfiguration(weeklyCost),
+                        BarChartConfiguration(weekDays,weeklyCost)
                       ),
 
                       ),
@@ -142,21 +143,24 @@ class HomePage extends StatelessWidget {
 }
 
 class InfoSectionBuilder extends StatefulWidget {
+  late ChartSectionConfiguration _chartSectionConfiguration;
 
   InfoSectionBuilder({
     super.key, required ChartSectionConfiguration chartSectionConfiguration
-  });
+  }){
+    _chartSectionConfiguration = chartSectionConfiguration;
+  }
 
   @override
   State<InfoSectionBuilder> createState() => _InfoSectionBuilderState();
 }
 
 class _InfoSectionBuilderState extends State<InfoSectionBuilder> {
-  late ChartSectionConfiguration _chartSectionConfiguration;
-
   @override
   Widget build(BuildContext context) {
-    return const InfoSection();
+    return InfoSection(
+      barChartConfiguration: widget._chartSectionConfiguration.barChartConfiguration,
+      lineChartConfiguration: widget._chartSectionConfiguration.lineChartConfiguration,);
   }
 }
 
@@ -167,15 +171,11 @@ class _InfoSectionBuilderState extends State<InfoSectionBuilder> {
 class MoneySectionBuilder extends StatefulWidget {
  late MoneySectionConfiguration _sectionConfiguration;
 
-
-
    MoneySectionBuilder({
     super.key,required MoneySectionConfiguration sectionConfiguration
   }){
      _sectionConfiguration = sectionConfiguration;
    }
-
-
 
   @override
   State<MoneySectionBuilder> createState() => _MoneySectionBuilderState();

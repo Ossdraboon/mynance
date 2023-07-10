@@ -34,10 +34,10 @@ class InfoChart extends StatelessWidget {
                     children: <Widget>[
                       Container(
                       ),
-                      Sandbox(
-                        dayNames: ["Mo", "Di", "Mi"],
-                        values: [23, 45, 56],
-                      ),
+                      // Sandbox(
+                      //   dayNames: ["Mo", "Di", "Mi"],
+                      //   values: [23, 45, 56],
+                      // ),
                       // const Row(
                       //   children: [
                       //     Expanded(
@@ -84,10 +84,10 @@ class InfoChart extends StatelessWidget {
                           height: 100,
                           width: 600,
                         ),
-                        Sandbox(
-                          dayNames: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
-                          values: [23, 45, 56,33, 45, 67, 4],
-                        ),
+                        // Sandbox(
+                        //   dayNames: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+                        //   values: [23, 45, 56, 133, 45, 67, 4],
+                        // ),
                         // const Row(
                         //   children: [
                         //     Expanded(

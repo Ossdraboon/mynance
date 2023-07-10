@@ -120,6 +120,14 @@ class LoginPage extends StatelessWidget {
                         ],
                       ),
                     ),
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          LoginButtonDebug(),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),

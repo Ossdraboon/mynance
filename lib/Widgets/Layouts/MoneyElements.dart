@@ -9,7 +9,7 @@ var quickmoneyList = [5, 10, 20, 50];
 
 var historyList = [50,100, 10.00, 205.30, 50.99, 1000.30, 777.77, 1234.53];
 
-class MoneySection extends StatelessWidget {
+class MoneySection extends StatefulWidget {
   late CategoryConfiguration _categoryConfiguration;
   late InputFieldConfiguration _inputFieldConfiguration;
 
@@ -21,13 +21,18 @@ class MoneySection extends StatelessWidget {
   }
 
   @override
+  State<MoneySection> createState() => _MoneySectionState();
+}
+
+class _MoneySectionState extends State<MoneySection> {
+  @override
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
         const SizedBox(
           width: 10,
         ),
-         Expanded(flex: 4, child: DropDown(categoryConfiguration: _categoryConfiguration)),
+         Expanded(flex: 4, child: DropDown(categoryConfiguration: widget._categoryConfiguration)),
         const SizedBox(
           width: 10,
         ),
@@ -62,7 +67,7 @@ class MoneySection extends StatelessWidget {
               ],
             ),
 
-            child: Numberfield(inputFieldConfiguration: _inputFieldConfiguration),
+            child: Numberfield(inputFieldConfiguration: widget._inputFieldConfiguration),
           ),
         ),
         const SizedBox(
