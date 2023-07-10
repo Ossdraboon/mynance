@@ -6,8 +6,11 @@ class TextfieldEmail extends StatefulWidget {
   late IconData _icon;
   late TextEditingController emailController;
 
-
-  TextfieldEmail({required String hint, required IconData icon, required TextEditingController controller ,super.key}) {
+  TextfieldEmail(
+      {required String hint,
+      required IconData icon,
+      required TextEditingController controller,
+      super.key}) {
     _hint = hint;
     _icon = icon;
     emailController = controller;
@@ -19,15 +22,36 @@ class TextfieldEmail extends StatefulWidget {
 
 class _TextfieldEmailState extends State<TextfieldEmail> {
   TextEditingController emailController;
-  _TextfieldEmailState(this.emailController);
 
+  _TextfieldEmailState(this.emailController);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Colors.white,
+            Colors.blue.withOpacity(0.9),
+            Colors.blue.withOpacity(0.9),
+            Colors.lightBlue.withOpacity(0.8),
+            Colors.cyan.withOpacity(0.1),
+          ],
+        ),
+        // color: const Color.fromRGBO(
+        //     15, 165, 210, 0.9),
+        border: Border.all(
+          color: const Color.fromRGBO(21, 80, 199, 0.3),
+          width: 0,
+        ),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
       height: 70,
       width: 600,
       child: TextFormField(
+        style: const TextStyle(color: Colors.white, fontSize: 25),
         keyboardType: TextInputType.emailAddress,
         validator: (value) {
           if (value!.isEmpty) {
@@ -41,19 +65,19 @@ class _TextfieldEmailState extends State<TextfieldEmail> {
           }
           return null;
         },
-        onSaved: (value){
+        onSaved: (value) {
           emailController.text = value!;
         },
         controller: emailController,
         decoration: InputDecoration(
-            labelText: widget._hint,
-            iconColor: Colors.black,
-            icon: Icon(widget._icon),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(10.0),
-              borderSide: const BorderSide(color: Colors.black, width: 2.0),
-            ),
-            hintText: widget._hint),
+          border: InputBorder.none,
+          labelText: widget._hint,
+          labelStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
+          iconColor: Colors.blueAccent,
+          icon: Icon(widget._icon),
+          hintText: widget._hint,
+          hintStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
+        ),
       ),
     );
   }

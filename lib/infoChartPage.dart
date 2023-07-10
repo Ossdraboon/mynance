@@ -1,3 +1,5 @@
+import 'package:MyNance/Model/ChartSectionConfiguration.dart';
+import 'package:MyNance/Widgets/Layouts/InfoElement.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'main.dart';
@@ -6,10 +8,8 @@ import 'Widgets/Layouts/Sandbox.dart';
 
 //import 'package:metaballs/metaballs.dart';
 
-
 class InfoChart extends StatelessWidget {
   const InfoChart({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -30,40 +30,11 @@ class InfoChart extends StatelessWidget {
               Container(
                 alignment: Alignment.center,
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                      ),
-                      // Sandbox(
-                      //   dayNames: ["Mo", "Di", "Mi"],
-                      //   values: [23, 45, 56],
-                      // ),
-                      // const Row(
-                      //   children: [
-                      //     Expanded(
-                      //       child:
-                      //       Weekly(),
-                      //     ),
-                      //     Expanded(
-                      //       child:
-                      //       Monthly(),
-                      //     ),
-                      //     Expanded(
-                      //       child:
-                      //       Yearly(),
-                      //     ),
-                      //   ],
-                      // ),
-                      const BackButton(),
-                    ],
-                  ),
                 ),
               ),
             ],
           );
-
         } else {
-
           return Stack(
             children: <Widget>[
               const CircularParticleScreen(),
@@ -78,35 +49,14 @@ class InfoChart extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          height: 100,
-                          width: 600,
-                        ),
-                        // Sandbox(
-                        //   dayNames: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
-                        //   values: [23, 45, 56, 133, 45, 67, 4],
-                        // ),
-                        // const Row(
-                        //   children: [
-                        //     Expanded(
-                        //         child:
-                        //         Weekly(),
-                        //     ),
-                        //     Expanded(
-                        //         child:
-                        //         Monthly(),
-                        //     ),
-                        //     Expanded(
-                        //         child:
-                        //         Yearly(),
-                        //     ),
-                        //   ],
-                        // ),
-                        const BackButton(),
-                      ],
-                    ),
+                    Weekly(),
+                    Divider(thickness: 3,color: Colors.blueAccent,indent: 20,endIndent: 20,),
+                    Monthly(),
+                    Divider(thickness: 3,color: Colors.blueAccent,indent: 20,endIndent: 20,),
+                    Yearly(),
+                    Divider(thickness: 3,color: Colors.blueAccent,indent: 20,endIndent: 20,),
+                    SizedBox(height: 30,),
+                    BackButton(),
                   ],
                 ),
               ),
@@ -119,7 +69,8 @@ class InfoChart extends StatelessWidget {
 }
 
 class Weekly extends StatefulWidget {
-  const Weekly({super.key});
+
+  Weekly({super.key,});
 
   @override
   State<Weekly> createState() => _Weekly();
@@ -128,17 +79,21 @@ class Weekly extends StatefulWidget {
 class _Weekly extends State<Weekly> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        IconButton(
-          icon: const Icon(Icons.bar_chart, size: 80,),
-          onPressed: () {
-            Navigator.of(context).pushNamed('/week');
-          },
-        ),
-        Text('Weekly'),
-      ],
+    return
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            IconButton(
+              icon: const Icon(
+                Icons.bar_chart,
+                size: 80,
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/week');
+              },
+            ),
+            Text('Weekly'),
+          ],
     );
   }
 }
@@ -157,7 +112,10 @@ class _Monthly extends State<Monthly> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         IconButton(
-          icon: const Icon(Icons.area_chart, size: 80,),
+          icon: const Icon(
+            Icons.area_chart,
+            size: 80,
+          ),
           onPressed: () {
             Navigator.of(context).pushNamed('/month');
           },
@@ -182,7 +140,10 @@ class _Yearly extends State<Yearly> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         IconButton(
-          icon: const Icon(Icons.query_stats, size: 80,),
+          icon: const Icon(
+            Icons.query_stats,
+            size: 80,
+          ),
           onPressed: () {
             Navigator.of(context).pushNamed('/year');
           },
@@ -192,8 +153,6 @@ class _Yearly extends State<Yearly> {
     );
   }
 }
-
-
 
 class BackButton extends StatelessWidget {
   const BackButton({super.key});
@@ -215,7 +174,7 @@ class BackButton extends StatelessWidget {
         foregroundColor: MaterialStateProperty.resolveWith(getColor),
       ),
       onPressed: () {
-        Navigator.of(context).pushNamed('/home',arguments: "StartUpHome");
+        Navigator.of(context).pushNamed('/home', arguments: "StartUpHome");
       },
       child: const Text('Back'),
     );

@@ -12,9 +12,14 @@ import 'Widgets/Layouts/Sandbox.dart';
 
 
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
@@ -126,7 +131,7 @@ class HomePage extends StatelessWidget {
                       InfoSectionBuilder(chartSectionConfiguration:
                       ChartSectionConfiguration(
                         LineChartConfiguration(weeklyCost),
-                        BarChartConfiguration(weekDays,weeklyCost)
+                        BarChartConfiguration(weekDays,fakedataList)
                       ),
 
                       ),
@@ -142,27 +147,6 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class InfoSectionBuilder extends StatefulWidget {
-  late ChartSectionConfiguration _chartSectionConfiguration;
-
-  InfoSectionBuilder({
-    super.key, required ChartSectionConfiguration chartSectionConfiguration
-  }){
-    _chartSectionConfiguration = chartSectionConfiguration;
-  }
-
-  @override
-  State<InfoSectionBuilder> createState() => _InfoSectionBuilderState();
-}
-
-class _InfoSectionBuilderState extends State<InfoSectionBuilder> {
-  @override
-  Widget build(BuildContext context) {
-    return InfoSection(
-      barChartConfiguration: widget._chartSectionConfiguration.barChartConfiguration,
-      lineChartConfiguration: widget._chartSectionConfiguration.lineChartConfiguration,);
-  }
-}
 
 
 

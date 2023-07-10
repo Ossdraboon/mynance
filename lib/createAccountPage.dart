@@ -123,16 +123,16 @@ class CreateAccount extends StatelessWidget {
                               hint: "Phone Number",
                               icon: Icons.phone_android_outlined),
                           const SizedBox(height: 20),
-                          const Row(
-                            children: [
-                              Icon(Icons.calendar_month),
-                              SizedBox(
-                                height: 30,
-                                width: 18,
-                              ),
-                              BirthDate(),
-                            ],
-                          ),
+                          // const Row(
+                          //   children: [
+                          //     Icon(Icons.calendar_month),
+                          //     SizedBox(
+                          //       height: 30,
+                          //       width: 18,
+                          //     ),
+                          //     BirthDate(),
+                          //   ],
+                          // ),
                           SizedBox(height: 10,),
                           Row(
                             children: [
