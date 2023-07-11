@@ -9,28 +9,37 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-      };
-      if (states.contains(MaterialState.pressed)) {
-        return Colors.blue;
-      }
-      return Colors.black;
-    }
 
 
-    return ElevatedButton(
-      style: ButtonStyle(
-        // animationDuration: Duration(seconds: 2),
-        foregroundColor: MaterialStateProperty.resolveWith(getColor),
+    return Container(
+      decoration: BoxDecoration(
+      border: Border.all(color: Colors.white),
+      borderRadius: const BorderRadius.all(Radius.circular(25)),
+      gradient: LinearGradient(
+        begin: Alignment.centerLeft,
+        end: Alignment.centerRight,
+        colors: [
+          Colors.white,
+          Colors.blue.withOpacity(0.9),
+          Colors.blue.withOpacity(0.9),
+          Colors.lightBlue.withOpacity(0.8),
+          Colors.cyan.withOpacity(0.1),
+        ],
       ),
-      onPressed: () {
-        login(context);
-        //Navigator.of(context).pushNamed('/home');
+    ),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+      ),
+        onPressed: () {
+          login(context);
+          //Navigator.of(context).pushNamed('/home');
 
-      },
-      child: const Text('LOGIN'),
+        },
+        child: const Text('LOGIN'),
+      ),
     );
   }
 }
@@ -40,31 +49,38 @@ class LoginButtonDebug extends StatelessWidget {
   LoginButtonDebug({super.key});
 
 
-
   @override
   Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-      };
-      if (states.contains(MaterialState.pressed)) {
-        return Colors.blue;
-      }
-      return Colors.black;
-    }
 
-
-    return ElevatedButton(
-      style: ButtonStyle(
-        // animationDuration: Duration(seconds: 2),
-        foregroundColor: MaterialStateProperty.resolveWith(getColor),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.white),
+        borderRadius: const BorderRadius.all(Radius.circular(25)),
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Colors.white,
+            Colors.blue.withOpacity(0.9),
+            Colors.blue.withOpacity(0.9),
+            Colors.lightBlue.withOpacity(0.8),
+            Colors.cyan.withOpacity(0.1),
+          ],
+        ),
       ),
-      onPressed: () {
-        //login(context);
-        Navigator.of(context).pushNamed('/home');
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+        ),
+        onPressed: () {
+          //login(context);
+          Navigator.of(context).pushNamed('/home');
 
-      },
-      child: const Text('DEBUG MODE'),
+        },
+        child: const Text('DEBUG MODE'),
+      ),
     );
   }
 }

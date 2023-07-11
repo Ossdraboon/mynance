@@ -20,12 +20,16 @@ class MyTextButtonEmail extends StatelessWidget {
       height: 40,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white),
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        gradient: const LinearGradient(
-          colors: <Color>[
-            Color(0xFF0D47A1),
-            Color(0xFF1976D2),
-            Color(0xFF42A5F5),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Colors.white,
+            Colors.blue.withOpacity(0.9),
+            Colors.blue.withOpacity(0.9),
+            Colors.lightBlue.withOpacity(0.8),
+            Colors.cyan.withOpacity(0.1),
           ],
         ),
       ),

@@ -100,26 +100,29 @@ class LoginPage extends StatelessWidget {
                             hint: "Enter your Email", icon: Icons.email),
                         TextfieldPassword(
                             hint: "Enter your Password",controller: passwordController ,icon: Icons.password),
-                        const SizedBox(height: 20),
-                        const MyTextButtonEmail(),
-                        const SizedBox(height: 20),
+                        const Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              MyTextButtonEmail(),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                     Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Spacer(),
-                          const SizedBox(
-                            height: 20,
-                          ),
+                          const Spacer(),
                           LoginButton(login: performLogin),
-                          Spacer(),
-                          CreateAccountButton(),
-                          Spacer(),
+                          const Spacer(),
+                          const CreateAccountButton(),
+                          const Spacer(),
                         ],
                       ),
                     ),
+                    const SizedBox(height: 40,),
                     Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

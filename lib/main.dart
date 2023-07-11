@@ -12,7 +12,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:particles_flutter/particles_flutter.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -35,9 +35,9 @@ class MyApp extends StatelessWidget {
           //brightness: Brightness.dark
         ),
         routes: {
-          '/': (context) =>  LoginPage(),
+          '/': (context) => LoginPage(),
           '/home': (context) => const StartUpPage(),
-          '/create': (context) =>  CreateAccount(),
+          '/create': (context) => CreateAccount(),
           '/manage': (context) => const ManageAccount(),
           '/menu': (context) => const MenuSettings(),
           '/info': (context) => const InfoChart(),
@@ -55,9 +55,9 @@ class MenuItem {
   IconData? icon;
   String? label;
 
-  MenuItem(IconData i, String label) {
-    this.icon = i;
-    this.label = label;
+  MenuItem(IconData i, String labels) {
+    icon = i;
+    label = labels;
   }
 }
 
@@ -99,15 +99,13 @@ class _StartUpPageState extends State<StartUpPage> {
         .toList();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    if(selectedIndex == -1) {
+    if (selectedIndex == -1) {
       selectedIndex = 0;
       final args = ModalRoute.of(context)!.settings.arguments as String?;
       if (args != null && args == "StartUpManage") {
-          selectedIndex = 1;
+        selectedIndex = 1;
       }
       if (args != null && args == "StartUpHome") {
         selectedIndex = 0;
@@ -159,9 +157,9 @@ class _StartUpPageState extends State<StartUpPage> {
                       // if (value == 2) {
                       //   Navigator.of(context).pushNamed('/');
                       // } else {
-                        setState(() {
-                          selectedIndex = value;
-                        });
+                      setState(() {
+                        selectedIndex = value;
+                      });
                     },
                   ),
                 )
@@ -180,9 +178,9 @@ class _StartUpPageState extends State<StartUpPage> {
                       // if (value == 2) {
                       //   Navigator.of(context).pushNamed('/');
                       // } else {
-                        setState(() {
-                          selectedIndex = value;
-                        });
+                      setState(() {
+                        selectedIndex = value;
+                      });
                     },
                   ),
                 ),
