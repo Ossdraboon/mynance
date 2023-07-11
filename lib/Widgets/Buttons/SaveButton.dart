@@ -1,30 +1,84 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+class SaveButtonSettingPage extends StatelessWidget {
+  const SaveButtonSettingPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+
+    return Container(
+      width: 200,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.white),
+        borderRadius: const BorderRadius.all(Radius.circular(25)),
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Colors.white,
+            Colors.blue.withOpacity(0.9),
+            Colors.blue.withOpacity(0.9),
+            Colors.lightBlue.withOpacity(0.8),
+            Colors.cyan.withOpacity(0.1),
+          ],
+        ),
+      ),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+        ),
+        onPressed: () {
+          print("Saved Changes");
+          Navigator.of(context).pushNamed('/home',arguments: "StartUpHome");
+        },
+        child: const Text('Save Changes'),
+      ),
+    );
+  }
+}
+
+
 class SaveButton extends StatelessWidget {
   const SaveButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.blueGrey;
-    }
 
-    return ElevatedButton(
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.resolveWith(getColor),
+
+
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.white),
+        borderRadius: const BorderRadius.all(Radius.circular(25)),
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Colors.white,
+            Colors.blue.withOpacity(0.9),
+            Colors.blue.withOpacity(0.9),
+            Colors.lightBlue.withOpacity(0.8),
+            Colors.cyan.withOpacity(0.1),
+          ],
+        ),
       ),
-      onPressed: () {
-        //Navigator.of(context).pushNamed('/create');
-        print("Saved Input");
-      },
-      child: const Text('Save'),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+        ),
+        onPressed: () {
+          //Navigator.of(context).pushNamed('/create');
+          print("Saved Input");
+        },
+        child: const Text('Save'),
+      ),
     );
   }
 }
+

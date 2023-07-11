@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
-class MyTextButtonAnalytics extends StatelessWidget {
-  const MyTextButtonAnalytics({super.key});
+class ResetEmailButtonSettingPage extends StatelessWidget {
+  const ResetEmailButtonSettingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
 
 
-
     return Container(
+      width: 200,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white),
         borderRadius: const BorderRadius.all(Radius.circular(25)),
@@ -26,17 +25,17 @@ class MyTextButtonAnalytics extends StatelessWidget {
           ],
         ),
       ),
-      child: TextButton(
-        style: TextButton.styleFrom(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
           foregroundColor: Colors.white,
-          //padding: const EdgeInsets.all(16.0),
-          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
         ),
         onPressed: () {
-          Navigator.of(context).pushNamed('/info');
+          print("Reset Email");
+          Navigator.of(context).pushNamed('/create');
         },
-        child: const Text('more Information ...'),
-
+        child: const Text('Reset Email'),
       ),
     );
   }

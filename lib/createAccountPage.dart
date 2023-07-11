@@ -125,11 +125,11 @@ class CreateAccount extends StatelessWidget {
                       Column(
                         children: <Widget>[
                           const SizedBox(height: 100),
-                          NameSection(),
+                          const NameSection(),
                           PasswordSection(passwordController: passwordController),
                           PasswordRepeatSection(passwordController: passwordController),
                           EmailSection(emailController: emailController),
-                          PhoneNumberSection(),
+                          const PhoneNumberSection(),
                           const BirthdaySection(),
                           const GenderSection(),
                           const SizedBox(height: 40),
@@ -368,7 +368,7 @@ class GenderSection extends StatelessWidget {
   }
 }
 
-const List<String> list = <String>['Auto', 'Male', 'Female', 'Other'];
+const List<String> genderList = <String>['Auto', 'Male', 'Female', 'Other'];
 
 class GenderPick extends StatefulWidget {
   const GenderPick({super.key});
@@ -378,7 +378,7 @@ class GenderPick extends StatefulWidget {
 }
 
 class _GenderPickState extends State<GenderPick> {
-  String dropdownValue = list.first;
+  String dropdownValue = genderList.first;
 
   @override
   Widget build(BuildContext context) {
@@ -406,7 +406,7 @@ class _GenderPickState extends State<GenderPick> {
               dropdownValue = value!;
             });
           },
-          items: list.map<DropdownMenuItem<String>>((String value) {
+          items: genderList.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: SizedBox(

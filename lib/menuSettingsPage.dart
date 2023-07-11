@@ -1,10 +1,10 @@
+import 'package:MyNance/Widgets/Buttons/ResetEmailButton.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'Widgets/Buttons/LogoutButton.dart';
+import 'Widgets/Buttons/SaveButton.dart';
 import 'main.dart';
 
-//import 'Widgets/animatedBackground.dart';
 
-//import 'package:metaballs/metaballs.dart';
 
 
 class MenuSettings extends StatelessWidget {
@@ -34,8 +34,10 @@ class MenuSettings extends StatelessWidget {
                     children: <Widget>[
                       Container(
                       ),
-                      SaveButton(),
-                      LogoutButton(),
+                      SaveButtonSettingPage(),
+                      ResetEmailButtonSettingPage(),
+                      SizedBox(height: 30,),
+                      LogoutButtonSettingPage(),
                     ],
                   ),
                 ),
@@ -63,8 +65,10 @@ class MenuSettings extends StatelessWidget {
                       children: <Widget>[
                         Container(
                         ),
-                        SaveButton(),
-                        LogoutButton(),
+                        SaveButtonSettingPage(),
+                        ResetEmailButtonSettingPage(),
+                        SizedBox(height: 60,),
+                        LogoutButtonSettingPage(),
                       ],
                     ),
                   ],
@@ -79,57 +83,4 @@ class MenuSettings extends StatelessWidget {
 }
 
 
-class SaveButton extends StatelessWidget {
-  const SaveButton({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.blueGrey;
-    }
-
-    return ElevatedButton(
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.resolveWith(getColor),
-      ),
-      onPressed: () {
-        print("Saved Changes");
-        Navigator.of(context).pushNamed('/home',arguments: "StartUpHome");
-      },
-      child: const Text('SAVE CHANGES'),
-    );
-  }
-}
-
-class LogoutButton extends StatelessWidget {
-  const LogoutButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.blueGrey;
-    }
-
-    return ElevatedButton(
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.resolveWith(getColor),
-      ),
-      onPressed: () {
-        Navigator.of(context).pushNamed('/');
-      },
-      child: const Text('Logout Account'),
-    );
-  }
-}

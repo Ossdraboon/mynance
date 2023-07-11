@@ -90,6 +90,7 @@ class _InfoSectionState extends State<InfoSection> {
           //PieChartSample1(),
           //PieChartSample2(),
           const MyTextButtonAnalytics(),
+          const SizedBox(height: 20,)
         ],
       ),
     );
