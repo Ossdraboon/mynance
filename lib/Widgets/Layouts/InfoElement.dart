@@ -1,18 +1,18 @@
 import 'dart:math';
 
 import 'package:MyNance/Model/ChartSectionConfiguration.dart';
-import 'package:MyNance/Widgets/Layouts/Sandbox.dart';
+import 'package:MyNance/Widgets/Layouts/BarChart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../Buttons/MyTextButtonAnalytics.dart';
 import 'LineCharts.dart';
 
-double maxValue = 1000.00;
+double maxValue = 500.00;
 var fakedataList = List<double>.generate(7, (i) => (Random().nextDouble() * maxValue).roundToDouble())..shuffle();
 
 
 
-List<double> weeklyCost = [401.00, 199.76, 167.2, 206.13, 58, 77.99, 4.99];
+List<double> weeklyCost = [401.00, 1099.76, 167.2, 206.13, 1658, 77.99, 4.99];
 List<String> weekDays = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
 
 

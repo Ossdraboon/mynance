@@ -1,9 +1,11 @@
 import 'package:MyNance/Model/ChartSectionConfiguration.dart';
+import 'package:MyNance/Widgets/Buttons/MyBackButton.dart';
 import 'package:MyNance/Widgets/Layouts/InfoElement.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'Widgets/Layouts/MyCustomeDivider.dart';
 import 'main.dart';
-import 'Widgets/Layouts/Sandbox.dart';
+import 'Widgets/Layouts/BarChart.dart';
 //import 'Widgets/animatedBackground.dart';
 
 //import 'package:metaballs/metaballs.dart';
@@ -38,11 +40,36 @@ class InfoChart extends StatelessWidget {
           return Stack(
             children: <Widget>[
               const CircularParticleScreen(),
-              Image.asset(
-                "assets/images/LogoRender.png",
-                width: 600,
-                height: 200,
-                fit: BoxFit.cover,
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Colors.white,
+                      Colors.blue.withOpacity(0.5),
+                      Colors.blue.withOpacity(0.3),
+                      Colors.lightBlue.withOpacity(0.2),
+                      Colors.cyan.withOpacity(0.1),
+                    ],
+                  ),
+                  // color: const Color.fromRGBO(
+                  //     15, 165, 210, 0.9),
+                  border: Border.all(
+                    color: const Color.fromRGBO(21, 80, 199, 0.3),
+                    width: 0,
+                  ),
+                  borderRadius: BorderRadius.circular(0.0),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Image.asset(
+                  "assets/images/LogoRender.png",
+                  width: 600,
+                  height: 200,
+                  fit: BoxFit.cover,
+                ),
               ),
               Container(
                 alignment: Alignment.center,
@@ -50,13 +77,28 @@ class InfoChart extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Weekly(),
-                    Divider(thickness: 3,color: Colors.blueAccent,indent: 20,endIndent: 20,),
+                    MyCostumeDivider(
+                      boxheight: 10,
+                      contheight: 3,
+                      startline: 20,
+                      endline: 20,
+                    ),
                     Monthly(),
-                    Divider(thickness: 3,color: Colors.blueAccent,indent: 20,endIndent: 20,),
+                    MyCostumeDivider(
+                      boxheight: 10,
+                      contheight: 3,
+                      startline: 20,
+                      endline: 20,
+                    ),
                     Yearly(),
-                    Divider(thickness: 3,color: Colors.blueAccent,indent: 20,endIndent: 20,),
-                    SizedBox(height: 30,),
-                    BackButton(),
+                    MyCostumeDivider(
+                      boxheight: 10,
+                      contheight: 3,
+                      startline: 20,
+                      endline: 20,
+                    ),
+                    const SizedBox(height: 10,),
+                    MyBackButtonInfoSection(),
                   ],
                 ),
               ),
@@ -67,6 +109,8 @@ class InfoChart extends StatelessWidget {
     );
   }
 }
+
+
 
 class Weekly extends StatefulWidget {
 
@@ -154,29 +198,4 @@ class _Yearly extends State<Yearly> {
   }
 }
 
-class BackButton extends StatelessWidget {
-  const BackButton({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.blueGrey;
-    }
-
-    return ElevatedButton(
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.resolveWith(getColor),
-      ),
-      onPressed: () {
-        Navigator.of(context).pushNamed('/home', arguments: "StartUpHome");
-      },
-      child: const Text('Back'),
-    );
-  }
-}

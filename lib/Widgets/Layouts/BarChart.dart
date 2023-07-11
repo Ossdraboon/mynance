@@ -126,29 +126,53 @@ class _SandboxState extends State<Sandbox> {
       );
 
   FlTitlesData getTitelsData() {
-    return FlTitlesData(
-        show: true,
-        topTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        rightTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        bottomTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            getTitlesWidget: bottomTitles,
-            reservedSize: 26,
+    double value = 0;
+    if (((widget._barChartConfiguration.barchartValues.reduce(max)).ceil()) > 0)
+    {value = 100;
+    }
+    if (((widget._barChartConfiguration.barchartValues.reduce(max)).ceil()) > 1000)
+    { value = 500;
+    }
+    if (((widget._barChartConfiguration.barchartValues.reduce(max)).ceil()) > 5000)
+    {value = 1000;
+    }
+    if (((widget._barChartConfiguration.barchartValues.reduce(max)).ceil()) > 10000)
+    {value = 5000;
+    }
+    if (((widget._barChartConfiguration.barchartValues.reduce(max)).ceil()) > 50000)
+    {value = 10000;
+    }
+    if (((widget._barChartConfiguration.barchartValues.reduce(max)).ceil()) > 100000)
+    {value = 50000;
+    }
+
+
+    print("Interval calculator: "+((widget._barChartConfiguration.barchartValues.reduce(max)).ceil()).toString() +"["+ value.toString()+"]");
+
+      return FlTitlesData(
+          show: true,
+          topTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
           ),
-        ),
-        leftTitles: AxisTitles(
+          rightTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          bottomTitles: AxisTitles(
             sideTitles: SideTitles(
-          showTitles: true,
-          getTitlesWidget: leftTitles,
-          reservedSize: 55,
-          interval: 100,
-        )));
-  }
+              showTitles: true,
+              getTitlesWidget: bottomTitles,
+              reservedSize: 26,
+            ),
+          ),
+          leftTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                getTitlesWidget: leftTitles,
+                reservedSize: 55,
+                interval: value,
+              )));
+    }
+
 
   Widget leftTitles(double value, TitleMeta meta) {
     var label = "";

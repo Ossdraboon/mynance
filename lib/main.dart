@@ -132,14 +132,14 @@ class _StartUpPageState extends State<StartUpPage> {
     }
 
     var mainArea = ColoredBox(
-      color: colorScheme.surfaceVariant,
+      color: Colors.transparent,
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 200),
         child: page,
       ),
     );
 
-    return Scaffold(
+    return Scaffold(extendBody: true,
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth < 450) {
@@ -148,19 +148,43 @@ class _StartUpPageState extends State<StartUpPage> {
                 Expanded(child: mainArea),
                 SafeArea(
                   top: false,
-                  child: BottomNavigationBar(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0.0,
-                    items: getBottomTabs(_menuItems),
-                    currentIndex: selectedIndex,
-                    onTap: (value) {
-                      // if (value == 2) {
-                      //   Navigator.of(context).pushNamed('/');
-                      // } else {
-                      setState(() {
-                        selectedIndex = value;
-                      });
-                    },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          Colors.white,
+                          Colors.blue.withOpacity(0.5),
+                          Colors.blue.withOpacity(0.5),
+                          Colors.lightBlue.withOpacity(0.5),
+                          Colors.cyan.withOpacity(0.1),
+                        ],
+                      ),
+                      // color: const Color.fromRGBO(
+                      //     15, 165, 210, 0.9),
+                      border: Border.all(
+                        color: const Color.fromRGBO(21, 80, 199, 0.3),
+                        width: 0,
+                      ),
+                      borderRadius: BorderRadius.circular(0.0),
+                    ),
+                    child: BottomNavigationBar(
+                      selectedItemColor: Colors.blueAccent,
+                      unselectedItemColor: Colors.white,
+                      backgroundColor: Colors.transparent,
+                      elevation: 0.0,
+                      items: getBottomTabs(_menuItems),
+                      currentIndex: selectedIndex,
+                      onTap: (value) {
+                        // if (value == 2) {
+                        //   Navigator.of(context).pushNamed('/');
+                        // } else {
+                        setState(() {
+                          selectedIndex = value;
+                        });
+                      },
+                    ),
                   ),
                 )
               ],

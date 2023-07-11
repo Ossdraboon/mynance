@@ -8,7 +8,7 @@ import 'Widgets/Layouts/MoneyElements.dart';
 import 'main.dart';
 import 'package:MyNance/Widgets/Layouts/Dropdown.dart';
 import 'package:MyNance/Widgets/Buttons/QuickMoney.dart';
-import 'Widgets/Layouts/Sandbox.dart';
+import 'Widgets/Layouts/BarChart.dart';
 
 
 
@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      extendBody: true,
       body: LayoutBuilder(builder: (context, constrains) {
         if (constrains.maxWidth >= 600) {
           return Stack(
@@ -84,14 +85,40 @@ class _HomePageState extends State<HomePage> {
           return Stack(
             children: <Widget>[
               const CircularParticleScreen(),
-              Image.asset(
-                "assets/images/LogoRender.png",
-                width: 600,
-                height: 200,
-                fit: BoxFit.cover,
+              Container(
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Colors.white,
+                      Colors.blue.withOpacity(0.5),
+                      Colors.blue.withOpacity(0.3),
+                      Colors.lightBlue.withOpacity(0.2),
+                      Colors.cyan.withOpacity(0.1),
+                    ],
+                  ),
+                  // color: const Color.fromRGBO(
+                  //     15, 165, 210, 0.9),
+                  border: Border.all(
+                    color: const Color.fromRGBO(21, 80, 199, 0.3),
+                    width: 0,
+                  ),
+                  borderRadius: BorderRadius.circular(0.0),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Image.asset(
+                  "assets/images/LogoRender.png",
+                  width: 600,
+                  height: 200,
+                  fit: BoxFit.cover,
+                ),
               ),
               Container(
-                height: double.infinity,
+                height: MediaQuery.of(context).size.height,
                 // alignment: Alignment.center,
                 margin: const EdgeInsetsDirectional.all(10),
                 child: SingleChildScrollView(
@@ -101,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          const SizedBox(height: 170),
+                          const SizedBox(height: 180),
                           MoneySectionBuilder(sectionConfiguration:
                           MoneySectionConfiguration("PAYMENT","manage your daily Payments here",
                               CategoryConfiguration(paymentList),

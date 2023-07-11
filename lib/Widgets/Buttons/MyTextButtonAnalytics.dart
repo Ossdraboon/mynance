@@ -12,8 +12,6 @@ class MyTextButtonAnalytics extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.white),
-        borderRadius: const BorderRadius.all(Radius.circular(25)),
         gradient: LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
@@ -25,10 +23,25 @@ class MyTextButtonAnalytics extends StatelessWidget {
             Colors.cyan.withOpacity(0.1),
           ],
         ),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.5),
+          // color: const Color.fromRGBO(21, 80, 199, 0.3),
+          width: 0,
+        ),
+        borderRadius: BorderRadius.circular(25.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.white.withOpacity(0.7),
+            spreadRadius: 1,
+            blurRadius: 7,
+            offset: const Offset(2, 2), // changes position of shadow
+          ),
+        ],
       ),
       child: TextButton(
         style: TextButton.styleFrom(
           foregroundColor: Colors.white,
+          backgroundColor: Colors.transparent,
           //padding: const EdgeInsets.all(16.0),
           textStyle: const TextStyle(fontSize: 15),
         ),

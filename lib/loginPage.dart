@@ -80,11 +80,37 @@ class LoginPage extends StatelessWidget {
           return Stack(
             children: <Widget>[
               const CircularParticleScreen(),
-              Image.asset(
-                "assets/images/LogoRender.png",
-                width: 600,
-                height: 200,
-                fit: BoxFit.cover,
+              Container(
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Colors.white,
+                      Colors.blue.withOpacity(0.5),
+                      Colors.blue.withOpacity(0.3),
+                      Colors.lightBlue.withOpacity(0.2),
+                      Colors.cyan.withOpacity(0.1),
+                    ],
+                  ),
+                  // color: const Color.fromRGBO(
+                  //     15, 165, 210, 0.9),
+                  border: Border.all(
+                    color: const Color.fromRGBO(21, 80, 199, 0.3),
+                    width: 0,
+                  ),
+                  borderRadius: BorderRadius.circular(0.0),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Image.asset(
+                  "assets/images/LogoRender.png",
+                  width: 600,
+                  height: 200,
+                  fit: BoxFit.cover,
+                ),
               ),
               Form(
                 key: _formKey,
@@ -93,22 +119,25 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
-                      children: <Widget>[
-                        TextfieldEmail(
-                            controller: emailController,
-                            hint: "Enter your Email", icon: Icons.email),
-                        TextfieldPassword(
-                            hint: "Enter your Password",controller: passwordController ,icon: Icons.password),
-                        const Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: Row(mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              MyTextButtonEmail(),
-                            ],
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: <Widget>[
+                          TextfieldEmail(
+                              controller: emailController,
+                              hint: "Enter your Email", icon: Icons.email),
+                          TextfieldPassword(
+                              hint: "Enter your Password",controller: passwordController ,icon: Icons.password),
+                          const Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                MyTextButtonEmail(),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     Center(
                       child: Row(
