@@ -44,13 +44,14 @@ class _TextfieldState extends State<Textfield> {
 
         child: TextFormField(
           style: const TextStyle(color: Colors.white, fontSize: 25),
-          decoration: InputDecoration(
+          keyboardType: TextInputType.text,
+          decoration:
+          InputDecoration(
             border: InputBorder.none,
               labelText: widget._hint,
               labelStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
               iconColor: Colors.blueAccent,
               icon: Icon(widget._icon),
-
               hintText: widget._hint,
             hintStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
           ),
