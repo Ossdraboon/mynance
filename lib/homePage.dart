@@ -9,6 +9,40 @@ import 'main.dart';
 import 'package:MyNance/Widgets/Layouts/Dropdown.dart';
 import 'package:MyNance/Widgets/Buttons/QuickMoney.dart';
 import 'Widgets/Layouts/BarChart.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'homePage.g.dart';
+
+
+@JsonSerializable()
+class DataBankMoney {
+  String categorie;
+  double value;
+  DateTime created = DateTime.now();
+
+  DataBankMoney({required this.categorie, required this.value});
+
+  factory DataBankMoney.fromJson(Map<String, dynamic> json) => _$DataBankMoneyFromJson(json);
+  Map<String, dynamic> toJson() => _$DataBankMoneyToJson(this);
+}
+
+
+@JsonSerializable()
+class DataInputs {
+  String userText;
+  double userNumber;
+
+  List<DataBankMoney> inputlist = List<DataBankMoney>.empty(growable: true);
+
+  DataInputs({required this.userText,
+    required this.userNumber,
+    });
+
+  factory DataInputs.fromJson(Map<String, dynamic> json) =>
+      _$DataInputsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DataInputsToJson(this);
+}
 
 
 
