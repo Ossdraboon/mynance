@@ -2,6 +2,7 @@ import 'package:MyNance/createAccountPage.dart';
 import 'package:MyNance/infoChartPage.dart';
 import 'package:MyNance/manageAccountPage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:metaballs/metaballs.dart';
 import 'loginPage.dart';
@@ -17,7 +18,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,9 +26,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
-      child: MaterialApp(
+    return MaterialApp(
         title: 'MyNance',
         theme: ThemeData(
           useMaterial3: true,
@@ -43,9 +42,7 @@ class MyApp extends StatelessWidget {
           '/info': (context) => const InfoChart(),
           //'/week': (context =>
         },
-        // home: const StartUpPage(),
-      ),
-    );
+    );// home: const StartUpPage(),
   }
 }
 

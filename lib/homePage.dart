@@ -1,6 +1,8 @@
 import 'package:MyNance/Model/ChartSectionConfiguration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'Model/MoneySectionConfiguration.dart';
 import 'Widgets/Layouts/InfoElement.dart';
 import 'Widgets/Layouts/HistoryBox.dart';
@@ -44,6 +46,50 @@ class DataInputs {
   Map<String, dynamic> toJson() => _$DataInputsToJson(this);
 }
 
+class Testobject {
+  String categories = "Other";
+  double? amount;
+}
+
+@riverpod
+class TestList extends _$TestList {
+  @override
+  List<Testobject> build() {
+    return List<Testobject>.empty(growable: true);
+  }
+
+  List<Testobject> _copy() {
+    return List.of(state);
+  }
+
+  add(Testobject object) {
+    List<Testobject> copy = _copy();
+    copy.add(object);
+    state = copy;
+  }
+}
+
+@riverpod
+class Testobjectbuilder extends _$Testobjectbuilder {
+  @override
+  Testobject build (){
+    return Testobject();
+  }
+
+  Testobject _copy() {
+    Testobject obj = Testobject();
+    obj.categories = state.categories;
+    obj.amount = state.amount;
+    return obj;
+  }
+
+  setCategory(String category) {
+    Testobject copy = _copy();
+    copy.categories = category;
+    state = copy;
+  }
+}
+
 
 
 class HomePage extends StatefulWidget {
@@ -53,10 +99,25 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+class ValueListener extends ConsumerWidget {
+  const ValueListener({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    Testobject value = ref.watch(testobjectbuilderProvider);
+
+    if(value.amount != null) {
+      ref.read(testListProvider.notifier).add(value);
+    }
+
+    return const SizedBox(width: 0, height: 0,);
+  }
+}
+
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       extendBody: true,
       body: LayoutBuilder(builder: (context, constrains) {
@@ -78,6 +139,7 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      const ValueListener(),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[

@@ -1,5 +1,7 @@
+import 'package:MyNance/homePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../Model/MoneySectionConfiguration.dart';
 
 const List<String> paymentList = <String>[
@@ -72,7 +74,7 @@ const List<String> paymentListYearlyManage = <String>[
   'TV'
 ];
 
-class DropDown extends StatefulWidget {
+class DropDown extends ConsumerWidget {
   late CategoryConfiguration _categoryConfiguration;
 
 
@@ -81,14 +83,9 @@ class DropDown extends StatefulWidget {
    }
 
   @override
-  State<DropDown> createState() => _DropDownState();
-}
-
-class _DropDownState extends State<DropDown> {
-  late String dropdownValue = widget._categoryConfiguration.categories.first;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    String currentValue = ref.watch(testobjectbuilderProvider).categories;
+     
     return Column(
       children: [
         const Text("Categories",
@@ -97,7 +94,7 @@ class _DropDownState extends State<DropDown> {
         ),
         DropdownButton<String>(
           iconSize: 0.0,
-          value: dropdownValue,
+          value: currentValue,
           isExpanded: true,
           underline: Container(),
           dropdownColor: Colors.transparent,
@@ -109,11 +106,11 @@ class _DropDownState extends State<DropDown> {
           alignment: Alignment.center,
           onChanged: (String? value) {
             // This is called when the user selects an item.
-            setState(() {
-              dropdownValue = value!;
-            });
+            if(value != null) {
+              ref.read(testobjectbuilderProvider.notifier).setCategory(value);
+            }
           },
-          items: widget._categoryConfiguration.categories.map<DropdownMenuItem<String>>((String value) {
+          items: _categoryConfiguration.categories.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: SizedBox(
@@ -155,7 +152,6 @@ class _DropDownState extends State<DropDown> {
     );
   }
 }
-
 
 
 
