@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:uuid/uuid.dart';
 import 'Model/MoneySectionConfiguration.dart';
 import 'Widgets/Layouts/InfoElement.dart';
 import 'Widgets/Layouts/HistoryBox.dart';
@@ -16,18 +17,66 @@ import 'package:json_annotation/json_annotation.dart';
 part 'homePage.g.dart';
 
 
+const _uuid = Uuid();
+
+/// A read-only description of a todo-item
+@immutable
+class Entry {
+  const Entry({
+    required this.categories,
+    required this.amount,
+    required this.id,
+
+  });
+  final String categories;
+  final double amount;
+  final String id;
+
+
+  @override
+  String toString() {
+    return 'Entry(ID: $id,Category: $categories, Value: $amount)';
+  }
+}
+
+/// An object that controls a list of [Entry].
+class EntryList extends StateNotifier<List<Entry>> {
+  EntryList([List<Entry>? historyitems]) : super(historyitems ?? []);
+
+  void add(String categories, double amount) {
+    state = [
+      ...state,
+      Entry(
+        id: _uuid.v4(),
+        amount: amount,
+        categories: categories,
+      ),
+    ];
+  }
+
+
+
+  void remove(Entry target) {
+    state = state.where((entry) => entry.id != target.id).toList();
+  }
+}
+
+
+
+
+
+
 @JsonSerializable()
 class DataBankMoney {
-  String categorie;
+  String categories;
   double value;
   DateTime created = DateTime.now();
 
-  DataBankMoney({required this.categorie, required this.value});
+  DataBankMoney({required this.categories, required this.value});
 
   factory DataBankMoney.fromJson(Map<String, dynamic> json) => _$DataBankMoneyFromJson(json);
   Map<String, dynamic> toJson() => _$DataBankMoneyToJson(this);
 }
-
 
 @JsonSerializable()
 class DataInputs {
@@ -45,6 +94,7 @@ class DataInputs {
 
   Map<String, dynamic> toJson() => _$DataInputsToJson(this);
 }
+
 
 class Testobject {
   String categories = "Other";
@@ -88,15 +138,12 @@ class Testobjectbuilder extends _$Testobjectbuilder {
     copy.categories = category;
     state = copy;
   }
-}
 
-
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
+  setAmount(double amount) {
+    Testobject copy = _copy();
+    copy.amount = amount;
+    state = copy;
+  }
 }
 
 class ValueListener extends ConsumerWidget {
@@ -114,6 +161,22 @@ class ValueListener extends ConsumerWidget {
   }
 }
 
+class MagicTitleListener extends ConsumerWidget {
+  const MagicTitleListener({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Text("${ref.watch(testobjectbuilderProvider).amount?.toString()??""} _ ${ref.watch(testobjectbuilderProvider).categories}"); }
+}
+
+
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
 class _HomePageState extends State<HomePage> {
   @override
@@ -221,6 +284,7 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      MagicTitleListener(),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
@@ -269,8 +333,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
 
 
 

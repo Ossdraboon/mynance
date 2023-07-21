@@ -8,13 +8,13 @@ part of 'homePage.dart';
 
 DataBankMoney _$DataBankMoneyFromJson(Map<String, dynamic> json) =>
     DataBankMoney(
-      categorie: json['categorie'] as String,
+      categories: json['categorie'] as String,
       value: (json['value'] as num).toDouble(),
     )..created = DateTime.parse(json['created'] as String);
 
 Map<String, dynamic> _$DataBankMoneyToJson(DataBankMoney instance) =>
     <String, dynamic>{
-      'categorie': instance.categorie,
+      'categorie': instance.categories,
       'value': instance.value,
       'created': instance.created.toIso8601String(),
     };
