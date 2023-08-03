@@ -1,22 +1,20 @@
+import 'package:MyNance/Providers/balanceEntryProvider.dart';
+import 'package:MyNance/Providers/balanceStorageProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../Buttons/MyIconButton.dart';
 
 
 
-class HistoryBox extends StatefulWidget {
-  late String _text;
+class HistoryBox extends ConsumerWidget {
+  late BalanceEntry _balanceEntry;
 
-  HistoryBox({required String text, super.key}) {
-    _text = text;
+  HistoryBox({required BalanceEntry balanceEntry, super.key}) {
+    _balanceEntry = balanceEntry;
   }
 
   @override
-  State<HistoryBox> createState() => _HistoryBox();
-}
-
-class _HistoryBox extends State<HistoryBox> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return
       Container(
         height: 40,
@@ -29,11 +27,13 @@ class _HistoryBox extends State<HistoryBox> {
         ),
         child: Row(
           children: [
-            const Icon(Icons.delete_forever,color: Colors.blueAccent,),
+            IconButton(icon: const Icon(Icons.delete_forever,color: Colors.blueAccent), onPressed: () {
+              ref.read(balanceStorageBuilderProvider.notifier).removeBalanceEntry(_balanceEntry);
+            }),
             SizedBox(width: 30),
-            Text("Categories", style: TextStyle(color: Colors.white),),
+            Text(_balanceEntry.categories, style: TextStyle(color: Colors.white),),
             const SizedBox(width: 50),
-            Text(widget._text, style: TextStyle(color: Colors.white),),
+            Text(_balanceEntry.amount.toString(), style: TextStyle(color: Colors.white),),
           ],
         ),
       );

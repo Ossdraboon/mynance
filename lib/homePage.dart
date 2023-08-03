@@ -1,4 +1,5 @@
 import 'package:MyNance/Model/ChartSectionConfiguration.dart';
+import 'package:MyNance/Widgets/historyList.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -54,17 +55,10 @@ class EntryList extends StateNotifier<List<Entry>> {
     ];
   }
 
-
-
   void remove(Entry target) {
     state = state.where((entry) => entry.id != target.id).toList();
   }
 }
-
-
-
-
-
 
 @JsonSerializable()
 class DataBankMoney {
@@ -96,78 +90,28 @@ class DataInputs {
 }
 
 
-class Testobject {
-  String categories = "Other";
-  double? amount;
-}
+// class ValueListener extends ConsumerWidget {
+//   const ValueListener({super.key});
+//
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     Testobject value = ref.watch(testobjectbuilderProvider);
+//
+//     if(value.amount != null) {
+//       ref.read(testListProvider.notifier).add(value);
+//     }
+//
+//     return const SizedBox(width: 0, height: 0,);
+//   }
+// }
 
-@riverpod
-class TestList extends _$TestList {
-  @override
-  List<Testobject> build() {
-    return List<Testobject>.empty(growable: true);
-  }
-
-  List<Testobject> _copy() {
-    return List.of(state);
-  }
-
-  add(Testobject object) {
-    List<Testobject> copy = _copy();
-    copy.add(object);
-    state = copy;
-  }
-}
-
-@riverpod
-class Testobjectbuilder extends _$Testobjectbuilder {
-  @override
-  Testobject build (){
-    return Testobject();
-  }
-
-  Testobject _copy() {
-    Testobject obj = Testobject();
-    obj.categories = state.categories;
-    obj.amount = state.amount;
-    return obj;
-  }
-
-  setCategory(String category) {
-    Testobject copy = _copy();
-    copy.categories = category;
-    state = copy;
-  }
-
-  setAmount(double amount) {
-    Testobject copy = _copy();
-    copy.amount = amount;
-    state = copy;
-  }
-}
-
-class ValueListener extends ConsumerWidget {
-  const ValueListener({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    Testobject value = ref.watch(testobjectbuilderProvider);
-
-    if(value.amount != null) {
-      ref.read(testListProvider.notifier).add(value);
-    }
-
-    return const SizedBox(width: 0, height: 0,);
-  }
-}
-
-class MagicTitleListener extends ConsumerWidget {
-  const MagicTitleListener({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Text("${ref.watch(testobjectbuilderProvider).amount?.toString()??""} _ ${ref.watch(testobjectbuilderProvider).categories}"); }
-}
+// class MagicTitleListener extends ConsumerWidget {
+//   const MagicTitleListener({super.key});
+//
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     return Text("${ref.watch(testobjectbuilderProvider).amount?.toString()??""} _ ${ref.watch(testobjectbuilderProvider).categories}"); }
+// }
 
 
 
@@ -202,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const ValueListener(),
+                      //const ValueListener(),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
@@ -212,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                               CategoryConfiguration(paymentList),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
                               QuickValueConfiguration(quickmoneyList,-1),
-                            HistoryBoxConfiguration(historyList),
+                            HistoryBoxConfiguration(true),
                           ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
@@ -220,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                               CategoryConfiguration(incomeList),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
                               QuickValueConfiguration(quickmoneyList,1),
-                            HistoryBoxConfiguration(historyList),
+                            HistoryBoxConfiguration(true),
                           ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
@@ -228,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                               CategoryConfiguration(goalList),
                               InputFieldConfiguration("individually Goal","add Gaol",Icons.savings_outlined),
                               QuickValueConfiguration(quickmoneyList,1),
-                            HistoryBoxConfiguration(historyList),
+                            HistoryBoxConfiguration(true),
                           ),),
                           const SizedBox(height: 20),
                         ],
@@ -284,7 +228,7 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      MagicTitleListener(),
+                      //MagicTitleListener(),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
@@ -293,8 +237,8 @@ class _HomePageState extends State<HomePage> {
                           MoneySectionConfiguration("PAYMENT","manage your daily Payments here",
                               CategoryConfiguration(paymentList),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
-                              QuickValueConfiguration(quickmoneyList,-1),
-                              HistoryBoxConfiguration(historyList),
+                              QuickValueConfiguration(quickmoneyList,1),
+                              HistoryBoxConfiguration(true),
                           ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
@@ -302,7 +246,7 @@ class _HomePageState extends State<HomePage> {
                               CategoryConfiguration(incomeList),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
                               QuickValueConfiguration(quickmoneyList,1),
-                              HistoryBoxConfiguration(historyList),
+                              HistoryBoxConfiguration(true),
                           ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
@@ -310,7 +254,7 @@ class _HomePageState extends State<HomePage> {
                               CategoryConfiguration(goalList),
                               InputFieldConfiguration("individually Goal","add Gaol",Icons.savings_outlined),
                               QuickValueConfiguration(quickmoneyList,1),
-                            HistoryBoxConfiguration(historyList),
+                            HistoryBoxConfiguration(true),
                           ),),
                           const SizedBox(height: 20),
                         ],
@@ -403,20 +347,7 @@ class _MoneySectionBuilderState extends State<MoneySectionBuilder> {
                         .toList()
                 ),
                 const SizedBox(height: 20),
-                const Text("History List",style: TextStyle(color: Colors.white,fontSize: 20)),
-                const SizedBox(height: 10),
-                 Container(
-                   height: 200,
-                   child: SingleChildScrollView(
-                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: widget._sectionConfiguration.historyBoxConfiguration.values
-                          .map((element) => HistoryBox(
-                        text: element.toString(),
-                      ))
-                          .toList()),
-                   ),
-                 ),
+                HistoryList(widget._sectionConfiguration.historyBoxConfiguration)
               ],
             ),
           ),

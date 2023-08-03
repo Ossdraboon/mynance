@@ -1,3 +1,4 @@
+import 'package:MyNance/Providers/balanceEntryProvider.dart';
 import 'package:MyNance/homePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -84,7 +85,7 @@ class DropDown extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    String currentValue = ref.watch(testobjectbuilderProvider).categories;
+    String currentValue = ref.watch(balanceEntryBuilderProvider).categories;
      
     return Column(
       children: [
@@ -107,7 +108,7 @@ class DropDown extends ConsumerWidget {
           onChanged: (String? value) {
             // This is called when the user selects an item.
             if(value != null) {
-              ref.read(testobjectbuilderProvider.notifier).setCategory(value);
+              ref.read(balanceEntryBuilderProvider.notifier).setCategory(value);
             }
           },
           items: _categoryConfiguration.categories.map<DropdownMenuItem<String>>((String value) {

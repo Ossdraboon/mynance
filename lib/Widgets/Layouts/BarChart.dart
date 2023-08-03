@@ -147,7 +147,7 @@ class _SandboxState extends State<Sandbox> {
     }
 
 
-    print("Interval calculator: "+((widget._barChartConfiguration.barchartValues.reduce(max)).ceil()).toString() +"["+ value.toString()+"]");
+   // print("Interval calculator: "+((widget._barChartConfiguration.barchartValues.reduce(max)).ceil()).toString() +"["+ value.toString()+"]");
 
       return FlTitlesData(
           show: true,
@@ -185,7 +185,7 @@ class _SandboxState extends State<Sandbox> {
         label = value.toStringAsFixed(0);
       }
     }
-    print("leftTitles: $lastVerticalValue $value [$label]");
+   // print("leftTitles: $lastVerticalValue $value [$label]");
 
     final Widget text = Text(
       label,

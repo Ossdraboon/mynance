@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../Providers/balanceEntryProvider.dart';
 
 
 
-class QuickMoney extends StatefulWidget {
+class QuickMoney extends ConsumerWidget {
   late String _text;
 
   QuickMoney({required String text, super.key}) {
@@ -11,12 +14,7 @@ class QuickMoney extends StatefulWidget {
   }
 
   @override
-  State<QuickMoney> createState() => _QuickMoney();
-}
-
-class _QuickMoney extends State<QuickMoney> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return
       Container(
         height: 40,
@@ -55,9 +53,9 @@ class _QuickMoney extends State<QuickMoney> {
             textStyle: const TextStyle(fontSize: 18),
           ),
           onPressed: () {
-            print("paid: , ${widget._text}");
+            ref.read(balanceEntryBuilderProvider.notifier).setAmount(double.parse(_text));
           },
-          child: Text("€${widget._text}"),
+          child: Text("€$_text"),
         ),
       );
   }

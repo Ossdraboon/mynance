@@ -36,7 +36,7 @@ class QuickValueConfiguration {
 }
 
 class HistoryBoxConfiguration {
-  List<num> values;
+  bool isincome;
 
-  HistoryBoxConfiguration(this.values);
+  HistoryBoxConfiguration(this.isincome);
 }
