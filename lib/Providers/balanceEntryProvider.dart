@@ -7,6 +7,7 @@ part 'balanceEntryProvider.g.dart';
 class BalanceEntry {
   String categories = "Other";
   double? amount;
+  DateTime created = DateTime.now();
 }
 
 
@@ -21,12 +22,13 @@ class BalanceEntryBuilder extends _$BalanceEntryBuilder {
     BalanceEntry obj = BalanceEntry();
     obj.categories = state.categories;
     obj.amount = state.amount;
+    obj.created = DateTime.now();
     return obj;
   }
 
   checkState() {
     if(state.amount != null) {
-      //add Entry in balanceStorageProvider
+      //add Entry in balanceStorageProvidera
       ref.read(balanceStorageBuilderProvider.notifier).addBalanceEntry(state);
       state = BalanceEntry();
     }

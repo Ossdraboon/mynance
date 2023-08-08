@@ -29,10 +29,10 @@ class Numberfield extends ConsumerWidget {
         controller: _nrFieldController,
         style: const TextStyle(color: Colors.white, fontSize: 25),
         keyboardType: TextInputType.number,
-        // inputFormatters: <TextInputFormatter>[
-        //   FilteringTextInputFormatter.allow(
-        //       RegExp(r'^(?=\D*(?:\d\D*){1,12}$)(\d+(?:\.\d{0,2})?$)')),   //\b
-        // ],
+        inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.allow(
+              RegExp(r'^(?=\D*(?:\d\D*){1,10}$)(\d+(?:\.\d{0,2})?$)')),   //\b
+        ],
         decoration: InputDecoration(
           labelText: _inputFieldConfiguration.text,
           labelStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
@@ -46,7 +46,7 @@ class Numberfield extends ConsumerWidget {
             ref.read(balanceEntryBuilderProvider.notifier).setAmount(value);
            // node.unfocus();
           FocusScope.of(context).unfocus();
-            print("Textfeld Betrag ist: $value");
+           //print("Textfeld Betrag ist: $value");
          },
       );
   }

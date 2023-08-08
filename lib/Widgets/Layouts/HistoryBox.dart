@@ -2,6 +2,7 @@ import 'package:MyNance/Providers/balanceEntryProvider.dart';
 import 'package:MyNance/Providers/balanceStorageProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import '../Buttons/MyIconButton.dart';
 
 
@@ -17,7 +18,7 @@ class HistoryBox extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return
       Container(
-        height: 40,
+        height: 80,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           border: Border.all(
@@ -25,17 +26,32 @@ class HistoryBox extends ConsumerWidget {
               color: Colors.white.withOpacity(0.5)),
           borderRadius: BorderRadius.circular(5.0),
         ),
-        child: Row(
-          children: [
-            IconButton(icon: const Icon(Icons.delete_forever,color: Colors.blueAccent), onPressed: () {
-              ref.read(balanceStorageBuilderProvider.notifier).removeBalanceEntry(_balanceEntry);
-            }),
-            SizedBox(width: 30),
-            Text(_balanceEntry.categories, style: TextStyle(color: Colors.white),),
-            const SizedBox(width: 50),
-            Text(_balanceEntry.amount.toString(), style: TextStyle(color: Colors.white),),
-          ],
-        ),
+        child:
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(icon: const Icon(Icons.delete_forever,color: Colors.blueAccent,size: 25,), onPressed: () {
+                      ref.read(balanceStorageBuilderProvider.notifier).removeBalanceEntry(_balanceEntry);
+                    }),
+                    Expanded(child: Text(_balanceEntry.categories, style: TextStyle(color: Colors.white,fontSize: 20),)),
+                    // SizedBox(width: 30,),
+                    Expanded(child: Text("€ ${_balanceEntry.amount!.toStringAsFixed(2)}", textAlign: TextAlign.right, style: TextStyle(color: Colors.white,fontSize: 20),)),
+                    SizedBox(width: 20,)
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(width: 50,),
+                    Expanded(child: Text("Date of Booking Entry :", style: TextStyle(color: Colors.white), )),
+                    Expanded(child: Text(DateFormat("y.MM.dd. HH:mm").format(_balanceEntry.created),textAlign: TextAlign.right, style:TextStyle(color: Colors.white) , )),
+                    SizedBox(width: 20,)
+                  ],
+                )
+              ],
+            ),
       );
   }
 }

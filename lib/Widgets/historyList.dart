@@ -18,7 +18,7 @@ class HistoryList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     List<BalanceEntry> entries;
 
-    if(configuration.isincome) {
+    if(configuration.isincome == true) {
       entries = ref.watch(incomeBalanceEntriesProvider);
     } else {
       entries = ref.watch(paymentBalanceEntriesProvider);

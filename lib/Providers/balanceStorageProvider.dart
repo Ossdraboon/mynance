@@ -1,9 +1,7 @@
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'balanceEntryProvider.dart';
-
 part 'balanceStorageProvider.g.dart';
+
 
 @riverpod
 class BalanceStorageBuilder extends _$BalanceStorageBuilder {

@@ -35,6 +35,9 @@ class QuickValueConfiguration {
   QuickValueConfiguration(this.values, this.signe);
 }
 
+enum Liste {paymant, income, goal}
+
+
 class HistoryBoxConfiguration {
   bool isincome;
 

@@ -20,7 +20,7 @@ part 'homePage.g.dart';
 
 const _uuid = Uuid();
 
-/// A read-only description of a todo-item
+
 @immutable
 class Entry {
   const Entry({
@@ -238,7 +238,7 @@ class _HomePageState extends State<HomePage> {
                               CategoryConfiguration(paymentList),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
                               QuickValueConfiguration(quickmoneyList,1),
-                              HistoryBoxConfiguration(true),
+                              HistoryBoxConfiguration(false),
                           ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
