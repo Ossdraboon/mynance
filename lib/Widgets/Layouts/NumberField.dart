@@ -3,23 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../Model/MoneySectionConfiguration.dart';
-import '../../homePage.dart';
-
 
 class Numberfield extends ConsumerWidget {
 
   late InputFieldConfiguration _inputFieldConfiguration;
+  late MoneySectionConfiguration _configuration;
 
   final TextEditingController _nrFieldController = TextEditingController();
-  final FocusNode node = FocusNode();
 
-  Numberfield({required InputFieldConfiguration inputFieldConfiguration, super.key}) {
+  Numberfield({required InputFieldConfiguration inputFieldConfiguration, required MoneySectionConfiguration configuration, super.key}) {
     _inputFieldConfiguration = inputFieldConfiguration;
+    _configuration = configuration;
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    _nrFieldController.text = ref.watch(balanceEntryBuilderProvider).amount?.toString()??"";
+    _nrFieldController.text = ref.watch(balanceEntryBuilderProvider).getBalanceEntry(_configuration.id).amount?.toString()??"";
     _nrFieldController.selection = TextSelection.fromPosition(TextPosition(offset: _nrFieldController.text.length));
     //_nrFieldController.selection = TextSelection.collapsed(offset: _nrFieldController.text.length-1);
 
@@ -43,8 +42,8 @@ class Numberfield extends ConsumerWidget {
         ),
          onFieldSubmitted: (str){
           double? value = double.tryParse(str);
-            ref.read(balanceEntryBuilderProvider.notifier).setAmount(value);
-           // node.unfocus();
+          ref.read(balanceEntryBuilderProvider.notifier).setBalanceType(_configuration.id,_configuration.historyBoxConfiguration.balanceType);
+          ref.read(balanceEntryBuilderProvider.notifier).setAmount(_configuration.id,value);
           FocusScope.of(context).unfocus();
            //print("Textfeld Betrag ist: $value");
          },

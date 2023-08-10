@@ -3,11 +3,26 @@
 part of 'balanceStorageProvider.dart';
 
 // **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+BalanceEntryList _$BalanceEntryListFromJson(Map<String, dynamic> json) =>
+    BalanceEntryList()
+      ..entries = (json['entries'] as List<dynamic>)
+          .map((e) => BalanceEntry.fromJson(e as Map<String, dynamic>))
+          .toList();
+
+Map<String, dynamic> _$BalanceEntryListToJson(BalanceEntryList instance) =>
+    <String, dynamic>{
+      'entries': instance.entries,
+    };
+
+// **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
 String _$paymentBalanceEntriesHash() =>
-    r'6b3d71deed6186c3e5105e27e50b2d62c99e541d';
+    r'4d163c76039db539741a7162d9606eba0c0ccec1';
 
 /// See also [paymentBalanceEntries].
 @ProviderFor(paymentBalanceEntries)
@@ -24,7 +39,7 @@ final paymentBalanceEntriesProvider =
 
 typedef PaymentBalanceEntriesRef = AutoDisposeProviderRef<List<BalanceEntry>>;
 String _$incomeBalanceEntriesHash() =>
-    r'0fcd3710dd43b0b5401258abe454b27a00d2da9d';
+    r'c77964683ea3c22242f28fc276b2e87bd2e5b801';
 
 /// See also [incomeBalanceEntries].
 @ProviderFor(incomeBalanceEntries)
@@ -41,7 +56,7 @@ final incomeBalanceEntriesProvider =
 
 typedef IncomeBalanceEntriesRef = AutoDisposeProviderRef<List<BalanceEntry>>;
 String _$balanceStorageBuilderHash() =>
-    r'd97c6f785b1851c5a99683ebe53f34b78a79e405';
+    r'2e6b0d2e27103ecfed6a3f0edab8763035ededb6';
 
 /// See also [BalanceStorageBuilder].
 @ProviderFor(BalanceStorageBuilder)

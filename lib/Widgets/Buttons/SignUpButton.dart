@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../Providers/accountCreateProvider.dart';
 
 
-class SignUpButton extends StatelessWidget {
+class SignUpButton extends ConsumerWidget {
   const SignUpButton({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
 
 
 
@@ -45,7 +48,12 @@ class SignUpButton extends StatelessWidget {
           shadowColor: Colors.transparent,
         ),
         onPressed: () {
-          Navigator.of(context).pushNamed('/home', arguments: "StartUpManage");
+            String name = ref.watch(accountCreateBuilderProvider).name;
+
+          FocusScope.of(context).unfocus();
+
+            print("name ist :" +name);
+          //Navigator.of(context).pushNamed('/home', arguments: "StartUpManage");
         },
         child: const Text('Sign Up'),
       ),

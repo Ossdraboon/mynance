@@ -1,3 +1,4 @@
+import 'package:MyNance/Model/MoneySectionConfiguration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,9 +9,11 @@ import '../../Providers/balanceEntryProvider.dart';
 
 class QuickMoney extends ConsumerWidget {
   late String _text;
+  late MoneySectionConfiguration _configuration;
 
-  QuickMoney({required String text, super.key}) {
+  QuickMoney(MoneySectionConfiguration configuration, {required String text, super.key}) {
     _text = text;
+    _configuration = configuration;
   }
 
   @override
@@ -53,7 +56,8 @@ class QuickMoney extends ConsumerWidget {
             textStyle: const TextStyle(fontSize: 18),
           ),
           onPressed: () {
-            ref.read(balanceEntryBuilderProvider.notifier).setAmount(double.parse(_text));
+            ref.read(balanceEntryBuilderProvider.notifier).setBalanceType(_configuration.id, _configuration.historyBoxConfiguration.balanceType);
+            ref.read(balanceEntryBuilderProvider.notifier).setAmount(_configuration.id,double.parse(_text));
           },
           child: Text("€$_text"),
         ),

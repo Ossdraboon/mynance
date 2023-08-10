@@ -1,10 +1,15 @@
+import 'package:MyNance/Providers/accountCreateProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
 
-class Textfield extends StatefulWidget {
+class Textfield extends ConsumerWidget {
   late String _hint;
   late IconData _icon;
+
+  final TextEditingController _nameFieldController = TextEditingController();
+  final FocusNode node = FocusNode();
 
   Textfield({required String hint, required IconData icon, super.key}) {
     _hint = hint;
@@ -12,12 +17,9 @@ class Textfield extends StatefulWidget {
   }
 
   @override
-  State<Textfield> createState() => _TextfieldState();
-}
-
-class _TextfieldState extends State<Textfield> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    _nameFieldController.text = ref.watch(accountCreateBuilderProvider).name;
+    _nameFieldController.selection = TextSelection.fromPosition(TextPosition(offset: _nameFieldController.text.length));
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Container(
@@ -43,18 +45,27 @@ class _TextfieldState extends State<Textfield> {
         ),
 
         child: TextFormField(
+          controller: _nameFieldController,
           style: const TextStyle(color: Colors.white, fontSize: 25),
           keyboardType: TextInputType.text,
           decoration:
           InputDecoration(
             border: InputBorder.none,
-              labelText: widget._hint,
+              labelText: _hint,
               labelStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
               iconColor: Colors.blueAccent,
-              icon: Icon(widget._icon),
-              hintText: widget._hint,
+              icon: Icon(_icon),
+              hintText: _hint,
             hintStyle: const TextStyle(color: Colors.white, fontSize: 18.0),
           ),
+          // onFieldSubmitted: (str) {
+          //
+          //   ref
+          //       .read(accountCreateBuilderProvider.notifier)
+          //       .setName();
+          //   // node.unfocus();
+          //   FocusScope.of(context).unfocus();
+          // },
         ),
       ),
     );

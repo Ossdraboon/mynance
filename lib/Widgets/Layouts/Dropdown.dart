@@ -76,16 +76,16 @@ const List<String> paymentListYearlyManage = <String>[
 ];
 
 class DropDown extends ConsumerWidget {
-  late CategoryConfiguration _categoryConfiguration;
+  late MoneySectionConfiguration _configuration;
 
 
-   DropDown({required CategoryConfiguration categoryConfiguration,super.key}){
-     _categoryConfiguration = categoryConfiguration;
+   DropDown({required MoneySectionConfiguration configuration,super.key}){
+     _configuration = configuration;
    }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    String currentValue = ref.watch(balanceEntryBuilderProvider).categories;
+    String currentValue = ref.watch(balanceEntryBuilderProvider).getBalanceEntry(_configuration.id).categories;
      
     return Column(
       children: [
@@ -108,10 +108,10 @@ class DropDown extends ConsumerWidget {
           onChanged: (String? value) {
             // This is called when the user selects an item.
             if(value != null) {
-              ref.read(balanceEntryBuilderProvider.notifier).setCategory(value);
+              ref.read(balanceEntryBuilderProvider.notifier).setCategory(_configuration.id, value);
             }
           },
-          items: _categoryConfiguration.categories.map<DropdownMenuItem<String>>((String value) {
+          items: _configuration.categoryConfiguration.categories.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: SizedBox(

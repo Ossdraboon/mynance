@@ -8,14 +8,11 @@ var quickmoneyList = [5, 10, 20, 50];
 
 
 class MoneySection extends StatefulWidget {
-  late CategoryConfiguration _categoryConfiguration;
-  late InputFieldConfiguration _inputFieldConfiguration;
+  late MoneySectionConfiguration _configuration;
 
   MoneySection({
-    super.key, required CategoryConfiguration categoryConfiguration, required InputFieldConfiguration inputFieldConfiguration
-  }) {
-    _categoryConfiguration = categoryConfiguration;
-    _inputFieldConfiguration = inputFieldConfiguration;
+    super.key, required MoneySectionConfiguration configuration }) {
+    _configuration = configuration;
   }
 
   @override
@@ -30,7 +27,7 @@ class _MoneySectionState extends State<MoneySection> {
         const SizedBox(
           width: 10,
         ),
-         Expanded(flex: 4, child: DropDown(categoryConfiguration: widget._categoryConfiguration)),
+         Expanded(flex: 4, child: DropDown(configuration: widget._configuration)),
         const SizedBox(
           width: 10,
         ),
@@ -65,7 +62,7 @@ class _MoneySectionState extends State<MoneySection> {
               ],
             ),
 
-            child: Numberfield(inputFieldConfiguration: widget._inputFieldConfiguration),
+            child: Numberfield(inputFieldConfiguration: widget._configuration.inputFieldConfiguration, configuration: widget._configuration),
           ),
         ),
         const SizedBox(

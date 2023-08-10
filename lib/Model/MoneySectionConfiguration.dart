@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../Providers/balanceEntryProvider.dart';
+
 
 
 class MoneySectionConfiguration {
+  int id;
   String title;
   String subtitle;
   CategoryConfiguration categoryConfiguration;
@@ -11,7 +14,7 @@ class MoneySectionConfiguration {
   QuickValueConfiguration quickValueConfiguration;
   HistoryBoxConfiguration historyBoxConfiguration;
 
-  MoneySectionConfiguration(this.title, this.subtitle, this.categoryConfiguration,
+  MoneySectionConfiguration(this.id, this.title, this.subtitle, this.categoryConfiguration,
       this.inputFieldConfiguration, this.quickValueConfiguration, this.historyBoxConfiguration);
 }
 
@@ -35,11 +38,8 @@ class QuickValueConfiguration {
   QuickValueConfiguration(this.values, this.signe);
 }
 
-enum Liste {paymant, income, goal}
-
-
 class HistoryBoxConfiguration {
-  bool isincome;
+  BalanceType balanceType;
 
-  HistoryBoxConfiguration(this.isincome);
+  HistoryBoxConfiguration(this.balanceType);
 }

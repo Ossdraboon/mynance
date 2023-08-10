@@ -1,3 +1,4 @@
+import 'package:MyNance/Providers/balanceEntryProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'Model/MoneySectionConfiguration.dart';
@@ -40,11 +41,11 @@ class ManageAccount extends StatelessWidget {
                         children: <Widget>[
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration("YEARLY FIX COST","manage your yearly Costs here",
+                          MoneySectionConfiguration(3,"YEARLY FIX COST","manage your yearly Costs here",
                               CategoryConfiguration(paymentListYearlyManage),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
                               QuickValueConfiguration(quickmoneyList,-1),
-                            HistoryBoxConfiguration(true),
+                            HistoryBoxConfiguration(BalanceType.payment),
                           ),),
                         ],
                       ),
@@ -53,11 +54,11 @@ class ManageAccount extends StatelessWidget {
                         children: <Widget>[
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration("MONTHLY FIX COST","manage your monthly Cost here",
+                          MoneySectionConfiguration(4,"MONTHLY FIX COST","manage your monthly Cost here",
                               CategoryConfiguration(paymentListMonthlyManage),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
                               QuickValueConfiguration(quickmoneyList,-1),
-                            HistoryBoxConfiguration(true),
+                            HistoryBoxConfiguration(BalanceType.payment),
                           ),),
                         ],
                       ),
@@ -65,22 +66,22 @@ class ManageAccount extends StatelessWidget {
                         children: [
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration("YEARLY INCOME","manage your yearly Income here",
+                          MoneySectionConfiguration(5,"YEARLY INCOME","manage your yearly Income here",
                               CategoryConfiguration(incomeListMonthlyManage),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
                               QuickValueConfiguration(quickmoneyList,1),
-                            HistoryBoxConfiguration(true),
+                            HistoryBoxConfiguration(BalanceType.income),
                           ),),
                         ],
                       ),Column(
                         children: [
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration("MONTHLY INCOME","manage your monthly Income here",
+                          MoneySectionConfiguration(6,"MONTHLY INCOME","manage your monthly Income here",
                               CategoryConfiguration(incomeListYearlyManage),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
                               QuickValueConfiguration(quickmoneyList,1),
-                            HistoryBoxConfiguration(true),
+                            HistoryBoxConfiguration(BalanceType.income),
                           ),),
                           const SizedBox(height: 20),
                         ],
@@ -138,11 +139,11 @@ class ManageAccount extends StatelessWidget {
                         children: <Widget>[
                           const SizedBox(height: 100),
                           MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration("YEARLY FIX COST","manage your yearly Costs here",
+                          MoneySectionConfiguration(3,"YEARLY FIX COST","manage your yearly Costs here",
                               CategoryConfiguration(paymentListYearlyManage),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
                               QuickValueConfiguration(quickmoneyList,-1),
-                            HistoryBoxConfiguration(true),
+                            HistoryBoxConfiguration(BalanceType.payment),
                           ),),
                         ],
                       ),
@@ -151,11 +152,11 @@ class ManageAccount extends StatelessWidget {
                         children: <Widget>[
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration("MONTHLY FIX COST","manage your monthly Cost here",
+                          MoneySectionConfiguration(4,"MONTHLY FIX COST","manage your monthly Cost here",
                               CategoryConfiguration(paymentListMonthlyManage),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
                               QuickValueConfiguration(quickmoneyList,-1),
-                            HistoryBoxConfiguration(true),
+                            HistoryBoxConfiguration(BalanceType.payment),
                           ),),
                         ],
                       ),
@@ -163,22 +164,22 @@ class ManageAccount extends StatelessWidget {
                         children: [
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration("YEARLY INCOME","manage your yearly Income here",
+                          MoneySectionConfiguration(5,"YEARLY INCOME","manage your yearly Income here",
                               CategoryConfiguration(incomeListMonthlyManage),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
                               QuickValueConfiguration(quickmoneyList,1),
-                            HistoryBoxConfiguration(true),
+                            HistoryBoxConfiguration(BalanceType.income),
                           ),),
                         ],
                       ),Column(
                         children: [
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration("MONTHLY INCOME","manage your monthly Income here",
+                          MoneySectionConfiguration(6,"MONTHLY INCOME","manage your monthly Income here",
                               CategoryConfiguration(incomeListYearlyManage),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
                               QuickValueConfiguration(quickmoneyList,1),
-                            HistoryBoxConfiguration(true),
+                            HistoryBoxConfiguration(BalanceType.income),
                           ),),
                           const SizedBox(height: 20),
                         ],

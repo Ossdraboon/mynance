@@ -517,7 +517,7 @@ class BirthdaySection extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            const Row(
+             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Icon(
@@ -649,8 +649,8 @@ class _BirthDateState extends State<BirthDate> with RestorationMixin {
               onPressed: () {
                 _restorableDatePickerRouteFuture.present();
               },
-              child: const Text(
-                'Pick your Birthday',
+              child:  Text(
+                  'Selected: ${_selectedDate.value.day}/${_selectedDate.value.month}/${_selectedDate.value.year}',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,

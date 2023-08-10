@@ -3,16 +3,40 @@
 part of 'balanceEntryProvider.dart';
 
 // **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+BalanceEntry _$BalanceEntryFromJson(Map<String, dynamic> json) => BalanceEntry()
+  ..categories = json['categories'] as String
+  ..amount = (json['amount'] as num?)?.toDouble()
+  ..created = DateTime.parse(json['created'] as String)
+  ..balanceType = $enumDecode(_$BalanceTypeEnumMap, json['balanceType']);
+
+Map<String, dynamic> _$BalanceEntryToJson(BalanceEntry instance) =>
+    <String, dynamic>{
+      'categories': instance.categories,
+      'amount': instance.amount,
+      'created': instance.created.toIso8601String(),
+      'balanceType': _$BalanceTypeEnumMap[instance.balanceType]!,
+    };
+
+const _$BalanceTypeEnumMap = {
+  BalanceType.payment: 'payment',
+  BalanceType.income: 'income',
+  BalanceType.goal: 'goal',
+};
+
+// **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
 String _$balanceEntryBuilderHash() =>
-    r'e4aef10b77a74cfa1ee144fadbc3d0191435c794';
+    r'f0346a0d188af70dc31c71de2c03f4ddcb4acadb';
 
 /// See also [BalanceEntryBuilder].
 @ProviderFor(BalanceEntryBuilder)
 final balanceEntryBuilderProvider =
-    AutoDisposeNotifierProvider<BalanceEntryBuilder, BalanceEntry>.internal(
+    AutoDisposeNotifierProvider<BalanceEntryBuilder, BalanceMap>.internal(
   BalanceEntryBuilder.new,
   name: r'balanceEntryBuilderProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,7 +46,7 @@ final balanceEntryBuilderProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$BalanceEntryBuilder = AutoDisposeNotifier<BalanceEntry>;
+typedef _$BalanceEntryBuilder = AutoDisposeNotifier<BalanceMap>;
 String _$testListHash() => r'230d0773b9ebecf8c3661569511b259ebe97ba23';
 
 /// See also [TestList].

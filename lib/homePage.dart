@@ -2,92 +2,13 @@ import 'package:MyNance/Model/ChartSectionConfiguration.dart';
 import 'package:MyNance/Widgets/historyList.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:uuid/uuid.dart';
 import 'Model/MoneySectionConfiguration.dart';
+import 'Providers/balanceEntryProvider.dart';
 import 'Widgets/Layouts/InfoElement.dart';
-import 'Widgets/Layouts/HistoryBox.dart';
 import 'Widgets/Layouts/MoneyElements.dart';
 import 'main.dart';
 import 'package:MyNance/Widgets/Layouts/Dropdown.dart';
 import 'package:MyNance/Widgets/Buttons/QuickMoney.dart';
-import 'Widgets/Layouts/BarChart.dart';
-import 'package:json_annotation/json_annotation.dart';
-
-part 'homePage.g.dart';
-
-
-const _uuid = Uuid();
-
-
-@immutable
-class Entry {
-  const Entry({
-    required this.categories,
-    required this.amount,
-    required this.id,
-
-  });
-  final String categories;
-  final double amount;
-  final String id;
-
-
-  @override
-  String toString() {
-    return 'Entry(ID: $id,Category: $categories, Value: $amount)';
-  }
-}
-
-/// An object that controls a list of [Entry].
-class EntryList extends StateNotifier<List<Entry>> {
-  EntryList([List<Entry>? historyitems]) : super(historyitems ?? []);
-
-  void add(String categories, double amount) {
-    state = [
-      ...state,
-      Entry(
-        id: _uuid.v4(),
-        amount: amount,
-        categories: categories,
-      ),
-    ];
-  }
-
-  void remove(Entry target) {
-    state = state.where((entry) => entry.id != target.id).toList();
-  }
-}
-
-@JsonSerializable()
-class DataBankMoney {
-  String categories;
-  double value;
-  DateTime created = DateTime.now();
-
-  DataBankMoney({required this.categories, required this.value});
-
-  factory DataBankMoney.fromJson(Map<String, dynamic> json) => _$DataBankMoneyFromJson(json);
-  Map<String, dynamic> toJson() => _$DataBankMoneyToJson(this);
-}
-
-@JsonSerializable()
-class DataInputs {
-  String userText;
-  double userNumber;
-
-  List<DataBankMoney> inputlist = List<DataBankMoney>.empty(growable: true);
-
-  DataInputs({required this.userText,
-    required this.userNumber,
-    });
-
-  factory DataInputs.fromJson(Map<String, dynamic> json) =>
-      _$DataInputsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$DataInputsToJson(this);
-}
 
 
 // class ValueListener extends ConsumerWidget {
@@ -152,27 +73,27 @@ class _HomePageState extends State<HomePage> {
                         children: <Widget>[
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration("PAYMENT","manage your daily Payments here",
+                          MoneySectionConfiguration(0,"PAYMENT","manage your daily Payments here",
                               CategoryConfiguration(paymentList),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
                               QuickValueConfiguration(quickmoneyList,-1),
-                            HistoryBoxConfiguration(true),
+                            HistoryBoxConfiguration(BalanceType.payment),
                           ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration("INCOME","manage your daily Income here",
+                          MoneySectionConfiguration(1,"INCOME","manage your daily Income here",
                               CategoryConfiguration(incomeList),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
                               QuickValueConfiguration(quickmoneyList,1),
-                            HistoryBoxConfiguration(true),
+                            HistoryBoxConfiguration(BalanceType.income),
                           ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration("GOAL","set your Goal here",
+                          MoneySectionConfiguration(2,"GOAL","set your Goal here",
                               CategoryConfiguration(goalList),
                               InputFieldConfiguration("individually Goal","add Gaol",Icons.savings_outlined),
                               QuickValueConfiguration(quickmoneyList,1),
-                            HistoryBoxConfiguration(true),
+                            HistoryBoxConfiguration(BalanceType.payment),
                           ),),
                           const SizedBox(height: 20),
                         ],
@@ -234,27 +155,27 @@ class _HomePageState extends State<HomePage> {
                         children: <Widget>[
                           const SizedBox(height: 180),
                           MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration("PAYMENT","manage your daily Payments here",
+                          MoneySectionConfiguration(0,"PAYMENT","manage your daily Payments here",
                               CategoryConfiguration(paymentList),
                               InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
                               QuickValueConfiguration(quickmoneyList,1),
-                              HistoryBoxConfiguration(false),
+                              HistoryBoxConfiguration(BalanceType.payment),
                           ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration("INCOME","manage your daily Income here",
+                          MoneySectionConfiguration(1,"INCOME","manage your daily Income here",
                               CategoryConfiguration(incomeList),
                               InputFieldConfiguration("individually Income","add Income",Icons.add),
                               QuickValueConfiguration(quickmoneyList,1),
-                              HistoryBoxConfiguration(true),
+                              HistoryBoxConfiguration(BalanceType.income),
                           ),),
                           const SizedBox(height: 20),
                           MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration("GOAL","set your Goal here",
+                          MoneySectionConfiguration(2,"GOAL","set your Goal here",
                               CategoryConfiguration(goalList),
                               InputFieldConfiguration("individually Goal","add Gaol",Icons.savings_outlined),
                               QuickValueConfiguration(quickmoneyList,1),
-                            HistoryBoxConfiguration(true),
+                            HistoryBoxConfiguration(BalanceType.payment),
                           ),),
                           const SizedBox(height: 20),
                         ],
@@ -334,14 +255,14 @@ class _MoneySectionBuilderState extends State<MoneySectionBuilder> {
               ),
               controlAffinity: ListTileControlAffinity.leading,
               children: <Widget>[
-                MoneySection(categoryConfiguration: widget._sectionConfiguration.categoryConfiguration, inputFieldConfiguration: widget._sectionConfiguration.inputFieldConfiguration),
+                MoneySection(configuration: widget._sectionConfiguration,),
                 const SizedBox(
                   height: 20,
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: widget._sectionConfiguration.quickValueConfiguration.values
-                        .map((element) => QuickMoney(
+                        .map((element) => QuickMoney(widget._sectionConfiguration,
                       text: (widget._sectionConfiguration.quickValueConfiguration.signe * element).toString(),
                     ))
                         .toList()
