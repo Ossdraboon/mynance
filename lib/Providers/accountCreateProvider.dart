@@ -1,7 +1,6 @@
-
-import 'package:MyNance/Providers/accountCreateProvider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'accountStorageProvider.dart';
+
 part 'accountCreateProvider.g.dart';
 
 class AccountCreate {
@@ -14,11 +13,10 @@ class AccountCreate {
   String? gender;
 }
 
-
 @riverpod
 class AccountCreateBuilder extends _$AccountCreateBuilder {
   @override
-  AccountCreate build (){
+  AccountCreate build() {
     return AccountCreate();
   }
 
@@ -34,22 +32,21 @@ class AccountCreateBuilder extends _$AccountCreateBuilder {
   }
 
   checkState() {
-    if(state.phonenumber != null) {
+    if (state.phonenumber != null) {
       //add Entry in balanceStorageProvidera
       ref.read(accountStorageBuilderProvider.notifier).addAccountCreate(state);
       state = AccountCreate();
     }
-    if(state.birthday != null) {
+    if (state.birthday != null) {
       //add Entry in balanceStorageProvidera
       ref.read(accountStorageBuilderProvider.notifier).addAccountCreate(state);
       state = AccountCreate();
     }
-    if(state.gender != null) {
+    if (state.gender != null) {
       //add Entry in balanceStorageProvidera
       ref.read(accountStorageBuilderProvider.notifier).addAccountCreate(state);
       state = AccountCreate();
     }
-
   }
 
   setName(String name) {
@@ -59,14 +56,14 @@ class AccountCreateBuilder extends _$AccountCreateBuilder {
     checkState();
   }
 
-  setPassword(String password){
+  setPassword(String password) {
     AccountCreate copy = _copy();
     copy.password = password;
     state = copy;
     checkState();
   }
 
-  setEmail(String email){
+  setEmail(String email) {
     AccountCreate copy = _copy();
     copy.email = email;
     state = copy;
@@ -80,23 +77,20 @@ class AccountCreateBuilder extends _$AccountCreateBuilder {
     checkState();
   }
 
-  setBirthday(DateTime? birthday){
+  setBirthday(DateTime? birthday) {
     AccountCreate copy = _copy();
     copy.birthday = birthday;
     state = copy;
     checkState();
   }
 
-  setGender(String? gender){
+  setGender(String? gender) {
     AccountCreate copy = _copy();
     copy.gender = gender;
     state = copy;
     checkState();
   }
-
-
 }
-
 
 @riverpod
 class TestList extends _$TestList {

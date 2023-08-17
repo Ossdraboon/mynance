@@ -1,9 +1,12 @@
 import 'dart:math';
 
 import 'package:MyNance/Model/ChartSectionConfiguration.dart';
+import 'package:MyNance/Providers/balanceEntryProvider.dart';
 import 'package:MyNance/Widgets/Layouts/BarChart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../Providers/balanceStorageProvider.dart';
 import '../Buttons/MyTextButtonAnalytics.dart';
 import 'LineCharts.dart';
 
@@ -14,9 +17,41 @@ var fakedataList = List<double>.generate(7, (i) => (Random().nextDouble() * maxV
 
 List<double> weeklyCost = [401.00, 1099.76, 167.2, 206.13, 1658, 77.99, 4.99];
 List<String> weekDays = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
+class GraphWeekData {
+  List<double> values = List<double>.empty(growable: true);
+  List<String> titles = List<String>.empty(growable: true);
 
+  GraphWeekData(List<BalanceEntry> entries) {
+    if(entries.isEmpty) {
+      values.add(100);
+      titles.add(1.toString());
+      return;
+    }
+    print("GOT ENTRIES: " + entries.length.toString());
+    DateTime lower = entries[0].created;
+    lower = lower.add(Duration(hours: -lower.hour, seconds: -lower.second, milliseconds: -lower.millisecond));
+    DateTime upper = lower.add(const Duration(days: 1));
 
-class InfoSectionBuilder extends StatefulWidget {
+    entries.forEach((element) {print("Element: "+element.created.toString()+" "+element.amount!.toString());});
+
+    for(int i=0; i<7;i++) {
+      var tmp = entries.where((element) => element.created.isAfter(lower) && element.created.isBefore(upper));
+      double value = 0;
+      tmp.forEach((element) {
+        if(element.balanceType == BalanceType.payment){
+          value += element.amount ?? 0;}
+          // else if(element.balanceType == BalanceType.payment){
+          //   value -= element.amount ?? 0;}
+      });
+      lower = lower.add(const Duration(days: 1));
+      upper = upper.add(const Duration(days: 1));
+      values.add(value);
+      titles.add(weekDays[lower.weekday-1]);
+    }
+  }
+}
+
+class InfoSectionBuilder extends ConsumerWidget {
   late ChartSectionConfiguration _chartSectionConfiguration;
 
   InfoSectionBuilder({
@@ -25,16 +60,11 @@ class InfoSectionBuilder extends StatefulWidget {
     _chartSectionConfiguration = chartSectionConfiguration;
   }
 
-  @override
-  State<InfoSectionBuilder> createState() => _InfoSectionBuilderState();
-}
-
-class _InfoSectionBuilderState extends State<InfoSectionBuilder> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    var graphData = GraphWeekData(ref.watch(balanceEntriesWeekProvider));
     return InfoSection(
-      barChartConfiguration: widget._chartSectionConfiguration.barChartConfiguration,
-      lineChartConfiguration: widget._chartSectionConfiguration.lineChartConfiguration,);
+      barChartConfiguration: BarChartConfiguration(graphData.titles, graphData.values),
+      lineChartConfiguration: _chartSectionConfiguration.lineChartConfiguration,);
   }
 }
 

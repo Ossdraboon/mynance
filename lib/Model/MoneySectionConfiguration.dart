@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import '../Providers/balanceEntryProvider.dart';
-
-
 
 class MoneySectionConfiguration {
   int id;
@@ -14,8 +10,14 @@ class MoneySectionConfiguration {
   QuickValueConfiguration quickValueConfiguration;
   HistoryBoxConfiguration historyBoxConfiguration;
 
-  MoneySectionConfiguration(this.id, this.title, this.subtitle, this.categoryConfiguration,
-      this.inputFieldConfiguration, this.quickValueConfiguration, this.historyBoxConfiguration);
+  MoneySectionConfiguration(
+      this.id,
+      this.title,
+      this.subtitle,
+      this.categoryConfiguration,
+      this.inputFieldConfiguration,
+      this.quickValueConfiguration,
+      this.historyBoxConfiguration);
 }
 
 class CategoryConfiguration {
@@ -29,12 +31,13 @@ class InputFieldConfiguration {
   String hint;
   IconData icon;
 
-  InputFieldConfiguration(this.text,this.hint, this.icon);
+  InputFieldConfiguration(this.text, this.hint, this.icon);
 }
 
 class QuickValueConfiguration {
   List<int> values;
   int signe;
+
   QuickValueConfiguration(this.values, this.signe);
 }
 

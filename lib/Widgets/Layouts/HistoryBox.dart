@@ -44,10 +44,13 @@ class HistoryBox extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    // IconButton(icon: const Icon(Icons.delete,color: Colors.red,size: 25,), onPressed: () {
+                    // ref.read(balanceStorageBuilderProvider.notifier).removeAllEntrys(_balanceEntry);}),
                     SizedBox(width: 50,),
                     Expanded(child: Text("Date of Booking Entry :", style: TextStyle(color: Colors.white), )),
                     Expanded(child: Text(DateFormat("y.MM.dd. HH:mm").format(_balanceEntry.created),textAlign: TextAlign.right, style:TextStyle(color: Colors.white) , )),
-                    SizedBox(width: 20,)
+                    SizedBox(width: 20,),
+
                   ],
                 )
               ],

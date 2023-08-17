@@ -1,8 +1,7 @@
 import 'package:MyNance/Providers/accountCreateProvider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'accountCreateProvider.dart';
-part 'accountStorageProvider.g.dart';
 
+part 'accountStorageProvider.g.dart';
 
 @riverpod
 class AccountStorageBuilder extends _$AccountStorageBuilder {

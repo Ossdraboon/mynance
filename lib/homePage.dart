@@ -10,32 +10,6 @@ import 'main.dart';
 import 'package:MyNance/Widgets/Layouts/Dropdown.dart';
 import 'package:MyNance/Widgets/Buttons/QuickMoney.dart';
 
-
-// class ValueListener extends ConsumerWidget {
-//   const ValueListener({super.key});
-//
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     Testobject value = ref.watch(testobjectbuilderProvider);
-//
-//     if(value.amount != null) {
-//       ref.read(testListProvider.notifier).add(value);
-//     }
-//
-//     return const SizedBox(width: 0, height: 0,);
-//   }
-// }
-
-// class MagicTitleListener extends ConsumerWidget {
-//   const MagicTitleListener({super.key});
-//
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     return Text("${ref.watch(testobjectbuilderProvider).amount?.toString()??""} _ ${ref.watch(testobjectbuilderProvider).categories}"); }
-// }
-
-
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -72,29 +46,44 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           const SizedBox(height: 20),
-                          MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration(0,"PAYMENT","manage your daily Payments here",
+                          MoneySectionBuilder(
+                            sectionConfiguration: MoneySectionConfiguration(
+                              0,
+                              "PAYMENT",
+                              "manage your daily Payments here",
                               CategoryConfiguration(paymentList),
-                              InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
-                              QuickValueConfiguration(quickmoneyList,-1),
-                            HistoryBoxConfiguration(BalanceType.payment),
-                          ),),
+                              InputFieldConfiguration("individually Payment",
+                                  "add Payment", Icons.remove),
+                              QuickValueConfiguration(quickmoneyList, -1),
+                              HistoryBoxConfiguration(BalanceType.payment),
+                            ),
+                          ),
                           const SizedBox(height: 20),
-                          MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration(1,"INCOME","manage your daily Income here",
+                          MoneySectionBuilder(
+                            sectionConfiguration: MoneySectionConfiguration(
+                              1,
+                              "INCOME",
+                              "manage your daily Income here",
                               CategoryConfiguration(incomeList),
-                              InputFieldConfiguration("individually Income","add Income",Icons.add),
-                              QuickValueConfiguration(quickmoneyList,1),
-                            HistoryBoxConfiguration(BalanceType.income),
-                          ),),
+                              InputFieldConfiguration("individually Income",
+                                  "add Income", Icons.add),
+                              QuickValueConfiguration(quickmoneyList, 1),
+                              HistoryBoxConfiguration(BalanceType.income),
+                            ),
+                          ),
                           const SizedBox(height: 20),
-                          MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration(2,"GOAL","set your Goal here",
+                          MoneySectionBuilder(
+                            sectionConfiguration: MoneySectionConfiguration(
+                              2,
+                              "GOAL",
+                              "set your Goal here",
                               CategoryConfiguration(goalList),
-                              InputFieldConfiguration("individually Goal","add Gaol",Icons.savings_outlined),
-                              QuickValueConfiguration(quickmoneyList,1),
-                            HistoryBoxConfiguration(BalanceType.payment),
-                          ),),
+                              InputFieldConfiguration("individually Goal",
+                                  "add Gaol", Icons.savings_outlined),
+                              QuickValueConfiguration(quickmoneyList, 1),
+                              HistoryBoxConfiguration(BalanceType.payment),
+                            ),
+                          ),
                           const SizedBox(height: 20),
                         ],
                       ),
@@ -154,38 +143,51 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           const SizedBox(height: 180),
-                          MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration(0,"PAYMENT","manage your daily Payments here",
+                          MoneySectionBuilder(
+                            sectionConfiguration: MoneySectionConfiguration(
+                              0,
+                              "PAYMENT",
+                              "manage your daily Payments here",
                               CategoryConfiguration(paymentList),
-                              InputFieldConfiguration("individually Payment","add Payment",Icons.remove),
-                              QuickValueConfiguration(quickmoneyList,1),
+                              InputFieldConfiguration("individually Payment",
+                                  "add Payment", Icons.remove),
+                              QuickValueConfiguration(quickmoneyList, 1),
                               HistoryBoxConfiguration(BalanceType.payment),
-                          ),),
+                            ),
+                          ),
                           const SizedBox(height: 20),
-                          MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration(1,"INCOME","manage your daily Income here",
+                          MoneySectionBuilder(
+                            sectionConfiguration: MoneySectionConfiguration(
+                              1,
+                              "INCOME",
+                              "manage your daily Income here",
                               CategoryConfiguration(incomeList),
-                              InputFieldConfiguration("individually Income","add Income",Icons.add),
-                              QuickValueConfiguration(quickmoneyList,1),
+                              InputFieldConfiguration("individually Income",
+                                  "add Income", Icons.add),
+                              QuickValueConfiguration(quickmoneyList, 1),
                               HistoryBoxConfiguration(BalanceType.income),
-                          ),),
+                            ),
+                          ),
                           const SizedBox(height: 20),
-                          MoneySectionBuilder(sectionConfiguration:
-                          MoneySectionConfiguration(2,"GOAL","set your Goal here",
+                          MoneySectionBuilder(
+                            sectionConfiguration: MoneySectionConfiguration(
+                              2,
+                              "GOAL",
+                              "set your Goal here",
                               CategoryConfiguration(goalList),
-                              InputFieldConfiguration("individually Goal","add Gaol",Icons.savings_outlined),
-                              QuickValueConfiguration(quickmoneyList,1),
-                            HistoryBoxConfiguration(BalanceType.payment),
-                          ),),
+                              InputFieldConfiguration("individually Goal",
+                                  "add Gaol", Icons.savings_outlined),
+                              QuickValueConfiguration(quickmoneyList, 1),
+                              HistoryBoxConfiguration(BalanceType.payment),
+                            ),
+                          ),
                           const SizedBox(height: 20),
                         ],
                       ),
-                      InfoSectionBuilder(chartSectionConfiguration:
-                      ChartSectionConfiguration(
-                        LineChartConfiguration(weeklyCost),
-                        BarChartConfiguration(weekDays,fakedataList)
-                      ),
-
+                      InfoSectionBuilder(
+                        chartSectionConfiguration: ChartSectionConfiguration(
+                            LineChartConfiguration(weeklyCost),
+                            BarChartConfiguration(weekDays, fakedataList)),
                       ),
                     ],
                   ),
@@ -199,17 +201,13 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-
-
-
 class MoneySectionBuilder extends StatefulWidget {
- late MoneySectionConfiguration _sectionConfiguration;
+  late MoneySectionConfiguration _sectionConfiguration;
 
-   MoneySectionBuilder({
-    super.key,required MoneySectionConfiguration sectionConfiguration
-  }){
-     _sectionConfiguration = sectionConfiguration;
-   }
+  MoneySectionBuilder(
+      {super.key, required MoneySectionConfiguration sectionConfiguration}) {
+    _sectionConfiguration = sectionConfiguration;
+  }
 
   @override
   State<MoneySectionBuilder> createState() => _MoneySectionBuilderState();
@@ -246,29 +244,37 @@ class _MoneySectionBuilderState extends State<MoneySectionBuilder> {
             child: ExpansionTile(
               // shape: Border(),
               //trailing: Icon(Icons.money, color: Colors.white,),
-              title:  Text(widget._sectionConfiguration.title,
+              title: Text(
+                widget._sectionConfiguration.title,
                 style: const TextStyle(color: Colors.white, fontSize: 20),
               ),
-              subtitle:  Text(
+              subtitle: Text(
                 widget._sectionConfiguration.subtitle,
                 style: const TextStyle(color: Colors.white, fontSize: 15),
               ),
               controlAffinity: ListTileControlAffinity.leading,
               children: <Widget>[
-                MoneySection(configuration: widget._sectionConfiguration,),
+                MoneySection(
+                  configuration: widget._sectionConfiguration,
+                ),
                 const SizedBox(
                   height: 20,
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: widget._sectionConfiguration.quickValueConfiguration.values
-                        .map((element) => QuickMoney(widget._sectionConfiguration,
-                      text: (widget._sectionConfiguration.quickValueConfiguration.signe * element).toString(),
-                    ))
-                        .toList()
-                ),
+                    children: widget
+                        ._sectionConfiguration.quickValueConfiguration.values
+                        .map((element) => QuickMoney(
+                              widget._sectionConfiguration,
+                              text: (widget._sectionConfiguration
+                                          .quickValueConfiguration.signe *
+                                      element)
+                                  .toString(),
+                            ))
+                        .toList()),
                 const SizedBox(height: 20),
-                HistoryList(widget._sectionConfiguration.historyBoxConfiguration)
+                HistoryList(
+                    widget._sectionConfiguration.historyBoxConfiguration)
               ],
             ),
           ),
@@ -277,5 +283,3 @@ class _MoneySectionBuilderState extends State<MoneySectionBuilder> {
     );
   }
 }
-
-

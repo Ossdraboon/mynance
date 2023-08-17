@@ -22,7 +22,7 @@ Map<String, dynamic> _$BalanceEntryListToJson(BalanceEntryList instance) =>
 // **************************************************************************
 
 String _$paymentBalanceEntriesHash() =>
-    r'4d163c76039db539741a7162d9606eba0c0ccec1';
+    r'3b9987e3d80bb79c6533249f19b7d1796735fb6f';
 
 /// See also [paymentBalanceEntries].
 @ProviderFor(paymentBalanceEntries)
@@ -55,8 +55,25 @@ final incomeBalanceEntriesProvider =
 );
 
 typedef IncomeBalanceEntriesRef = AutoDisposeProviderRef<List<BalanceEntry>>;
+String _$balanceEntriesWeekHash() =>
+    r'7645d77c47587275e28dec1896fced3d9a1544d9';
+
+/// See also [balanceEntriesWeek].
+@ProviderFor(balanceEntriesWeek)
+final balanceEntriesWeekProvider =
+    AutoDisposeProvider<List<BalanceEntry>>.internal(
+  balanceEntriesWeek,
+  name: r'balanceEntriesWeekProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$balanceEntriesWeekHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef BalanceEntriesWeekRef = AutoDisposeProviderRef<List<BalanceEntry>>;
 String _$balanceStorageBuilderHash() =>
-    r'2e6b0d2e27103ecfed6a3f0edab8763035ededb6';
+    r'9f67cf87c028f41e6ff3f46a9e40338146eb2f4c';
 
 /// See also [BalanceStorageBuilder].
 @ProviderFor(BalanceStorageBuilder)

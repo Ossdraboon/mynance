@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import '../../Model/ChartSectionConfiguration.dart';
 import 'LineChartsColors.dart';
 
-//Todo: P2, 10.07, Add a grid Class to set layout, leftside Infobar from 0 to highest value and avg in middle, Topside Bar dont need
-
 class Sandbox extends StatefulWidget {
   late BarChartConfiguration _barChartConfiguration;
 

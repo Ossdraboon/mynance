@@ -1,13 +1,10 @@
-import 'package:flutter/material.dart';
+class ChartSectionConfiguration {
+  LineChartConfiguration lineChartConfiguration;
+  BarChartConfiguration barChartConfiguration;
 
-
-class ChartSectionConfiguration{
-LineChartConfiguration lineChartConfiguration;
-BarChartConfiguration barChartConfiguration;
-
-ChartSectionConfiguration(this.lineChartConfiguration, this.barChartConfiguration);
+  ChartSectionConfiguration(
+      this.lineChartConfiguration, this.barChartConfiguration);
 }
-
 
 class LineChartConfiguration {
   List<num> lineChartInputs;
@@ -19,5 +16,5 @@ class BarChartConfiguration {
   List<double> barchartValues;
   List<String> barchartDays;
 
-  BarChartConfiguration(this.barchartDays,this.barchartValues);
+  BarChartConfiguration(this.barchartDays, this.barchartValues);
 }

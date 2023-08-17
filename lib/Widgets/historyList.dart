@@ -25,6 +25,7 @@ class HistoryList extends ConsumerWidget {
       print("ich bin ein payment");
       entries = ref.watch(paymentBalanceEntriesProvider);
     }
+    //ref.read(balanceStorageBuilderProvider.notifier).initFakeData();
 
    return Column(
       children: [
