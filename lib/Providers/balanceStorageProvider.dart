@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:MyNance/Widgets/Layouts/Dropdown.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../Widgets/Layouts/InfoElement.dart';
@@ -36,32 +37,36 @@ class BalanceStorageBuilder extends _$BalanceStorageBuilder {
     var data = prefs.getString("data");
     print("DATA: $data");
     if (data != null) {
-      state = BalanceEntryList
-          .fromJson(jsonDecode(data))
-          .entries;
+      state = BalanceEntryList.fromJson(jsonDecode(data)).entries;
     } else {
-        var list = List<BalanceEntry>.empty(growable: true);
-        DateTime start = DateTime(2023, 1, 1, 8, 30);
-        for (int i = 0; i < 1000; i++) {
-          BalanceEntry entry = BalanceEntry();
-          if (i % 2 == 0) {
-            entry.balanceType = BalanceType.payment;
-          } else {
-            entry.balanceType = BalanceType.income;
-          }
-          entry.created = start;
-          if(entry.created.isAfter(DateTime.now())) {
-            break;
-          }
-          start = start.add(const Duration(hours: 6));
-          double rngAmount = (Random().nextDouble() * maxValue).roundToDouble();
-          entry.amount = rngAmount;
-          list.add(entry);
+      var list = List<BalanceEntry>.empty(growable: true);
+      DateTime start = DateTime(2023, 1, 1, 8, 30);
+      for (int i = 0; i < 1000; i++) {
+        BalanceEntry entry = BalanceEntry();
+        if (i % 2 == 0) {
+          int paymentpicker = Random().nextInt(9);
+          entry.balanceType = BalanceType.payment;
+          entry.categories = paymentList[paymentpicker];
+        } else {
+          int incomepicker = Random().nextInt(3);
+          entry.balanceType = BalanceType.income;
+          entry.categories = incomeList[incomepicker];
         }
-        state = list;
-        save();
-        print("fakedate erstellt !!!");
+        entry.created = start;
+        if (entry.created.isAfter(DateTime.now())) {
+          break;
+        }
+        start = start.add(const Duration(hours: 6));
+        double rngAmount = (Random().nextDouble() * maxValue).roundToDouble();
+
+        entry.amount = rngAmount;
+
+        list.add(entry);
       }
+      state = list;
+      save();
+      print("fakedate erstellt !!!");
+    }
   }
 
   save() async {
@@ -70,7 +75,7 @@ class BalanceStorageBuilder extends _$BalanceStorageBuilder {
     tmp.entries = state;
     var json = jsonEncode(tmp.toJson());
     print("DATA to save: " + json);
-    print("List length = " +tmp.entries.length.toString());
+    print("List length = " + tmp.entries.length.toString());
     await prefs.setString("data", json);
   }
 
@@ -81,7 +86,6 @@ class BalanceStorageBuilder extends _$BalanceStorageBuilder {
     state = entries;
     save();
   }
-
 
   removeBalanceEntry(BalanceEntry balanceEntry) {
     print("Delete entry from storage");
@@ -94,7 +98,7 @@ class BalanceStorageBuilder extends _$BalanceStorageBuilder {
 
 _last20EntriesReversed(Iterable<BalanceEntry> entries) {
   List<BalanceEntry> list = entries.toList();
-  if(list.length > 20) {
+  if (list.length > 20) {
     list = list.sublist(list.length - 20, list.length);
   }
   return list.reversed.toList();
@@ -103,7 +107,8 @@ _last20EntriesReversed(Iterable<BalanceEntry> entries) {
 @riverpod
 List<BalanceEntry> paymentBalanceEntries(PaymentBalanceEntriesRef ref) {
   final entries = ref.watch(balanceStorageBuilderProvider);
-  return _last20EntriesReversed(entries.where((element) => element.balanceType == BalanceType.payment));
+  return _last20EntriesReversed(
+      entries.where((element) => element.balanceType == BalanceType.payment));
 }
 
 @riverpod
@@ -117,11 +122,18 @@ List<BalanceEntry> incomeBalanceEntries(IncomeBalanceEntriesRef ref) {
 @riverpod
 List<BalanceEntry> balanceEntriesWeek(IncomeBalanceEntriesRef ref) {
   var upperLimit = DateTime.now();
-  var lowerLimit = upperLimit.add(const Duration(days: - 6));
-  lowerLimit = lowerLimit.add(Duration(hours: -lowerLimit.hour, seconds: -lowerLimit.second, milliseconds: -lowerLimit.millisecond));
+  var lowerLimit = upperLimit.add(const Duration(days: -6));
+  lowerLimit = lowerLimit.add(Duration(
+      hours: -lowerLimit.hour,
+      minutes: -lowerLimit.minute,
+      seconds: -lowerLimit.second,
+      milliseconds: -lowerLimit.millisecond));
   final entries = ref.watch(balanceStorageBuilderProvider);
   return entries
-      .where((element) => element.created.isAfter(lowerLimit) && element.created.isBefore(upperLimit)//filter if created in range of current week
+      .where((element) =>
+              element.created.isAfter(lowerLimit) &&
+              element.created.isBefore(
+                  upperLimit) //filter if created in range of current week
           )
       .toList();
 }

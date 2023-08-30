@@ -56,7 +56,7 @@ final incomeBalanceEntriesProvider =
 
 typedef IncomeBalanceEntriesRef = AutoDisposeProviderRef<List<BalanceEntry>>;
 String _$balanceEntriesWeekHash() =>
-    r'7645d77c47587275e28dec1896fced3d9a1544d9';
+    r'a216ba3a4e8d57d3ab90b922420685ddca96f200';
 
 /// See also [balanceEntriesWeek].
 @ProviderFor(balanceEntriesWeek)
@@ -73,7 +73,7 @@ final balanceEntriesWeekProvider =
 
 typedef BalanceEntriesWeekRef = AutoDisposeProviderRef<List<BalanceEntry>>;
 String _$balanceStorageBuilderHash() =>
-    r'9f67cf87c028f41e6ff3f46a9e40338146eb2f4c';
+    r'fc7382a9958e78c25452d35e9185f7e73b5e3be0';
 
 /// See also [BalanceStorageBuilder].
 @ProviderFor(BalanceStorageBuilder)

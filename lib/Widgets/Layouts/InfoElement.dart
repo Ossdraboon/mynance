@@ -10,43 +10,49 @@ import '../../Providers/balanceStorageProvider.dart';
 import '../Buttons/MyTextButtonAnalytics.dart';
 import 'LineCharts.dart';
 
-double maxValue = 500.00;
-var fakedataList = List<double>.generate(7, (i) => (Random().nextDouble() * maxValue).roundToDouble())..shuffle();
-
-
+double maxValue = 200.00;
+var fakedataList = List<double>.generate(
+    7, (i) => (Random().nextDouble() * maxValue).roundToDouble())
+  ..shuffle();
 
 List<double> weeklyCost = [401.00, 1099.76, 167.2, 206.13, 1658, 77.99, 4.99];
 List<String> weekDays = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
+
 class GraphWeekData {
   List<double> values = List<double>.empty(growable: true);
   List<String> titles = List<String>.empty(growable: true);
 
   GraphWeekData(List<BalanceEntry> entries) {
-    if(entries.isEmpty) {
+    if (entries.isEmpty) {
       values.add(100);
       titles.add(1.toString());
       return;
     }
-    print("GOT ENTRIES: " + entries.length.toString());
+
     DateTime lower = entries[0].created;
-    lower = lower.add(Duration(hours: -lower.hour, seconds: -lower.second, milliseconds: -lower.millisecond));
+    lower = lower.add(Duration(
+        hours: -lower.hour,
+        minutes: -lower.minute,
+        seconds: -lower.second,
+        milliseconds: -lower.millisecond));
     DateTime upper = lower.add(const Duration(days: 1));
+    print("Lower: "+lower.toString()+" "+upper.toString());
 
-    entries.forEach((element) {print("Element: "+element.created.toString()+" "+element.amount!.toString());});
-
-    for(int i=0; i<7;i++) {
-      var tmp = entries.where((element) => element.created.isAfter(lower) && element.created.isBefore(upper));
+    for (int i = 0; i < 7; i++) {
+      var tmp = entries.where((element) =>
+          element.created.isAfter(lower) && element.created.isBefore(upper));
       double value = 0;
       tmp.forEach((element) {
-        if(element.balanceType == BalanceType.payment){
-          value += element.amount ?? 0;}
-          // else if(element.balanceType == BalanceType.payment){
-          //   value -= element.amount ?? 0;}
+        if (element.balanceType == BalanceType.payment) {
+          value += element.amount ?? 0;
+        }
+        // else if(element.balanceType == BalanceType.payment){
+        //   value -= element.amount ?? 0;}
       });
+      values.add(value);
+      titles.add(weekDays[lower.weekday - 1]);
       lower = lower.add(const Duration(days: 1));
       upper = upper.add(const Duration(days: 1));
-      values.add(value);
-      titles.add(weekDays[lower.weekday-1]);
     }
   }
 }
@@ -54,30 +60,31 @@ class GraphWeekData {
 class InfoSectionBuilder extends ConsumerWidget {
   late ChartSectionConfiguration _chartSectionConfiguration;
 
-  InfoSectionBuilder({
-    super.key, required ChartSectionConfiguration chartSectionConfiguration
-  }){
+  InfoSectionBuilder(
+      {super.key,
+      required ChartSectionConfiguration chartSectionConfiguration}) {
     _chartSectionConfiguration = chartSectionConfiguration;
   }
 
   Widget build(BuildContext context, WidgetRef ref) {
     var graphData = GraphWeekData(ref.watch(balanceEntriesWeekProvider));
     return InfoSection(
-      barChartConfiguration: BarChartConfiguration(graphData.titles, graphData.values),
-      lineChartConfiguration: _chartSectionConfiguration.lineChartConfiguration,);
+      barChartConfiguration:
+          BarChartConfiguration(graphData.titles, graphData.values),
+      lineChartConfiguration: _chartSectionConfiguration.lineChartConfiguration,
+    );
   }
 }
-
-
 
 //Info
 class InfoSection extends StatefulWidget {
   late BarChartConfiguration _barChartConfiguration;
   late LineChartConfiguration _lineChartConfiguration;
 
-   InfoSection({
-    super.key, required BarChartConfiguration barChartConfiguration, required LineChartConfiguration lineChartConfiguration
-  }){
+  InfoSection(
+      {super.key,
+      required BarChartConfiguration barChartConfiguration,
+      required LineChartConfiguration lineChartConfiguration}) {
     _barChartConfiguration = barChartConfiguration;
     _lineChartConfiguration = lineChartConfiguration;
   }
@@ -113,20 +120,23 @@ class _InfoSectionState extends State<InfoSection> {
       //child: InfoSection(),
       child: Column(
         children: [
-          const SizedBox(height: 10,),
-          const Text("Overview of Weekly expenditures",style: TextStyle(color: Colors.white,fontSize: 18),),
+          const SizedBox(
+            height: 10,
+          ),
+          const Text(
+            "Overview of Weekly expenditures",
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
           Sandbox(barChartConfiguration: widget._barChartConfiguration),
           //LineChartSample2(weeklyCost),
           //PieChartSample1(),
           //PieChartSample2(),
           const MyTextButtonAnalytics(),
-          const SizedBox(height: 20,)
+          const SizedBox(
+            height: 20,
+          )
         ],
       ),
     );
   }
 }
-
-
-
-
