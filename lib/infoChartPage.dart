@@ -1,14 +1,8 @@
-import 'package:MyNance/Model/ChartSectionConfiguration.dart';
 import 'package:MyNance/Widgets/Buttons/MyBackButton.dart';
-import 'package:MyNance/Widgets/Layouts/InfoElement.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'Widgets/Layouts/MyCustomeDivider.dart';
 import 'main.dart';
-import 'Widgets/Layouts/BarChart.dart';
-//import 'Widgets/animatedBackground.dart';
-
-//import 'package:metaballs/metaballs.dart';
 
 class InfoChart extends StatelessWidget {
   const InfoChart({super.key});
@@ -110,6 +104,16 @@ class InfoChart extends StatelessWidget {
   }
 }
 
+//TODO 30.08.2023 Erstelle eine neue Seite für die Analyse der Jahres, Monates und Wochen Übersicht. User soll auswählen beim klicken, welcher Monat(Jahr oder Woche je nach Button), Ausgaben oder Einnahmen, welche Kategorie (oder alle) und nach diesen Kriterien wird die Datenbank gelesen, gefiltert und als Liste Dargestellt. BONUS die Werte werden in einem BarChart oder LineChart dargestellt.
+//TODO    Du kannst dafür, eine Seite machen, die für alle 3 Buttons funktioniert und je nach Button Jahr, Monat oder Woche ausgibt, ober für jeden Button eine Eigene Seite
+//TODO    Es brauchst eine Eingabe möglichkeit (am besten mit Dropdown Felder) wo der User die Filter Optionen einstellen kann.
+//TODO    Bei der auswahl ist wichtig zu beachten, das Payment und Income unterschiedliche Kategorien haben
+//TODO    Dazu einen Button der die Suche startet
+//TODO    Inputs der Auswahl werden am besten mit Provider abgefragt und weitergegeben
+//TODO    Ausdruck der Liste wie bei HistoryBox zum Beispiel
+
+//TODO    Beispiel: User klickt auf Yearly, kommt auf die Seite, wählt das Jahr aus, wählt aus ob er Payments oder Incomes sehen will, wählt dann eine Kategorie aus und drückt den Button der die Inputs liest und übergibt und dann wird die Liste in einer Box ausgegeben.
+
 
 
 class Weekly extends StatefulWidget {
@@ -133,7 +137,7 @@ class _Weekly extends State<Weekly> {
                 size: 80,
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed('/week');
+                Navigator.of(context).pushNamed('/week'); //TODO Button zur WochenÜbersicht
               },
             ),
             Text('Weekly'),
@@ -161,7 +165,7 @@ class _Monthly extends State<Monthly> {
             size: 80,
           ),
           onPressed: () {
-            Navigator.of(context).pushNamed('/month');
+            Navigator.of(context).pushNamed('/month'); //TODO Button zur MonatsÜbersicht
           },
         ),
         Text('Monthly'),
@@ -189,7 +193,7 @@ class _Yearly extends State<Yearly> {
             size: 80,
           ),
           onPressed: () {
-            Navigator.of(context).pushNamed('/year');
+            Navigator.of(context).pushNamed('/year'); //TODO Button zur JahresÜbersicht
           },
         ),
         Text('Yearly'),
