@@ -35,7 +35,6 @@ class BalanceStorageBuilder extends _$BalanceStorageBuilder {
   load() async {
     var prefs = await SharedPreferences.getInstance();
     var data = prefs.getString("data");
-    print("DATA: $data");
     if (data != null) {
       state = BalanceEntryList.fromJson(jsonDecode(data)).entries;
     } else {

@@ -56,6 +56,7 @@ class MyBackButton extends StatelessWidget {
 
 
 class MyBackButtonInfoSection extends StatelessWidget {
+
   const MyBackButtonInfoSection({super.key});
 
   @override
@@ -97,7 +98,7 @@ class MyBackButtonInfoSection extends StatelessWidget {
           shadowColor: Colors.transparent,
         ),
         onPressed: () {
-          Navigator.of(context).pushNamed('/home', arguments: "StartUpHome");
+          Navigator.of(context).pop();
         },
         child: const Text('Back'),
       ),

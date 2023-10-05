@@ -89,8 +89,25 @@ final balanceEntriesMonthProvider =
 );
 
 typedef BalanceEntriesMonthRef = AutoDisposeProviderRef<List<BalanceEntry>>;
+String _$balanceEntriesYearHash() =>
+    r'2baca915f64df74cbc0f8a76d19536cdc9ff55f3';
+
+/// See also [balanceEntriesYear].
+@ProviderFor(balanceEntriesYear)
+final balanceEntriesYearProvider =
+    AutoDisposeProvider<List<BalanceEntry>>.internal(
+  balanceEntriesYear,
+  name: r'balanceEntriesYearProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$balanceEntriesYearHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef BalanceEntriesYearRef = AutoDisposeProviderRef<List<BalanceEntry>>;
 String _$balanceStorageBuilderHash() =>
-    r'808c03b50c69f953245a50afdb97eb1e20ebac16';
+    r'961552544e90d0a2af05d680f1023fe0ec46cd02';
 
 /// See also [BalanceStorageBuilder].
 @ProviderFor(BalanceStorageBuilder)

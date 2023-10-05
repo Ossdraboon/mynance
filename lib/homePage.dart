@@ -1,4 +1,5 @@
 import 'package:MyNance/Model/ChartSectionConfiguration.dart';
+import 'package:MyNance/Model/Statistics.dart';
 import 'package:MyNance/Widgets/historyList.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -1,15 +1,14 @@
+import 'package:MyNance/Model/Statistics.dart';
 import 'package:MyNance/Widgets/Statistics/statistics.dart';
 import 'package:MyNance/createAccountPage.dart';
 import 'package:MyNance/infoChartPage.dart';
 import 'package:MyNance/manageAccountPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:provider/provider.dart';
 import 'package:metaballs/metaballs.dart';
 import 'loginPage.dart';
 import 'homePage.dart';
 import 'menuSettingsPage.dart';
-import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:particles_flutter/particles_flutter.dart';
@@ -115,7 +114,6 @@ class _StartUpPageState extends State<StartUpPage> {
         selectedIndex = 2;
       }
     }
-    var colorScheme = Theme.of(context).colorScheme;
 
     Widget page;
     switch (selectedIndex) {

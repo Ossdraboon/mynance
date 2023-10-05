@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:MyNance/Model/ChartSectionConfiguration.dart';
+import 'package:MyNance/Model/Statistics.dart';
 import 'package:MyNance/Providers/balanceEntryProvider.dart';
 import 'package:MyNance/Widgets/Layouts/BarChart.dart';
+import 'package:MyNance/Widgets/Statistics/statistics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,46 +18,6 @@ var fakedataList = List<double>.generate(
   ..shuffle();
 
 List<double> weeklyCost = [401.00, 1099.76, 167.2, 206.13, 1658, 77.99, 4.99];
-List<String> weekDays = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
-
-class GraphWeekData {
-  List<double> values = List<double>.empty(growable: true);
-  List<String> titles = List<String>.empty(growable: true);
-
-  GraphWeekData(List<BalanceEntry> entries) {
-    if (entries.isEmpty) {
-      values.add(100);
-      titles.add(1.toString());
-      return;
-    }
-
-    DateTime lower = entries[0].created;
-    lower = lower.add(Duration(
-        hours: -lower.hour,
-        minutes: -lower.minute,
-        seconds: -lower.second,
-        milliseconds: -lower.millisecond));
-    DateTime upper = lower.add(const Duration(days: 1));
-    print("Lower: "+lower.toString()+" "+upper.toString());
-
-    for (int i = 0; i < 7; i++) {
-      var tmp = entries.where((element) =>
-          element.created.isAfter(lower) && element.created.isBefore(upper));
-      double value = 0;
-      tmp.forEach((element) {
-        if (element.balanceType == BalanceType.payment) {
-          value += element.amount ?? 0;
-        }
-        // else if(element.balanceType == BalanceType.payment){
-        //   value -= element.amount ?? 0;}
-      });
-      values.add(value);
-      titles.add(weekDays[lower.weekday - 1]);
-      lower = lower.add(const Duration(days: 1));
-      upper = upper.add(const Duration(days: 1));
-    }
-  }
-}
 
 class InfoSectionBuilder extends ConsumerWidget {
   late ChartSectionConfiguration _chartSectionConfiguration;
@@ -67,7 +29,8 @@ class InfoSectionBuilder extends ConsumerWidget {
   }
 
   Widget build(BuildContext context, WidgetRef ref) {
-    var graphData = GraphWeekData(ref.watch(balanceEntriesWeekProvider));
+    var graphData = GraphDataGenerator(
+        ref.watch(balanceEntriesWeekProvider), StatisticsType.WEEKLY);
     return InfoSection(
       barChartConfiguration:
           BarChartConfiguration(graphData.titles, graphData.values),
@@ -123,9 +86,9 @@ class _InfoSectionState extends State<InfoSection> {
           const SizedBox(
             height: 10,
           ),
-          const Text(
-            "Overview of Weekly expenditures",
-            style: TextStyle(color: Colors.white, fontSize: 18),
+          Text(
+            StatisticsType.WEEKLY.title,
+            style: const TextStyle(color: Colors.white, fontSize: 18),
           ),
           Sandbox(barChartConfiguration: widget._barChartConfiguration),
           //LineChartSample2(weeklyCost),
