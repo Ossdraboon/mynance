@@ -40,7 +40,7 @@ class BalanceStorageBuilder extends _$BalanceStorageBuilder {
       state = BalanceEntryList.fromJson(jsonDecode(data)).entries;
     } else {
       var list = List<BalanceEntry>.empty(growable: true);
-      DateTime start = DateTime(2023, 1, 1, 8, 30);
+      DateTime start = DateTime(2023, 6, 1, 8, 30);
       for (int i = 0; i < 1000; i++) {
         BalanceEntry entry = BalanceEntry();
         if (i % 2 == 0) {
@@ -137,3 +137,44 @@ List<BalanceEntry> balanceEntriesWeek(IncomeBalanceEntriesRef ref) {
           )
       .toList();
 }
+
+@riverpod
+List<BalanceEntry> balanceEntriesMonth(IncomeBalanceEntriesRef ref) {
+  var upperLimit = DateTime.now();
+  var lowerLimit = DateTime(upperLimit.year, upperLimit.month, 1);
+
+  lowerLimit = lowerLimit.add(Duration(
+    hours: -lowerLimit.hour,
+    minutes: -lowerLimit.minute,
+    seconds: -lowerLimit.second,
+    milliseconds: -lowerLimit.millisecond,
+  ));
+  final entries = ref.watch(balanceStorageBuilderProvider);
+  return entries
+      .where((element) =>
+          element.created.isAfter(lowerLimit) &&
+          element.created.isBefore(upperLimit))
+      .toList();
+}
+
+@riverpod
+List<BalanceEntry> balanceEntriesYear(IncomeBalanceEntriesRef ref) {
+  var upperLimit = DateTime.now();
+  var lowerLimit = DateTime(upperLimit.year, 1, 1);
+
+  lowerLimit = lowerLimit.add(Duration(
+    hours: -lowerLimit.hour,
+    minutes: -lowerLimit.minute,
+    seconds: -lowerLimit.second,
+    milliseconds: -lowerLimit.millisecond,
+  ));
+  final entries = ref.watch(balanceStorageBuilderProvider);
+  return entries
+      .where((element) =>
+  element.created.isAfter(lowerLimit) &&
+      element.created.isBefore(upperLimit))
+      .toList();
+}
+
+
+//TODO balance entries für month und year machen!

@@ -1,3 +1,4 @@
+import 'package:MyNance/Widgets/Statistics/statistics.dart';
 import 'package:MyNance/createAccountPage.dart';
 import 'package:MyNance/infoChartPage.dart';
 import 'package:MyNance/manageAccountPage.dart';
@@ -40,6 +41,9 @@ class MyApp extends StatelessWidget {
           '/manage': (context) => const ManageAccount(),
           '/menu': (context) => const MenuSettings(),
           '/info': (context) => const InfoChart(),
+          '/statistics/week': (context) => Statistics(StatisticsType.WEEKLY),
+          '/statistics/month': (context) => Statistics(StatisticsType.MONTHLY),
+          '/statistics/year': (context) => Statistics(StatisticsType.YEARLY),
           //'/week': (context =>
         },
     );// home: const StartUpPage(),
@@ -123,6 +127,7 @@ class _StartUpPageState extends State<StartUpPage> {
         break;
       case 2:
         page = const MenuSettings();
+        page = const InfoChart();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');

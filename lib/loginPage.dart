@@ -35,7 +35,7 @@ class LoginPage extends StatelessWidget {
         if (constrains.maxWidth >= 600) {
           return Stack(
             children: <Widget>[
-              const CircularParticleScreen(),
+              //const CircularParticleScreen(),
               Image.asset(
                 "assets/images/MyNanceSide-noBG.png",
                 width: 400,
@@ -79,7 +79,7 @@ class LoginPage extends StatelessWidget {
         } else {
           return Stack(
             children: <Widget>[
-              const CircularParticleScreen(),
+              //const CircularParticleScreen(),
               Container(
                 height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(

@@ -137,7 +137,7 @@ class _Weekly extends State<Weekly> {
                 size: 80,
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed('/week'); //TODO Button zur WochenÜbersicht
+                Navigator.of(context).pushNamed('/statistics/week'); //TODO Button zur WochenÜbersicht
               },
             ),
             Text('Weekly'),
@@ -165,7 +165,7 @@ class _Monthly extends State<Monthly> {
             size: 80,
           ),
           onPressed: () {
-            Navigator.of(context).pushNamed('/month'); //TODO Button zur MonatsÜbersicht
+            Navigator.of(context).pushNamed('/statistics/month'); //TODO Button zur MonatsÜbersicht
           },
         ),
         Text('Monthly'),
@@ -193,7 +193,7 @@ class _Yearly extends State<Yearly> {
             size: 80,
           ),
           onPressed: () {
-            Navigator.of(context).pushNamed('/year'); //TODO Button zur JahresÜbersicht
+            Navigator.of(context).pushNamed('/statistics/year'); //TODO Button zur JahresÜbersicht
           },
         ),
         Text('Yearly'),

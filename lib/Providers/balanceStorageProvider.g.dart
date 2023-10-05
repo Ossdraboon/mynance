@@ -72,8 +72,25 @@ final balanceEntriesWeekProvider =
 );
 
 typedef BalanceEntriesWeekRef = AutoDisposeProviderRef<List<BalanceEntry>>;
+String _$balanceEntriesMonthHash() =>
+    r'1b7f098ab128c366e892b016d3296e5609b1726a';
+
+/// See also [balanceEntriesMonth].
+@ProviderFor(balanceEntriesMonth)
+final balanceEntriesMonthProvider =
+    AutoDisposeProvider<List<BalanceEntry>>.internal(
+  balanceEntriesMonth,
+  name: r'balanceEntriesMonthProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$balanceEntriesMonthHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef BalanceEntriesMonthRef = AutoDisposeProviderRef<List<BalanceEntry>>;
 String _$balanceStorageBuilderHash() =>
-    r'fc7382a9958e78c25452d35e9185f7e73b5e3be0';
+    r'808c03b50c69f953245a50afdb97eb1e20ebac16';
 
 /// See also [BalanceStorageBuilder].
 @ProviderFor(BalanceStorageBuilder)
